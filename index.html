@@ -11,7 +11,30 @@
     <div id="drop-area">
       <h2>Drag and Drop CSV File Here</h2>
     </div>
+    <div class="loader hidden"></div>
+    <button class="button-3 hidden reset-btn" role="button">Another file</button>
 
-    <script src="app.js"></script>
+
+    <div class="filter-container hidden">
+      <form>
+        <div class="select-wrapper">
+          <select class="select" name="tariff" id="tariff" >
+            <option value="24h">24h</option>
+            <option value="nighsaver">NightSaver</option>
+            <option value="tou">Time of Usage</option>
+          </select>
+        </div>
+        <div class="select-wrapper">
+          <select class="select" name="location" id="location" >
+
+            <option value="urban">Urban</option>
+            <option value="rural">Rural</option>
+          </select>
+        </div>
+    </div>
+
+
+
+    <script src="script.js"></script>
   </body>
 </html>
