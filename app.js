@@ -6,6 +6,12 @@ let selectTariff = document.querySelector("#tariff");
 let selectLocation = document.querySelector("#location");
 let listContainer = document.querySelector(".list-container");
 let chartContainer = document.querySelector(".chart-container");
+let chartIcon = document.querySelector("#chart-icon");
+let listIcon = document.querySelector("#list-icon");
+let ctx = document.getElementById("myChart");
+
+let dataIsLoaded = false;
+let chartIsLoaded = false;
 
 const nsHeader = [
   "DATE",
@@ -14,16 +20,10 @@ const nsHeader = [
   "DAY-UNITS",
   "DAY-TOTAL",
   "TOTAL",
-  "TOTAL+URBAN-SC",
-  "TOTAL+RURAL-SC",
+  "TOTAL URBAN",
+  "TOTAL+RURAL",
 ];
-const dayHeader = [
-  "DATE",
-  "UNITS",
-  "TOTAL",
-  "TOTAL + URBAN SC",
-  "TOTAL + RURAL SC",
-];
+const dayHeader = ["DATE", "UNITS", "TOTAL", "TOTAL+URBAN", "TOTAL+RURAL"];
 const touHeader = [
   "DATE",
   "NIGHT UNITS",
@@ -33,8 +33,8 @@ const touHeader = [
   "PEAK UNITS",
   "PEAK TOTAL",
   "TOTAL",
-  "TOTAL + URBAN SC",
-  "TOTAL + RURAL SC",
+  "TOTAL + SC",
+  "TOTAL + SC",
 ];
 
 // listen for file drag and drop events
@@ -47,6 +47,7 @@ let nightArray = [nsHeader];
 let dayArray = [dayHeader];
 let peakArray = [touHeader];
 
+//drag and drop handlres
 function handleDragEnter(e) {
   this.classList.add("drag-over");
 }
@@ -61,9 +62,7 @@ function handleDragLeave(e) {
 
 function handleFileSelect(e) {
   this.classList.remove("drag-over");
-  this.classList.add("hidden");
-
-  loader.classList.remove("hidden");
+  dropArea.style.display = "none";
   e.preventDefault();
   e.stopPropagation();
 
@@ -80,6 +79,8 @@ function handleFileSelect(e) {
     return;
   }
 
+  loader.classList.remove("hidden");
+
   // process the file
   let reader = new FileReader();
   reader.onload = function () {
@@ -95,55 +96,64 @@ function handleFileSelect(e) {
         result[i][j] = result[i][j].replace(/\r/g, "");
       }
     }
-
+    loader.classList.add("hidden");
     let location = selectLocation.value;
     let tariff = selectTariff.value;
-    loader.classList.add("hidden");
-    // resetBtn.classList.remove("hidden");
-    // filterContainer.classList.remove("hidden");
+
     main(result);
-    createTable(tariff, location);
+    displayTable(tariff, location);
+
+    listContainer.classList.remove("hidden");
+    chartContainer.classList.remove("hidden");
+
+    // listIcon.classList.add("active");
+    dataIsLoaded = true;
     data = result;
   };
   reader.readAsText(file);
-
-  // Create a table element
 }
 
-const createTable = (tariff, location) => {
-  let table = document.createElement("table");
-  table.setAttribute("id", "csv-table");
+const displayTable = (tariff, location) => {
   if (tariff == "24h") {
     if (location == "urban") {
-      displayTable(dayArray);
+      let urbanArray = dayArray;
+      for (let i = 0; i < urbanArray.length; i++) {
+        urbanArray[i].splice(4, 1);
+        console.log(urbanArray[i].splice(4, 1));
+      }
+      createTable(urbanArray);
     } else if (location == "rural") {
-      displayTable(dayArray);
+      let ruralArray = dayArray;
+      for (let i = 0; i < ruralArray.length; i++) {
+        ruralArray[i].splice(3, 1);
+        console.log(ruralArray[i].splice(3, 1));
+      }
+      createTable(ruralArray);
     } else {
       alert("invalid location");
     }
   }
   if (tariff == "nightsaver") {
     if (location == "urban") {
-      displayTable(nightArray);
+      createTable(nightArray);
     } else if (location == "rural") {
-      displayTable(nightArray);
+      createTable(nightArray);
     } else {
       alert("invalid location");
     }
   }
   if (tariff == "tou") {
     if (location == "urban") {
-      displayTable(peakArray);
+      createTable(peakArray);
     } else if (location == "rural") {
-      displayTable(peakArray);
+      createTable(peakArray);
     } else {
       alert("invalid location");
     }
   }
 };
 
-const displayTable = (array) => {
-  // getChartInfo()
+const createTable = (array) => {
   if (document.querySelector("#csv-table") !== null) {
     document.querySelector("#csv-table").remove();
   }
@@ -153,9 +163,13 @@ const displayTable = (array) => {
 
   let headerRow = table.insertRow();
   for (let i = 0; i < array[0].length; i++) {
-    let headerCell = headerRow.insertCell();
-    headerCell.innerHTML = array[0][i];
+    let headerCell = document.createElement("th");
+    headerCell.innerText = array[0][i];
     headerCell.setAttribute("id", array[0][i]);
+    headerCell.setAttribute("onclick", `sortTable(${i})`);
+    headerCell.classList.add("header-cell");
+    headerCell.classList.add("table-sortable");
+    headerRow.appendChild(headerCell);
   }
   let tableHeader = document.createElement("thead");
   tableHeader.appendChild(headerRow);
@@ -179,13 +193,20 @@ const displayTable = (array) => {
   listContainer.classList.remove("hidden");
 };
 resetBtn.addEventListener("click", () => {
-  dropArea.classList.remove("hidden");
+  dropArea.style.display = "flex";
   document.querySelector("#csv-table").remove();
-  resetBtn.classList.add("hidden");
+  // document.querySelector("#myChart").remove();
+  // chartContainer.innerHTML = "";
+  removeData(myChart);
+  data = undefined;
+
+  nightArray = [nsHeader];
+  dayArray = [dayHeader];
+  peakArray = [touHeader];
+  dataIsLoaded = false;
 });
 
 function main(dataArray) {
-  //  console.log(dataArray)
   //TARIFS
   //24H
   const alldayPrice = 0.4154;
@@ -217,7 +238,6 @@ function main(dataArray) {
     let date = data[i][0].split(" ")[0];
 
     if (time.length < 5) {
-      console.log("here");
       time = "0" + time;
     }
     data[i][0] = `${date} ${time}`;
@@ -274,7 +294,7 @@ function main(dataArray) {
     // console.log(infoDate)
     dayArray.push([
       infoDate,
-      dateUnits.toFixed(2),
+      Number(dateUnits.toFixed(2)),
       euro.format(dateTotal),
       euro.format(dateTotalSC),
       euro.format(ruralAllDayTotalSC),
@@ -290,9 +310,9 @@ function main(dataArray) {
 
     nightArray.push([
       infoDate,
-      nightUnits.toFixed(2),
+      Number(nightUnits.toFixed(2)),
       euro.format(nightTotal),
-      dayUnits.toFixed(2),
+      Number(dayUnits.toFixed(2)),
       euro.format(dayTotal),
       euro.format(daynightTotal),
       euro.format(daynightTotalSC),
@@ -334,65 +354,101 @@ function main(dataArray) {
     d2.push(peakArray[i][3]);
     d3.push(peakArray[i][5]);
   }
-
-  getChartInfo(d1, d2, d3, days);
 }
 
 selectTariff.addEventListener("change", (e) => {
-  createTable(selectTariff.value, selectLocation.value);
+  if (dataIsLoaded) {
+    displayTable(selectTariff.value, selectLocation.value);
+  }
 });
 
 selectLocation.addEventListener("change", (e) => {
-  createTable(selectTariff.value, selectLocation.value);
+  if (dataIsLoaded) {
+    displayTable(selectTariff.value, selectLocation.value);
+  }
 });
 
-const getChartInfo = (d1, d2, d3, days) => {
-  chartContainer.classList.remove("hidden");
-  const ctx = document.getElementById("myChart");
-  const labels = days;
-  const chartData = {
-    labels: labels,
-    datasets: [
-      {
-        label: "Night",
-        data: d1,
-        backgroundColor: "#023047",
-      },
-      {
-        label: "Day",
-        data: d2,
-        backgroundColor: "#FFB703",
-      },
-      {
-        label: "Peak",
-        data: d3,
-        backgroundColor: "#FB8500",
-      },
-    ],
-  };
+// const chartData = {
+//   labels: labels,
+//   datasets: [
+//     {
+//       label: "Night",
+//       data: [0, 1, 2, 3],
+//       backgroundColor: "#023047",
+//     },
+//     {
+//       label: "Day",
+//       data: [9, 2, 3, 3],
+//       backgroundColor: "#FFB703",
+//     },
+//     {
+//       label: "Peak",
+//       data: [1, 3, 4, 5],
+//       backgroundColor: "#FB8500",
+//     },
+//   ],
 
-  new Chart(ctx, {
-    type: "bar",
-    data: chartData,
-    options: {
-      plugins: {
-        title: {
-          display: true,
-          text: "Chart.js Bar Chart - Stacked",
-        },
-      },
-      responsive: true,
-      scales: {
-        x: {
-          stacked: true,
-          autoSkip: false,
-        },
-        y: {
-          stacked: true,
-        },
-      },
-    },
-  });
-};
+let asc = true;
+document.addEventListener("click", (e) => {
+  if (e.target.classList.contains("header-cell")) {
+    document.querySelectorAll(".header-cell").forEach((e) => {
+      e.classList.remove("down");
+      e.classList.remove("up");
+    });
+    if (asc) {
+      e.target.classList.add("up");
+      e.target.classList.remove("down");
+    } else {
+      e.target.classList.remove("up");
+      e.target.classList.add("down");
+    }
+  }
+});
 
-// Chart or List
+function sortTable(col) {
+  console.log(asc);
+  var rows, switching, i, x, y, shouldSwitch;
+  table = document.getElementById("csv-table");
+  switching = true;
+  /* Make a loop that will continue until
+  no switching has been done: */
+  while (switching) {
+    // Start by saying: no switching is done:
+    switching = false;
+    rows = table.rows;
+    /* Loop through all table rows (except the
+    first, which contains table headers): */
+    for (i = 1; i < rows.length - 1; i++) {
+      // Start by saying there should be no switching:
+      shouldSwitch = false;
+      /* Get the two elements you want to compare,
+      one from current row and one from the next: */
+      x = rows[i].getElementsByTagName("TD")[col];
+      y = rows[i + 1].getElementsByTagName("TD")[col];
+      // Check if the two rows should switch place:
+
+      var xValue = parseFloat(x.innerHTML.replace(/[^\d.-]/g, ""));
+      var yValue = parseFloat(y.innerHTML.replace(/[^\d.-]/g, ""));
+      if (isNaN(x.innerHTML) && isNaN(y.innerHTML)) {
+        if (asc) {
+          if (xValue > yValue) {
+            shouldSwitch = true;
+            break;
+          }
+        } else {
+          if (xValue < yValue) {
+            shouldSwitch = true;
+            break;
+          }
+        }
+      }
+    }
+    if (shouldSwitch) {
+      /* If a switch has been marked, make the switch
+      and mark that a switch has been done: */
+      rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+      switching = true;
+    }
+  }
+  asc = !asc;
+}
