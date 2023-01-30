@@ -36,6 +36,7 @@ header {
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   z-index: 100;
   padding: 1rem 1.2rem 1rem 0.5rem;
+  min-height: 10vh;
   display: flex;
   align-items: center;
   background-color: #fff;
@@ -165,8 +166,7 @@ header {
 
 /* MAIN */
 .main {
-  height: 100%;
-  width: 100%;
+  flex-grow: 1;
   display: flex;
 }
 /* SIDEBAR */
@@ -177,14 +177,12 @@ header {
   min-width: 80px;
   max-width: 3rem;
   width: 100%;
-  height: 100%;
   background-color: #fff;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
-    rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+  box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
 }
 
 .sidebar-nav {
@@ -201,6 +199,7 @@ header {
   display: flex;
   justify-content: center;
 }
+
 svg {
   cursor: pointer;
   width: 50%;
@@ -215,7 +214,7 @@ svg:hover {
 }
 
 /* MAIN DISPLAY */
-.data-display {
+.flex {
   display: flex;
   width: 100%;
   background-color: #999797;
@@ -238,20 +237,30 @@ svg:hover {
 .drag-over {
   background-color: red;
 }
-
+/* DISPLAY CONTAINER */
+.grid {
+  padding: 16px 32px;
+  flex-grow: 1;
+  max-height: 90vh;
+  display: grid;
+  background-color: #b0adad;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: repeat(5, 1f);
+  grid-column-gap: 32px;
+  grid-row-gap: 32px;
+}
 /* TABLE */
 .list-container {
-  margin-top: 5%;
-  max-height: 80vh;
+  height: 100%;
   overflow-y: auto;
-  /* background-color: #fff; */
+  grid-area: 2 / 1 / 6/ 4;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
 }
 #csv-table {
   width: 100%;
   height: 100%;
   background-color: #fff;
   border: none;
-  border-radius: 6px;
   font-family: sans-serif;
   overflow: scroll;
   border-collapse: collapse;
@@ -263,18 +272,22 @@ thead {
   width: 100%;
   padding: 1rem 2rem;
   color: white;
-  font-size: 1.2rem;
+  font-size: 1rem;
   position: sticky;
   z-index: 12;
   left: 0;
   top: 0;
+  border-color: #d91e75;
+}
+thead > tr {
+  background: #d91e75;
+  border-color: #d91e75;
 }
 th {
-  background: #d91e75;
+  cursor: pointer;
+  border-color: #d91e75;
+  /* display: grid; */
   position: relative;
-  border: 1px solid white;
-
-  /* border: 1px solid #d91e75; */
 }
 .up::after,
 .down::after {
@@ -284,6 +297,7 @@ th {
   pointer-events: none;
   position: absolute;
   top: 50%;
+  right: 5px;
   transform: translateY(-50%);
   font-size: 16px;
   font-weight: 600;
@@ -307,14 +321,43 @@ tbody > tr:nth-of-type(odd) {
 }
 
 /* Chart */
+
 .chart-container {
-  display: none;
+  grid-area: 2 / 4 /6 / 6;
+  overflow-y: auto;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+}
+#myChart {
+  background-color: #fff;
+  width: auto;
 }
 
-.myChart {
-  display: none;
-}
+.summary-container {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  font-family: sans-serif;
+  /* padding: ; */
 
+  grid-area: 1 / 1 / 2 / 6;
+}
+.box {
+  min-height: 140px;
+  width: 25%;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  background-color: #d91e75;
+  color: white;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+}
+.box > h2 {
+  text-transform: capitalize;
+}
+/* .box > span {
+  font-size: 1.4;
+} */
 .hidden {
   display: none;
 }
