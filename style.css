@@ -83,6 +83,7 @@ header {
   line-height: 20px;
   padding: 6px 16px;
   position: relative;
+  margin-right: 5%;
   text-align: center;
   text-decoration: none;
   user-select: none;
@@ -126,7 +127,7 @@ header {
 .select-wrapper {
   position: relative;
   width: 200px;
-  margin-right: 0.2rem;
+  margin-right: 5%;
 }
 .select-wrapper::after {
   color: black;
@@ -209,7 +210,7 @@ svg:hover {
   fill: #f22283;
 }
 
-svg > .active {
+.active {
   fill: #f22283;
 }
 
@@ -226,8 +227,10 @@ svg > .active {
   width: 300px;
   height: 200px;
   border: 3px dashed #ccc;
-  text-align: center;
-  /* line-height: 1; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center; /* line-height: 1; */
   font-size: 24px;
   color: #ccc;
 }
@@ -237,56 +240,79 @@ svg > .active {
 }
 
 /* TABLE */
-
+.list-container {
+  margin-top: 5%;
+  max-height: 80vh;
+  overflow-y: auto;
+  /* background-color: #fff; */
+}
 #csv-table {
   width: 100%;
+  height: 100%;
   background-color: #fff;
-  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  border: none;
   border-radius: 6px;
   font-family: sans-serif;
   overflow: scroll;
+  border-collapse: collapse;
+
+  position: relative;
 }
 
 thead {
   width: 100%;
   padding: 1rem 2rem;
-  background: #d91e75;
-
   color: white;
   font-size: 1.2rem;
+  position: sticky;
+  z-index: 12;
+  left: 0;
+  top: 0;
 }
-thead > {
-  border: 1px solid #d91e75;
+th {
+  background: #d91e75;
+  position: relative;
+  border: 1px solid white;
+
+  /* border: 1px solid #d91e75; */
 }
+.up::after,
+.down::after {
+  color: #fff;
+
+  content: "\25B2";
+  pointer-events: none;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 16px;
+  font-weight: 600;
+}
+.down::after {
+  content: "\25BC";
+}
+
 th,
 td {
   text-align: center;
   padding-top: 0.3rem;
   padding-bottom: 0.5rem;
-  padding-left: 1.3rem;
-  padding-right: 1.3rem;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+  position: relative;
 }
-tr:hover,
-td:hover {
-  background-color: #f22283;
-}
-.table-row {
-  display: flex;
-  width: 100%;
-  padding: 0;
-}
+
 tbody > tr:nth-of-type(odd) {
-  background: #fff;
+  background: rgb(207, 205, 205, 0.2);
 }
 
-.table-data,
-.header__item {
-  flex: 1 1 20%;
-  text-align: center;
+/* Chart */
+.chart-container {
+  display: none;
 }
 
-.header__item {
-  text-transform: uppercase;
+.myChart {
+  display: none;
 }
 
 .hidden {
