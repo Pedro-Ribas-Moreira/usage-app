@@ -69,11 +69,33 @@
         <!-- toggle between chart and list -->
         <!-- compare prices with other tariffs -->
       </div>
-      <div class="data-display">
+      <div class="data-display flex">
         <div id="drop-area">
           <h2>Drag and Drop CSV File Here</h2>
         </div>
         <div class="loader hidden"></div>
+        <div class="summary-container hidden">
+          <div class="box">
+            <h2>Total Spent</h2>
+            <p><span id="total-days">11</span> days</p>
+            <p><span id="total-days-sum">434,31</span></p>
+          </div>
+          <div class="box">
+            <h2>Daily Average</h2>
+            <span id="average-days-sum">434,31</span>
+          </div>
+          <div class="box">
+            <h2>Highest spent</h2>
+            <span id="highest-day-spent">12/03/2023</span>
+            <span id="highest-day-sum">434,31</span>
+          </div>
+          <div class="box">
+            <h2>Tariff Comparison</h2>
+            <p>24H: <span id="total-spent-24">434,31 </span></p>
+            <p>D/N: <span id="total-spent-dn">434,31</span></p>
+            <p>TOU: <span id="total-spent-tou">434,31</span></p>
+          </div>
+        </div>
         <div class="list-container hidden"></div>
         <div class="chart-container hidden">
           <canvas id="myChart"></canvas>
@@ -82,7 +104,6 @@
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
     <script src="script.js"></script>
   </body>
 </html>
