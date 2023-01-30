@@ -1,29 +1,46 @@
-let dropArea = document.getElementById("drop-area");
-let loader = document.querySelector(".loader");
-let resetBtn = document.querySelector(".reset-btn");
-let filterContainer = document.querySelector(".filter-container");
-let selectTariff = document.querySelector("#tariff");
-let selectLocation = document.querySelector("#location");
-let listContainer = document.querySelector(".list-container");
-let chartContainer = document.querySelector(".chart-container");
-let chartIcon = document.querySelector("#chart-icon");
-let listIcon = document.querySelector("#list-icon");
-let ctx = document.getElementById("myChart");
+const dropArea = document.getElementById("drop-area");
+const loader = document.querySelector(".loader");
+const resetBtn = document.querySelector(".reset-btn");
+const filterContainer = document.querySelector(".filter-container");
+const selectTariff = document.querySelector("#tariff");
+const selectLocation = document.querySelector("#location");
+const listContainer = document.querySelector(".list-container");
+const chartContainer = document.querySelector(".chart-container");
+const chartIcon = document.querySelector("#chart-icon");
+const displayContainer = document.querySelector(".data-display");
+const listIcon = document.querySelector("#list-icon");
+const summaryContainer = document.querySelector(".summary-container");
 
 let dataIsLoaded = false;
 let chartIsLoaded = false;
 
-const nsHeader = [
+//set currency
+let euro = Intl.NumberFormat("en-DE", {
+  style: "currency",
+  currency: "EUR",
+});
+
+const nsUrbanHeader = [
   "DATE",
-  "NIGHT-UNITS",
-  "NIGHT-TOTAL",
-  "DAY-UNITS",
-  "DAY-TOTAL",
+  "NIGHT UNITS",
+  "NIGHT TOTAL",
+  "DAY UNITS",
+  "DAY TOTAL",
   "TOTAL",
-  "TOTAL URBAN",
-  "TOTAL+RURAL",
+  "TOTAL + URBAN",
 ];
-const dayHeader = ["DATE", "UNITS", "TOTAL", "TOTAL+URBAN", "TOTAL+RURAL"];
+const nsRuralHeader = [
+  "DATE",
+  "NIGHT UNITS",
+  "NIGHT TOTAL",
+  "DAY UNITS",
+  "DAY TOTAL",
+  "TOTAL",
+  "TOTAL + RURAL",
+];
+const dayHeader = ["DATE", "UNITS", "TOTAL", "TOTAL + URBAN"];
+const dayRuralHeader = ["DATE", "UNITS", "TOTAL", "TOTAL + RURAL"];
+
 const touHeader = [
   "DATE",
   "NIGHT UNITS",
@@ -33,8 +50,18 @@ const touHeader = [
   "PEAK UNITS",
   "PEAK TOTAL",
   "TOTAL",
-  "TOTAL + SC",
-  "TOTAL + SC",
+  "TOTAL + URBAN",
+];
+const touRuralHeader = [
+  "DATE",
+  "NIGHT UNITS",
+  "NIGHT TOTAL",
+  "DAY UNITS",
+  "DAY TOTAL",
+  "PEAK UNITS",
+  "PEAK TOTAL",
+  "TOTAL",
+  "TOTAL + RURAL",
 ];
 
 // listen for file drag and drop events
@@ -43,9 +70,12 @@ dropArea.addEventListener("dragover", handleDragOver, false);
 dropArea.addEventListener("dragleave", handleDragLeave, false);
 dropArea.addEventListener("drop", handleFileSelect, false);
 let data;
-let nightArray = [nsHeader];
+let nightArray = [nsUrbanHeader];
+let nigthRuralArray = [nsRuralHeader];
 let dayArray = [dayHeader];
+let dayRuralArray = [dayRuralHeader];
 let peakArray = [touHeader];
+let peakRuralArray = [touRuralHeader];
 
 //drag and drop handlres
 function handleDragEnter(e) {
@@ -63,6 +93,13 @@ function handleDragLeave(e) {
 function handleFileSelect(e) {
   this.classList.remove("drag-over");
   dropArea.style.display = "none";
+  displayContainer.classList.add("grid");
+  displayContainer.classList.remove("flex");
+
+  listContainer.classList.remove("hidden");
+  chartContainer.classList.remove("hidden");
+  summaryContainer.classList.remove("hidden");
+
   e.preventDefault();
   e.stopPropagation();
 
@@ -116,19 +153,11 @@ function handleFileSelect(e) {
 const displayTable = (tariff, location) => {
   if (tariff == "24h") {
     if (location == "urban") {
-      let urbanArray = dayArray;
-      for (let i = 0; i < urbanArray.length; i++) {
-        urbanArray[i].splice(4, 1);
-        console.log(urbanArray[i].splice(4, 1));
-      }
-      createTable(urbanArray);
+      createTable(dayArray);
+      summaryBox(dayArray, location);
     } else if (location == "rural") {
-      let ruralArray = dayArray;
-      for (let i = 0; i < ruralArray.length; i++) {
-        ruralArray[i].splice(3, 1);
-        console.log(ruralArray[i].splice(3, 1));
-      }
-      createTable(ruralArray);
+      createTable(dayRuralArray);
+      summaryBox(dayRuralArray, location);
     } else {
       alert("invalid location");
     }
@@ -136,8 +165,10 @@ const displayTable = (tariff, location) => {
   if (tariff == "nightsaver") {
     if (location == "urban") {
       createTable(nightArray);
+      summaryBox(nightArray, location);
     } else if (location == "rural") {
-      createTable(nightArray);
+      createTable(nigthRuralArray);
+      summaryBox(nigthRuralArray, location);
     } else {
       alert("invalid location");
     }
@@ -145,8 +176,10 @@ const displayTable = (tariff, location) => {
   if (tariff == "tou") {
     if (location == "urban") {
       createTable(peakArray);
+      summaryBox(peakArray, location);
     } else if (location == "rural") {
-      createTable(peakArray);
+      createTable(peakRuralArray);
+      summaryBox(peakRuralArray, location);
     } else {
       alert("invalid location");
     }
@@ -192,17 +225,114 @@ const createTable = (array) => {
   listContainer.appendChild(table);
   listContainer.classList.remove("hidden");
 };
+
+const summaryBox = (array, location) => {
+  // UPDATE THE SUMMARY BOX
+  document.querySelector("#total-days").innerHTML = array.length - 1;
+  const ts = document.querySelector("#total-days-sum");
+  let sum = 0;
+  let highestSum = 0;
+  let highestDay;
+
+  for (let i = 0; i < array.length; i++) {
+    let a = Number(array[i][array[i].length - 1].replace(/[^\d.-]/g, ""));
+
+    if (a >= highestSum) {
+      highestSum = a;
+      highestDay = array[i][0];
+    }
+
+    sum = sum + a;
+  }
+  ts.innerHTML = euro.format(sum);
+
+  let average = sum / Number(array.length - 1);
+  document.querySelector("#average-days-sum").innerHTML = euro.format(average);
+
+  document.querySelector("#highest-day-spent").innerHTML = highestDay;
+  document.querySelector("#highest-day-sum").innerHTML =
+    euro.format(highestSum);
+
+  if (location == "rural") {
+    let pt = 0;
+    let nt = 0;
+    let dt = 0;
+
+    for (let i = 0; i < array.length; i++) {
+      pt =
+        pt +
+        Number(
+          peakRuralArray[i][peakRuralArray[i].length - 1].replace(
+            /[^\d.-]/g,
+            ""
+          )
+        );
+      nt =
+        nt +
+        Number(
+          nigthRuralArray[i][nigthRuralArray[i].length - 1].replace(
+            /[^\d.-]/g,
+            ""
+          )
+        );
+      dt =
+        dt +
+        Number(
+          dayRuralArray[i][dayRuralArray[i].length - 1].replace(/[^\d.-]/g, "")
+        );
+    }
+    document.querySelector("#total-spent-24").innerHTML = euro.format(dt);
+    document.querySelector("#total-spent-dn").innerHTML = euro.format(nt);
+    document.querySelector("#total-spent-tou").innerHTML = euro.format(pt);
+  } else {
+    let pt = 0;
+    let nt = 0;
+    let dt = 0;
+
+    for (let i = 0; i < array.length; i++) {
+      pt =
+        pt +
+        Number(peakArray[i][peakArray[i].length - 1].replace(/[^\d.-]/g, ""));
+      nt =
+        nt +
+        Number(nightArray[i][nightArray[i].length - 1].replace(/[^\d.-]/g, ""));
+      dt =
+        dt +
+        Number(dayArray[i][dayArray[i].length - 1].replace(/[^\d.-]/g, ""));
+    }
+    document.querySelector("#total-spent-24").innerHTML = euro.format(dt);
+    document.querySelector("#total-spent-dn").innerHTML = euro.format(nt);
+    document.querySelector("#total-spent-tou").innerHTML = euro.format(pt);
+  }
+  // <p>24H:<span id="total-spent-24">434,31 </span></p>
+  // <p>D/N:<span id="total-spent-dn">434,31</span></p>
+  // <p>TOU:<span id="total-spent-tou">434,31</span></p>
+
+  // TODO: Tariff Comparison
+};
+
 resetBtn.addEventListener("click", () => {
   dropArea.style.display = "flex";
+  displayContainer.classList.add("flex");
+  displayContainer.classList.remove("grid");
+
   document.querySelector("#csv-table").remove();
+  myChart.destroy();
   // document.querySelector("#myChart").remove();
   // chartContainer.innerHTML = "";
-  removeData(myChart);
   data = undefined;
 
-  nightArray = [nsHeader];
+  nightArray = [nsUrbanHeader];
+  nigthRuralArray = [nsRuralHeader];
   dayArray = [dayHeader];
+  dayRuralArray = [dayRuralHeader];
   peakArray = [touHeader];
+  peakRuralArray = [touRuralHeader];
+
+  listContainer.classList.add("hidden");
+  chartContainer.classList.add("hidden");
+  summaryContainer.classList.add("hidden");
+
   dataIsLoaded = false;
 });
 
@@ -277,11 +407,6 @@ function main(dataArray) {
     }
   }
 
-  // define currency
-  let euro = Intl.NumberFormat("en-DE", {
-    style: "currency",
-    currency: "EUR",
-  });
   // var arr_name:datatype[][]
   // DATE	NIGHT UNITS	NIGHT TOTAL	DAY UNITS	DAY TOTAL	TOTAL 	TOTAL + SC
   for (let i = 0; i < dates.length; i++) {
@@ -297,6 +422,11 @@ function main(dataArray) {
       Number(dateUnits.toFixed(2)),
       euro.format(dateTotal),
       euro.format(dateTotalSC),
+    ]);
+    dayRuralArray.push([
+      infoDate,
+      Number(dateUnits.toFixed(2)),
+      euro.format(dateTotal),
       euro.format(ruralAllDayTotalSC),
     ]);
 
@@ -316,6 +446,14 @@ function main(dataArray) {
       euro.format(dayTotal),
       euro.format(daynightTotal),
       euro.format(daynightTotalSC),
+    ]);
+    nigthRuralArray.push([
+      infoDate,
+      Number(nightUnits.toFixed(2)),
+      euro.format(nightTotal),
+      Number(dayUnits.toFixed(2)),
+      euro.format(dayTotal),
+      euro.format(daynightTotal),
       euro.format(ruralDaynightTotalSC),
     ]);
 
@@ -340,10 +478,22 @@ function main(dataArray) {
       euro.format(peakTotal),
       euro.format(peakDaynightTotal),
       euro.format(peakDaynightTotalSC),
+    ]);
+    peakRuralArray.push([
+      infoDate,
+      nightUnits.toFixed(2),
+      euro.format(peakNightTotal),
+      peakDayUnits.toFixed(2),
+      euro.format(peakDayTotal),
+      peakUnits.toFixed(2),
+      euro.format(peakTotal),
+      euro.format(peakDaynightTotal),
+
       euro.format(peakRuralDaynightTotalSC),
     ]);
   }
 
+  // CHART INFOS
   let d1 = [];
   let d2 = [];
   let d3 = [];
@@ -354,6 +504,8 @@ function main(dataArray) {
     d2.push(peakArray[i][3]);
     d3.push(peakArray[i][5]);
   }
+
+  getChartInfo(d1, d2, d3, days);
 }
 
 selectTariff.addEventListener("change", (e) => {
@@ -388,6 +540,8 @@ selectLocation.addEventListener("change", (e) => {
 //     },
 //   ],
 
+// SORTING TABLE
+
 let asc = true;
 document.addEventListener("click", (e) => {
   if (e.target.classList.contains("header-cell")) {
@@ -406,7 +560,6 @@ document.addEventListener("click", (e) => {
 });
 
 function sortTable(col) {
-  console.log(asc);
   var rows, switching, i, x, y, shouldSwitch;
   table = document.getElementById("csv-table");
   switching = true;
@@ -417,12 +570,12 @@ function sortTable(col) {
     switching = false;
     rows = table.rows;
     /* Loop through all table rows (except the
-    first, which contains table headers): */
+      first, which contains table headers): */
     for (i = 1; i < rows.length - 1; i++) {
       // Start by saying there should be no switching:
       shouldSwitch = false;
       /* Get the two elements you want to compare,
-      one from current row and one from the next: */
+        one from current row and one from the next: */
       x = rows[i].getElementsByTagName("TD")[col];
       y = rows[i + 1].getElementsByTagName("TD")[col];
       // Check if the two rows should switch place:
@@ -452,3 +605,58 @@ function sortTable(col) {
   }
   asc = !asc;
 }
+
+let myChart;
+const getChartInfo = (d1, d2, d3, days) => {
+  chartContainer.classList.remove("hidden");
+  const ctx = document.getElementById("myChart");
+  const labels = days;
+  const chartData = {
+    labels: labels,
+    datasets: [
+      {
+        label: "Night",
+        data: d1,
+        backgroundColor: "#023047",
+      },
+      {
+        label: "Day",
+        data: d2,
+        backgroundColor: "#FFB703",
+      },
+      {
+        label: "Peak",
+        data: d3,
+        backgroundColor: "#FB8500",
+      },
+    ],
+  };
+
+  myChart = new Chart(ctx, {
+    type: "bar",
+    data: chartData,
+    options: {
+      layout: {
+        padding: 20,
+      },
+      maintainAspectRatio: false,
+      plugins: {
+        title: {
+          display: true,
+          text: "Chart.js Bar Chart - Stacked",
+        },
+      },
+      responsive: true,
+      scales: {
+        x: {
+          stacked: true,
+          autoSkip: false,
+        },
+        y: {
+          stacked: true,
+          autoSkip: false,
+        },
+      },
+    },
+  });
+};
