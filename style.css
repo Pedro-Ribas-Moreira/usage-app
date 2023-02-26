@@ -223,14 +223,15 @@ svg:hover {
 }
 
 #drop-area {
-  width: 300px;
-  height: 200px;
+  width: 80%;
+  height: 80%;
   border: 3px dashed #ccc;
   display: flex;
   justify-content: center;
   align-items: center;
   text-align: center; /* line-height: 1; */
   font-size: 24px;
+  font-family: sans-serif;
   color: #ccc;
 }
 

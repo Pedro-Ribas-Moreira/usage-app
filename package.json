@@ -1,0 +1,20 @@
+{
+  "name": "usage-app",
+  "version": "1.0.0",
+  "description": "\"This application provides an easy-to-use interface for analyzing data from CSV files. With tables, charts, and insights, users can quickly understand their data and gain new insights into their business or research. Our goal is to make data analysis more accessible and user-friendly for everyone.\" ",
+  "main": "app.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Pedro-Ribas-Moreira/usage-app.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Pedro-Ribas-Moreira/usage-app/issues"
+  },
+  "homepage": "https://github.com/Pedro-Ribas-Moreira/usage-app#readme"
+}
