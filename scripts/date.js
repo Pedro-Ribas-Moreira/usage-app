@@ -1,14 +1,21 @@
 import { prices, BBprices } from "./prices.js";
 class Day {
+  tariff;
+  // 24H
   units = [];
+  // DAY/NIGHT
   nighthUnits = [];
   dayUnits = [];
-  peakUnits = [];
-  tariff;
+
+  // TOU
+  touDayUnits = [];
+  touPeakUnits = [];
+  touNightUnits = [];
+
   constructor(day) {
     this.day = day;
+    this.findTariff(day);
   }
-
   findTariff(day) {
     const targetDate = new Date(day.split("/").reverse().join("-"));
 
@@ -22,25 +29,49 @@ class Day {
           ? targetDate // Use target date as end date for "current" tariff
           : new Date(price.dateEnd.split("/").reverse().join("-"));
 
-      console.log({ targetDate, dateStart, dateEnd });
       if (targetDate >= dateStart && targetDate <= dateEnd) {
-        console.log(true);
-        this.tariff = price;
+        this.tariff = price.prices;
       }
     }
   }
 
   addUnit(time, usage) {
-    this.units.push({ time, usage });
+    //24h tariff handler
+    let a = usage * this.tariff.allDayPrice;
+    this.units.push({ time, usage, total: a });
 
-    if (time >= "17:00" && time <= "21:00") {
-      this.peakUnits.push({ time, usage });
-    }
+    //NIGHTSAVER tariff handler
     if (time >= "08:00" && time < "23:00") {
-      this.dayUnits.push({ time, usage });
+      let b = usage * this.tariff.dayPrice;
+      this.dayUnits.push({ time, usage, total: b });
     } else {
-      this.nighthUnits.push({ time, usage });
+      let c = usage * this.tariff.nightPrice;
+      this.nighthUnits.push({ time, usage, total: c });
     }
+
+    //TOU tariff handler
+    if (time >= "17:00" && time <= "21:00") {
+      let d = usage * this.tariff.touPeakPrice;
+      this.touPeakUnits.push({ time, usage, total: d });
+    } else if (
+      time >= "08:00" &&
+      time < "23:00" &&
+      !(time >= "17:00" && time <= "21:00")
+    ) {
+      let e = usage * this.tariff.touDayPrice;
+      this.touDayUnits.push({ time, usage, total: e });
+    } else {
+      let f = usage * this.tariff.touNightPrice;
+      this.touNightUnits.push({ time, usage, total: f });
+    }
+  }
+
+  pricesCalculations() {
+    const allDayTotal = this.units * price.allDayPrice;
+    const nightTotal = this.dayUnits * dayPrice + this.nighthUnits * nightPrice;
+    const touPeakTotal = this.dayUnits;
+
+    return { allDayTotal, nightTotal, peakTotal };
   }
 }
 

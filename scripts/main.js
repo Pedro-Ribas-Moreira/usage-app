@@ -24,7 +24,7 @@ function main(dataArray) {
     if (data[i][0].split(" ")[0] !== data[i - 1][0].split(" ")[0]) {
       let d = data[i][0].split(" ")[0];
       const newDate = new Day(d);
-      newDate.findTariff(d);
+      //   newDate.findTariff(d);
       dates.push(newDate);
     }
   }

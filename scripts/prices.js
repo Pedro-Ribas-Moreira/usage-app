@@ -5,11 +5,11 @@ let prices = [
     dateEnd: "30/09/2022",
     prices: {
       // 24h
-      alldayPrice: 0.302,
+      allDayPrice: 0.302,
       urbanDaySC: 1.4365,
       ruralDaySC: 1.6918,
       //NIGHTSAVER
-      nighPrice: 0.1629,
+      nightPrice: 0.1629,
       dayPrice: 0.3298,
       urbanNightsaverSC: 1.7123,
       ruralNightsaverSC: 1.9155,
@@ -27,11 +27,11 @@ let prices = [
     dateEnd: "30/11/2022",
     prices: {
       // 24h
-      alldayPrice: 0.3673,
+      allDayPrice: 0.3673,
       urbanDaySC: 1.4621,
       ruralDaySC: 1.7725,
       //NIGHTSAVER
-      nighPrice: 0.198,
+      nightPrice: 0.198,
       dayPrice: 0.401,
       urbanNightsaverSC: 1.7975,
       ruralNightsaverSC: 2.0446,
@@ -49,11 +49,11 @@ let prices = [
     dateEnd: "28/02/2023",
     prices: {
       // 24h
-      alldayPrice: 0.4154,
+      allDayPrice: 0.4154,
       urbanDaySC: 1.4621,
       ruralDaySC: 1.7725,
       //NIGHTSAVER
-      nighPrice: 0.2271,
+      nightPrice: 0.2271,
       dayPrice: 0.46,
       urbanNightsaverSC: 1.7975,
       ruralNightsaverSC: 2.0446,
@@ -71,11 +71,11 @@ let prices = [
     dateEnd: undefined,
     prices: {
       // 24h
-      alldayPrice: 0.4154,
+      allDayPrice: 0.4154,
       urbanDaySC: 1.0421,
       ruralDaySC: 1.3525,
       //NIGHTSAVER
-      nighPrice: 0.2271,
+      nightPrice: 0.2271,
       dayPrice: 0.46,
       urbanNightsaverSC: 1.3775,
       ruralNightsaverSC: 1.6246,
