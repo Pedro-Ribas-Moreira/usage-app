@@ -68,7 +68,7 @@ let prices = [
   //MARCH - GOV DISCOUNT ON PSO LEVY
   {
     dateStart: "01/03/2023",
-    dateEnd: "",
+    dateEnd: undefined,
     prices: {
       // 24h
       alldayPrice: 0.4154,

@@ -133,6 +133,7 @@ function handleFileSelect(e) {
         result[i][j] = result[i][j].replace(/\r/g, "");
       }
     }
+    console.log(result);
     loader.classList.add("hidden");
     let location = selectLocation.value;
     let tariff = selectTariff.value;

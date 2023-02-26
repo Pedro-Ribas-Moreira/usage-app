@@ -1,23 +1,47 @@
-import { prices, BBprices, hello } from "./prices.js";
+import { prices, BBprices } from "./prices.js";
 class Day {
+  units = [];
   nighthUnits = [];
   dayUnits = [];
   peakUnits = [];
-
-  constructor(day, units = []) {
+  tariff;
+  constructor(day) {
     this.day = day;
-    this.units = units;
+  }
+
+  findTariff(day) {
+    const targetDate = new Date(day.split("/").reverse().join("-"));
+
+    for (let price of prices) {
+      const dateStart = new Date(
+        price.dateStart.split("/").reverse().join("-")
+      );
+
+      const dateEnd =
+        price.dateEnd === undefined
+          ? targetDate // Use target date as end date for "current" tariff
+          : new Date(price.dateEnd.split("/").reverse().join("-"));
+
+      console.log({ targetDate, dateStart, dateEnd });
+      if (targetDate >= dateStart && targetDate <= dateEnd) {
+        console.log(true);
+        this.tariff = price;
+      }
+    }
   }
 
   addUnit(time, usage) {
     this.units.push({ time, usage });
-  }
 
-  calculateTotal(price) {
-    let total = 0;
-    for (let i = 0; i < this.units.length; i++) {
-      total += this.units[i].usage * price;
+    if (time >= "17:00" && time <= "21:00") {
+      this.peakUnits.push({ time, usage });
     }
-    return total;
+    if (time >= "08:00" && time < "23:00") {
+      this.dayUnits.push({ time, usage });
+    } else {
+      this.nighthUnits.push({ time, usage });
+    }
   }
 }
+
+export { Day };
