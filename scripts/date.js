@@ -1,10 +1,12 @@
 import { prices, BBprices } from "./prices.js";
 class Day {
   tariff;
+
   // 24H
   units = [];
+
   // DAY/NIGHT
-  nighthUnits = [];
+  nightUnits = [];
   dayUnits = [];
 
   // TOU
@@ -46,7 +48,7 @@ class Day {
       this.dayUnits.push({ time, usage, total: b });
     } else {
       let c = usage * this.tariff.nightPrice;
-      this.nighthUnits.push({ time, usage, total: c });
+      this.nightUnits.push({ time, usage, total: c });
     }
 
     //TOU tariff handler
@@ -66,12 +68,14 @@ class Day {
     }
   }
 
-  pricesCalculations() {
-    const allDayTotal = this.units * price.allDayPrice;
-    const nightTotal = this.dayUnits * dayPrice + this.nighthUnits * nightPrice;
-    const touPeakTotal = this.dayUnits;
-
-    return { allDayTotal, nightTotal, peakTotal };
+  getTotals(list) {
+    let totalUnits = 0;
+    let totalPaid = 0;
+    for (let i = 0; i < list.length; i++) {
+      totalUnits += list[i].usage;
+      totalPaid += list[i].total;
+    }
+    return { totalUnits, totalPaid };
   }
 }
 
