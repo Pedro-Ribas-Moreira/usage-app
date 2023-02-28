@@ -1,3 +1,5 @@
+const listContainer = document.querySelector(".list-container");
+
 const createTable = (array) => {
   if (document.querySelector("#csv-table") !== null) {
     document.querySelector("#csv-table").remove();
@@ -37,3 +39,5 @@ const createTable = (array) => {
   listContainer.appendChild(table);
   listContainer.classList.remove("hidden");
 };
+
+export { createTable };

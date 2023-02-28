@@ -1,8 +1,8 @@
 import { main } from "./main.js";
-import { testArray } from "./testArray.js";
+// import { testArray } from "./testArray.js";
 
 // console.log(main(testArray));
-let tArray = main(testArray);
+// let tArray = main(testArray);
 // console.log(tArray[0].getTotals(tArray[0].dayUnits));
 
 //set currency
@@ -67,14 +67,13 @@ let peakArray = [touHeader];
 let peakRuralArray = [touRuralHeader];
 
 //FOR TESTING ONLY
-function createTable(tArray) {
+function createLists(tArray) {
   let dates = tArray;
   // function createTable(main) {
   // 24H List
 
   for (let i = 0; i < dates.length; i++) {
     let day = dates[i].day;
-    // console.log(day);
     let totalUnits = dates[i].getTotals(dates[i].units).totalUnits.toFixed(2);
 
     // 24h
@@ -173,16 +172,17 @@ function createTable(tArray) {
       euro.format(touTotalPaid),
       euro.format(touTotalPaid + dates[i].tariff.touRuralSC),
     ]);
-    // let peakRuralArray = [touRuralHeader];
-
-    return {
-      dayArray,
-      dayRuralArray,
-      nightArray,
-      nigthRuralArray,
-      peakArray,
-      peakRuralArray,
-    };
   }
+
+  return;
 }
-createTable(tArray);
+
+export {
+  createLists,
+  dayArray,
+  dayRuralArray,
+  nightArray,
+  nigthRuralArray,
+  peakArray,
+  peakRuralArray,
+};

@@ -1,10 +1,10 @@
-import { prices } from "./prices.js";
+import { createLists, peakArray } from "./createLists.js";
+import { getChartInfo } from "./mainChart.js";
 import { testArray } from "./testArray.js";
 import { Day } from "./date.js";
 
 //FOR TESTING ONLY
-const dataArray = testArray;
-
+// const dataArray = testArray;
 const main = (dataArray) => {
   //DATA
   let data = dataArray;
@@ -43,23 +43,22 @@ const main = (dataArray) => {
     }
   }
 
-  // CHART INFOS
-  //   let d1 = [];
-  //   let d2 = [];
-  //   let d3 = [];
-  //   let days = [];
-  //   for (let i = 1; i < peakArray.length; i++) {
-  //     days.push(peakArray[i][0]);
-  //     d1.push(peakArray[i][1]);
-  //     d2.push(peakArray[i][3]);
-  //     d3.push(peakArray[i][5]);
-  //   }
+  // console.log(dates);
 
-  //   getChartInfo(d1, d2, d3, days);
+  createLists(dates);
+  let d1 = [];
+  let d2 = [];
+  let d3 = [];
+  let days = [];
+  for (let i = 1; i < peakArray.length; i++) {
+    days.push(peakArray[i][0]);
+    d1.push(peakArray[i][1]);
+    d2.push(peakArray[i][3]);
+    d3.push(peakArray[i][5]);
+  }
 
+  getChartInfo(d1, d2, d3, days);
   return dates;
 };
-
-// main(dataArray);
 
 export { main };
