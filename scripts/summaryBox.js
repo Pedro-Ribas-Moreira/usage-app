@@ -8,20 +8,25 @@ import {
   peakRuralArray,
 } from "./createLists.js";
 
+import { eabComparison } from "./summaries/eabComparison.js";
+import { averagesSummary } from "./summaries/averages.js";
+import { bbTariff } from "./summaries/bbTariff.js";
+
 let euro = Intl.NumberFormat("en-DE", {
   style: "currency",
   currency: "EUR",
 });
 
-const summaryBox = (array, location) => {
+const summaryBox = (tariff, array, location, broaband) => {
   // UPDATE THE SUMMARY BOX
   document.querySelector("#total-days").innerHTML = array.length - 1;
   const ts = document.querySelector("#total-days-sum");
+
   let sum = 0;
   let highestSum = 0;
   let highestDay;
 
-  for (let i = 0; i < array.length; i++) {
+  for (let i = 1; i < array.length; i++) {
     let a = Number(array[i][array[i].length - 1].replace(/[^\d.-]/g, ""));
 
     if (a >= highestSum) {
@@ -32,10 +37,6 @@ const summaryBox = (array, location) => {
     sum = sum + a;
   }
   ts.innerHTML = euro.format(sum);
-
-  let average = sum / Number(array.length - 1);
-  document.querySelector("#average-days-sum").innerHTML = euro.format(average);
-
   document.querySelector("#highest-day-spent").innerHTML = highestDay;
   document.querySelector("#highest-day-sum").innerHTML =
     euro.format(highestSum);
@@ -45,7 +46,7 @@ const summaryBox = (array, location) => {
     let nt = 0;
     let dt = 0;
 
-    for (let i = 0; i < array.length; i++) {
+    for (let i = 1; i < array.length; i++) {
       pt =
         pt +
         Number(
@@ -76,7 +77,7 @@ const summaryBox = (array, location) => {
     let nt = 0;
     let dt = 0;
 
-    for (let i = 0; i < array.length; i++) {
+    for (let i = 1; i < array.length; i++) {
       pt =
         pt +
         Number(peakArray[i][peakArray[i].length - 1].replace(/[^\d.-]/g, ""));
@@ -91,6 +92,10 @@ const summaryBox = (array, location) => {
     document.querySelector("#total-spent-dn").innerHTML = euro.format(nt);
     document.querySelector("#total-spent-tou").innerHTML = euro.format(pt);
   }
+
+  bbTariff(array, broaband, sum);
+  eabComparison(tariff, array, location);
+  averagesSummary(array);
 };
 
 export { summaryBox };

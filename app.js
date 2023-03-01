@@ -9,12 +9,15 @@ import {
   peakRuralArray,
 } from "./scripts/createLists.js";
 
+import { myChart, getChartInfo } from "./scripts/mainChart.js";
+
 const dropArea = document.getElementById("drop-area");
 const loader = document.querySelector(".loader");
 const resetBtn = document.querySelector(".reset-btn");
 const filterContainer = document.querySelector(".filter-container");
 const selectTariff = document.querySelector("#tariff");
 const selectLocation = document.querySelector("#location");
+const selectBroadband = document.querySelector("#broadband");
 const listContainer = document.querySelector(".list-container");
 const chartContainer = document.querySelector(".chart-container");
 const chartIcon = document.querySelector("#chart-icon");
@@ -93,9 +96,10 @@ function handleFileSelect(e) {
     loader.classList.add("hidden");
     let location = selectLocation.value;
     let tariff = selectTariff.value;
+    let broaband = selectBroadband.value;
 
     main(result);
-    displayTable(tariff, location);
+    displayTable(tariff, location, broaband);
 
     listContainer.classList.remove("hidden");
     chartContainer.classList.remove("hidden");
@@ -117,10 +121,10 @@ resetBtn.addEventListener("click", () => {
 
   data = undefined;
 
-  nightArray.length = 1;
-  nigthRural.length = 1;
   dayArray.length = 1;
   dayRuralArray.length = 1;
+  nightArray.length = 1;
+  nigthRuralArray.length = 1;
   peakArray.length = 1;
   peakRuralArray.length = 1;
 
@@ -141,13 +145,31 @@ resetBtn.addEventListener("click", () => {
 
 selectTariff.addEventListener("change", (e) => {
   if (dataIsLoaded) {
-    displayTable(selectTariff.value, selectLocation.value);
+    displayTable(
+      selectTariff.value,
+      selectLocation.value,
+      selectBroadband.value
+    );
   }
 });
 
 selectLocation.addEventListener("change", (e) => {
   if (dataIsLoaded) {
-    displayTable(selectTariff.value, selectLocation.value);
+    displayTable(
+      selectTariff.value,
+      selectLocation.value,
+      selectBroadband.value
+    );
+  }
+});
+
+selectBroadband.addEventListener("change", (e) => {
+  if (dataIsLoaded) {
+    displayTable(
+      selectTariff.value,
+      selectLocation.value,
+      selectBroadband.value
+    );
   }
 });
 
@@ -213,4 +235,17 @@ document.addEventListener("click", (e) => {
       e.target.classList.add("down");
     }
   }
+});
+
+// OPEN AND CLOSE DRAWER
+const toggleDrawerButton = document.querySelector(".toggle-drawer");
+const drawer = document.querySelector(".drawer");
+const closeDrawerButton = document.getElementById("close-drawer");
+
+toggleDrawerButton.addEventListener("click", () => {
+  drawer.classList.remove("hiddenDrawer");
+});
+
+closeDrawerButton.addEventListener("click", () => {
+  drawer.classList.add("hiddenDrawer");
 });

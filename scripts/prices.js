@@ -1,4 +1,3 @@
-//CASE DATE BETWEEN
 let prices = [
   {
     dateStart: "01/07/2022",
@@ -96,7 +95,7 @@ let BBprices = {
     // BB Connections speed
     FTTC: 1.74,
     FTTH150: 1.92,
-    FTTH300: 2.04,
+    FTTH500: 2.04,
     FTTH1000: 2.24,
   },
 };

@@ -9,14 +9,14 @@ import {
 import { createTable } from "./createTable.js";
 import { summaryBox } from "./summaryBox.js";
 
-const displayTable = (tariff, location) => {
+const displayTable = (tariff, location, broaband) => {
   if (tariff == "24h") {
     if (location == "urban") {
       createTable(dayArray);
-      summaryBox(dayArray, location);
+      summaryBox(tariff, dayArray, location, broaband);
     } else if (location == "rural") {
       createTable(dayRuralArray);
-      summaryBox(dayRuralArray, location);
+      summaryBox(tariff, dayRuralArray, location, broaband);
     } else {
       alert("invalid location");
     }
@@ -24,10 +24,10 @@ const displayTable = (tariff, location) => {
   if (tariff == "nightsaver") {
     if (location == "urban") {
       createTable(nightArray);
-      summaryBox(nightArray, location);
+      summaryBox(tariff, nightArray, location, broaband);
     } else if (location == "rural") {
       createTable(nigthRuralArray);
-      summaryBox(nigthRuralArray, location);
+      summaryBox(tariff, nigthRuralArray, location, broaband);
     } else {
       alert("invalid location");
     }
@@ -35,10 +35,10 @@ const displayTable = (tariff, location) => {
   if (tariff == "tou") {
     if (location == "urban") {
       createTable(peakArray);
-      summaryBox(peakArray, location);
+      summaryBox(tariff, peakArray, location, broaband);
     } else if (location == "rural") {
       createTable(peakRuralArray);
-      summaryBox(peakRuralArray, location);
+      summaryBox(tariff, peakRuralArray, location, broaband);
     } else {
       alert("invalid location");
     }

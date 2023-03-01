@@ -32,12 +32,39 @@
                 <option value="rural">Rural</option>
               </select>
             </div>
+            <div class="select-wrapper">
+              <select class="select" name="broadband" id="broadband">
+                <option value="no" selected>No broadband</option>
+                <option value="FTTC">BB: FTTC</option>
+                <option value="FTTH-150">BB: FTTH 150MB</option>
+                <option value="FTTH-500">BB: FTTH 500MB</option>
+                <option value="FTTH-1000">BB: FTTH 1000MB</option>
+              </select>
+            </div>
           </div>
         </li>
       </ul>
     </header>
 
     <div class="main">
+      <div class="drawer">
+        <h2>Quick Links:</h2>
+        <a href="#">Saving Tips</a>
+        <a href="#">Link 2</a>
+        <a href="#">Link 3</a>
+        <a href="#">Link 4</a>
+        <a href="#">Link 5</a>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 320 512"
+          id="close-drawer"
+        >
+          <!--! Font Awesome Pro 6.3.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+          <path
+            d="M310.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L160 210.7 54.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L114.7 256 9.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L160 301.3 265.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L205.3 256 310.6 150.6z"
+          />
+        </svg>
+      </div>
       <div class="sidebar">
         <ul class="sidebar-nav">
           <li class="sidebar-item">
@@ -65,8 +92,20 @@
               />
             </svg>
           </li>
+          <li class="sidebar-item">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 192 512"
+              id="chart-icon"
+              class="info-icon toggle-drawer"
+            >
+              <!--! Font Awesome Pro 6.3.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+              <path
+                d="M48 80a48 48 0 1 1 96 0A48 48 0 1 1 48 80zM0 224c0-17.7 14.3-32 32-32H96c17.7 0 32 14.3 32 32V448h32c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H64V256H32c-17.7 0-32-14.3-32-32z"
+              />
+            </svg>
+          </li>
         </ul>
-
         <!-- toggle between chart and list -->
         <!-- compare prices with other tariffs -->
       </div>
@@ -80,11 +119,20 @@
             <h2>Total Spent</h2>
             <p><span id="total-days">11</span> days</p>
             <p><span id="total-days-sum">434,31</span></p>
+            <p id="broadband-total-display">
+              <span id="total-sum-broadband">451</span> BB included
+            </p>
           </div>
           <div class="box">
+            <h2>Averages</h2>
+            <p>Day: <span id="day-average">€4</span></p>
+            <p>Week: <span id="week-average">€34,31</span></p>
+            <p>Month: <span id="month-average">€124,31</span></p>
+          </div>
+          <!-- <div class="box">
             <h2>Daily Average</h2>
             <span id="average-days-sum">434,31</span>
-          </div>
+          </div> -->
           <div class="box">
             <h2>Highest spent</h2>
             <span id="highest-day-spent">12/03/2023</span>
@@ -96,10 +144,26 @@
             <p>D/N: <span id="total-spent-dn">434,31</span></p>
             <p>TOU: <span id="total-spent-tou">434,31</span></p>
           </div>
+          <div class="box">
+            <h2>EAB Comparison</h2>
+            <p>Estimate for <span id="total-days-eab">4</span> days</p>
+            <p>Customer usage: <span id="customer-usage-esb">€54,31</span></p>
+            <p>Average usage: <span id="average-usage-esb">€43,31</span></p>
+            <a
+              href="https://www.prepaypower.ie/why-switch/pricing/estimated-annual-bill-faqs"
+              >EAB info</a
+            >
+          </div>
+          <div class="box" id="bb-box">
+            <h2>Broadband</h2>
+            <p><span id="broadband-spend-day">434,31 </span> Daily</p>
+            <p><span id="broadband-spend-total">434,31</span> Total</p>
+          </div>
         </div>
         <div class="list-container hidden"></div>
         <div class="chart-container hidden">
           <canvas id="myChart"></canvas>
+          <canvas id="mySecondChart"></canvas>
         </div>
       </div>
     </div>
