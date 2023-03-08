@@ -28,7 +28,7 @@ const bbTariff = (arr, broaband, sum) => {
       totalCharged = dailyCharge * (arr.length - 1);
       bbSpendTotal.innerHTML = euro.format(totalCharged);
       total = totalCharged + sum;
-      bbTotalDisplay.innerHTML = euro.format(total);
+      bbTotalDisplay.innerHTML = `Total with Broadband: ${euro.format(total)}`;
 
       break;
     case "FTTH-150":
@@ -37,7 +37,7 @@ const bbTariff = (arr, broaband, sum) => {
       totalCharged = dailyCharge * (arr.length - 1);
       bbSpendTotal.innerHTML = euro.format(totalCharged);
       total = totalCharged + sum;
-      bbTotalDisplay.innerHTML = euro.format(total);
+      bbTotalDisplay.innerHTML = `Total with Broadband: ${euro.format(total)}`;
       // code block
       break;
     case "FTTH-500":
@@ -46,7 +46,7 @@ const bbTariff = (arr, broaband, sum) => {
       totalCharged = dailyCharge * (arr.length - 1);
       bbSpendTotal.innerHTML = euro.format(totalCharged);
       total = totalCharged + sum;
-      bbTotalDisplay.innerHTML = euro.format(total);
+      bbTotalDisplay.innerHTML = `Total with Broadband: ${euro.format(total)}`;
       break;
     case "FTTH-1000":
       dailyCharge = BBprices.prices.FTTH1000;
@@ -54,11 +54,10 @@ const bbTariff = (arr, broaband, sum) => {
       totalCharged = dailyCharge * (arr.length - 1);
       bbSpendTotal.innerHTML = euro.format(totalCharged);
       total = totalCharged + sum;
-      bbTotalDisplay.innerHTML = euro.format(total);
+      bbTotalDisplay.innerHTML = `Total with Broadband: ${euro.format(total)}`;
       break;
     default:
-      console.log("no tariff");
-    // code block
+      return;
   }
 
   //   console.log({

@@ -17,26 +17,32 @@ let euro = Intl.NumberFormat("en-DE", {
   currency: "EUR",
 });
 
-const summaryBox = (tariff, array, location, broaband) => {
+const summaryBox = (tariff, array, location, broaband, eab) => {
   // UPDATE THE SUMMARY BOX
   document.querySelector("#total-days").innerHTML = array.length - 1;
   const ts = document.querySelector("#total-days-sum");
+  const totalSC = document.querySelector("#total-sc");
 
   let sum = 0;
+  let sc = 0;
   let highestSum = 0;
   let highestDay;
 
   for (let i = 1; i < array.length; i++) {
     let a = Number(array[i][array[i].length - 1].replace(/[^\d.-]/g, ""));
+    let b = Number(array[i][array[i].length - 2].replace(/[^\d.-]/g, ""));
+    let c = a - b;
 
     if (a >= highestSum) {
       highestSum = a;
       highestDay = array[i][0];
     }
-
     sum = sum + a;
+    sc = sc + c;
   }
-  ts.innerHTML = euro.format(sum);
+  ts.innerHTML = `Total Paid: ${euro.format(sum)}`;
+  totalSC.innerHTML = `Total Standing Charges: ${euro.format(sc)}`;
+
   document.querySelector("#highest-day-spent").innerHTML = highestDay;
   document.querySelector("#highest-day-sum").innerHTML =
     euro.format(highestSum);
@@ -94,7 +100,7 @@ const summaryBox = (tariff, array, location, broaband) => {
   }
 
   bbTariff(array, broaband, sum);
-  eabComparison(tariff, array, location);
+  eabComparison(tariff, array, location, eab);
   averagesSummary(array);
 };
 

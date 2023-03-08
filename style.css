@@ -182,6 +182,7 @@ header {
   justify-content: space-between;
   align-items: center;
   box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+  z-index: 60;
 }
 
 .sidebar-nav {
@@ -223,25 +224,50 @@ svg:hover {
   top: 50%;
   transform: translateY(-50%);
   left: 80px;
-  width: 200px;
-  height: 50%;
-
+  width: 300px;
+  padding-bottom: 16px;
   background-color: #fff;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-  z-index: 0;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+  z-index: 50;
   overflow: hidden;
-  padding: 20px;
+  font-family: sans-serif;
   transition: 0.4s ease-in-out;
+}
+
+.drawer-header {
+  width: 100%;
+  display: flex;
+  justify-content: ce;
+  padding: 8px;
+  background-color: #f22283;
+  margin-bottom: 16px;
 }
 
 .drawer h2 {
   font-family: sans-serif;
   font-size: 1.2rem;
-  margin-top: 8px;
+  color: white;
+}
+
+.drawer h3 {
+  padding-left: 8px;
+  margin-bottom: 8px;
+}
+.drawer ul {
+  padding: 0 16px;
   margin-bottom: 16px;
+}
+.drawer li {
+  list-style-type: none;
+  padding: 8px;
+}
+.drawer li:hover {
+  background-color: #fbcbe1;
 }
 
 .drawer a {
+  text-decoration: none;
+  color: #353840;
   display: block;
   margin-bottom: 10px;
 }
@@ -250,9 +276,13 @@ svg:hover {
   display: block;
   position: absolute;
   top: 5px;
-  right: -30px;
+  right: 0px;
+  transform: translateX(35%);
   height: 24px;
   cursor: pointer;
+}
+#close-drawer:hover {
+  fill: white;
 }
 .hiddenDrawer {
   left: -1000px;
@@ -365,6 +395,9 @@ td {
 tbody > tr:nth-of-type(odd) {
   background: rgb(207, 205, 205, 0.2);
 }
+.highlight {
+  background: #fbcbe1;
+}
 
 /* Chart */
 
@@ -374,6 +407,10 @@ tbody > tr:nth-of-type(odd) {
   box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
 }
 #myChart {
+  background-color: #fff;
+  width: auto;
+}
+#mySecondChart {
   background-color: #fff;
   width: auto;
 }
@@ -429,7 +466,6 @@ tbody > tr:nth-of-type(odd) {
 
 *::-webkit-scrollbar-thumb {
   background-color: #d91e75;
-
-  border-radius: 5px;
+  /* border-radius: 5px; */
   border: 3px none #ffffff;
 }

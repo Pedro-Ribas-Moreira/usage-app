@@ -1,11 +1,10 @@
 const chartContainer = document.querySelector(".chart-container");
 
 let mySecondChart;
-
 let myChart;
 const getSecondChartInfo = (d1, d2, d3, days) => {
   chartContainer.classList.remove("hidden");
-  const ctx = document.getElementById("myChart");
+  const ctx = document.getElementById("mySecondChart");
   const labels = days;
   const chartData = {
     labels: labels,
@@ -28,7 +27,7 @@ const getSecondChartInfo = (d1, d2, d3, days) => {
     ],
   };
 
-  myChart = new Chart(ctx, {
+  mySecondChart = new Chart(ctx, {
     type: "bar",
     data: chartData,
     options: {
@@ -39,7 +38,7 @@ const getSecondChartInfo = (d1, d2, d3, days) => {
       plugins: {
         title: {
           display: true,
-          text: "Chart.js Bar Chart - Stacked",
+          text: "Last 7 Days - Units per day",
         },
       },
       responsive: true,
@@ -93,7 +92,7 @@ const getChartInfo = (d1, d2, d3, days) => {
       plugins: {
         title: {
           display: true,
-          text: "Chart.js Bar Chart - Stacked",
+          text: "Total Units per Day",
         },
       },
       responsive: true,
@@ -107,8 +106,19 @@ const getChartInfo = (d1, d2, d3, days) => {
           autoSkip: false,
         },
       },
+      onclick: function (event, chartElement) {
+        // Get the index of the hovered data point
+        console.log("clicked");
+        // var index = chartElement[0].index;
+        // // Find the corresponding row in the table
+        // var row = document.getElementById("csv-table").rows[index + 1];
+
+        // // Add a highlight class to the row
+        // row.classList.add("highlight");
+        // console.log(row);
+      },
     },
   });
 };
 
-export { myChart, getChartInfo };
+export { myChart, getChartInfo, mySecondChart, getSecondChartInfo };

@@ -1,0 +1,1 @@
+const lastSeven = (arr) => {};

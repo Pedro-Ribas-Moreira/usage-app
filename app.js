@@ -18,6 +18,7 @@ const filterContainer = document.querySelector(".filter-container");
 const selectTariff = document.querySelector("#tariff");
 const selectLocation = document.querySelector("#location");
 const selectBroadband = document.querySelector("#broadband");
+const selectEAB = document.querySelector("#EAB");
 const listContainer = document.querySelector(".list-container");
 const chartContainer = document.querySelector(".chart-container");
 const chartIcon = document.querySelector("#chart-icon");
@@ -97,9 +98,10 @@ function handleFileSelect(e) {
     let location = selectLocation.value;
     let tariff = selectTariff.value;
     let broaband = selectBroadband.value;
+    let eab = selectEAB.value;
 
     main(result);
-    displayTable(tariff, location, broaband);
+    displayTable(tariff, location, broaband, eab);
 
     listContainer.classList.remove("hidden");
     chartContainer.classList.remove("hidden");
@@ -148,7 +150,8 @@ selectTariff.addEventListener("change", (e) => {
     displayTable(
       selectTariff.value,
       selectLocation.value,
-      selectBroadband.value
+      selectBroadband.value,
+      selectEAB.value
     );
   }
 });
@@ -158,7 +161,8 @@ selectLocation.addEventListener("change", (e) => {
     displayTable(
       selectTariff.value,
       selectLocation.value,
-      selectBroadband.value
+      selectBroadband.value,
+      selectEAB.value
     );
   }
 });
@@ -168,7 +172,19 @@ selectBroadband.addEventListener("change", (e) => {
     displayTable(
       selectTariff.value,
       selectLocation.value,
-      selectBroadband.value
+      selectBroadband.value,
+      selectEAB.value
+    );
+  }
+});
+
+selectEAB.addEventListener("change", (e) => {
+  if (dataIsLoaded) {
+    displayTable(
+      selectTariff.value,
+      selectLocation.value,
+      selectBroadband.value,
+      selectEAB.value
     );
   }
 });
@@ -243,7 +259,7 @@ const drawer = document.querySelector(".drawer");
 const closeDrawerButton = document.getElementById("close-drawer");
 
 toggleDrawerButton.addEventListener("click", () => {
-  drawer.classList.remove("hiddenDrawer");
+  drawer.classList.toggle("hiddenDrawer");
 });
 
 closeDrawerButton.addEventListener("click", () => {

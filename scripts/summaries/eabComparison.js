@@ -4,15 +4,40 @@ let euro = Intl.NumberFormat("en-DE", {
   currency: "EUR",
 });
 
-const eabComparison = (tariff, arr, location) => {
-  const totalDays = document.querySelector("#total-days-eab");
-  const customerUsage = document.querySelector("#customer-usage-esb");
+const eabComparison = (tariff, arr, location, eab) => {
+  const esbAverageDaily = document.querySelector("#average-eab-daily");
+  const esbAverageWeekly = document.querySelector("#average-eab-weekly");
+  const esbAverageMonthly = document.querySelector("#average-eab-monthly");
   const esbAverage = document.querySelector("#average-usage-esb");
 
-  const days = arr.length - 1;
-  totalDays.innerHTML = days;
+  // <p>Daily: <span id="average-eab-daily">€54,31</span></p>
+  // <p>Weekly: <span id="average-eab-weekly">€43,31</span></p>
+  // <p>Monthly: <span id="average-eab-monthly">€43,31</span></p>
 
-  let estimateUnitsDay = 4200 / 365;
+  const days = arr.length - 1;
+
+  let eabValue;
+  switch (eab) {
+    case "eab-one":
+      eabValue = 2100;
+      break;
+    case "eab-two":
+      eabValue = 3000;
+      break;
+    case "eab-three":
+      eabValue = 4200;
+      break;
+    case "eab-four":
+      eabValue = 6000;
+      break;
+    case "eab-five":
+      eabValue = 8000;
+      break;
+    default:
+      return;
+  }
+
+  let estimateUnitsDay = eabValue / 365;
   let estimateTotal = 0;
   if (tariff == "24h") {
     estimateTotal = estimateUnitsDay * prices[2].prices.allDayPrice;
@@ -46,15 +71,19 @@ const eabComparison = (tariff, arr, location) => {
     } else {
     }
   }
-  estimateTotal = estimateTotal * days;
-  esbAverage.innerHTML = euro.format(estimateTotal);
 
-  let total = 0;
-  for (let i = 0; i < arr.length; i++) {
-    let a = Number(arr[i][arr[i].length - 1].replace(/[^\d.-]/g, ""));
-    total += a;
-  }
-  customerUsage.innerHTML = euro.format(total);
+  esbAverageDaily.innerHTML = euro.format(estimateTotal);
+  esbAverageWeekly.innerHTML = euro.format(estimateTotal * 7);
+  esbAverageMonthly.innerHTML = euro.format(estimateTotal * 30);
+  estimateTotal = estimateTotal * days;
+  esbAverage.innerHTML = `${days} days: ${euro.format(estimateTotal)}`;
+
+  // let total = 0;
+  // for (let i = 0; i < arr.length; i++) {
+  //   let a = Number(arr[i][arr[i].length - 1].replace(/[^\d.-]/g, ""));
+  //   total += a;
+  // }
+  // customerUsage.innerHTML = euro.format(total);
 };
 
 export { eabComparison };

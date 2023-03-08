@@ -24,7 +24,7 @@ const createTable = (array) => {
 
   let tableBody = document.createElement("tbody");
   // Insert data rows
-  for (let i = 1; i < array.length; i++) {
+  for (let i = array.length - 1; i > 1; i--) {
     let dataRow = tableBody.insertRow();
     for (let j = 0; j < array[i].length; j++) {
       let dataCell = dataRow.insertCell();

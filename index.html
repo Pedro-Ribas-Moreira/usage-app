@@ -41,19 +41,109 @@
                 <option value="FTTH-1000">BB: FTTH 1000MB</option>
               </select>
             </div>
+            <div class="select-wrapper">
+              <select class="select" name="EAB" id="EAB">
+                <option value="eab-one">1-2 Bed Apartment</option>
+                <option value="eab-two">2 Bed Semi Detached</option>
+                <option value="eab-three" selected>3-4 Bed Semi Detached</option>
+                <option value="eab-four">3-4 Bed Detached</option>
+                <option value="eab-five">5-6 Bed Detached</option>
+              </select>
+            </div>
           </div>
         </li>
       </ul>
     </header>
 
     <div class="main">
-      <div class="drawer">
-        <h2>Quick Links:</h2>
-        <a href="#">Saving Tips</a>
-        <a href="#">Link 2</a>
-        <a href="#">Link 3</a>
-        <a href="#">Link 4</a>
-        <a href="#">Link 5</a>
+      <div class="drawer hiddenDrawer">
+        <div class="drawer-header">
+          <h2>Quick Links</h2>
+        </div>
+        <h3>Website:</h3>
+        <ul class="website-list">
+          <a href="https://www.prepaypower.ie/saving-energy" target="_blank">
+            <li class="website-list-item">Saving Tips</li>
+          </a>
+          <a
+            href="https://www.prepaypower.ie/why-switch/pricing/rates"
+            target="_blank"
+          >
+            <li class="website-list-item">Payment Options & Rates</li>
+          </a>
+          <a
+            href="https://www.prepaypower.ie/support/app-support"
+            target="_blank"
+          >
+            <li class="website-list-item">App Support</li>
+          </a>
+
+          <a
+            href="https://www.prepaypower.ie/support/pso-levy-refund"
+            target="_blank"
+          >
+            <li class="website-list-item">PSO Levy Refund</li>
+          </a>
+
+          <a
+            href="https://www.prepaypower.ie/why-switch/pricing/estimated-annual-bill-faqs"
+          >
+            <li class="website-list-item">Estimate Annual Bill FAQs</li>
+          </a>
+        </ul>
+        <h3>Knowledge Base:</h3>
+        <ul class="kb-list">
+          <a
+            href="http://intranet.prepaypower.ie/customer-experience/knowledge-base/advance-credit/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <li class="kb-list-item">Advance Credit</li>
+          </a>
+          <li class="kb-list-item">
+            <a
+              href="http://intranet.prepaypower.ie/customer-experience/knowledge-base/customer-mabs-vend-requests/"
+              target="_blank"
+              rel="noopener noreferrer"
+              >
+              Customer Vend Request
+            </li>
+          </a>
+
+          <a
+          href="http://intranet.prepaypower.ie/customer-experience/knowledge-base/emergency-credit-in-app/"
+          target="_blank"
+          rel="noopener noreferrer"
+          >
+          <li class="kb-list-item">
+              Emergency Credit in APP
+            </li>
+            </a>
+
+            <a
+            href="http://intranet.prepaypower.ie/customer-experience/knowledge-base/retention-training/"
+            target="_blank"
+            rel="noopener noreferrer"
+            >
+            <li class="kb-list-item">
+              Retention Training
+            </li>
+              </a
+            >
+            <a
+            href="http://intranet.prepaypower.ie/customer-experience/knowledge-base/usage-consumption-process/"
+            target="_blank"
+            >
+            <li class="kb-list-item">
+              Usage & Consumption Process
+            </li>
+            </a>
+            <a href="http://intranet.prepaypower.ie/our-app/" target="_blank">
+              <li class="kb-list-item">
+              Interactive App
+            </li>
+              </a>
+        </ul>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 320 512"
@@ -119,6 +209,7 @@
             <h2>Total Spent</h2>
             <p><span id="total-days">11</span> days</p>
             <p><span id="total-days-sum">434,31</span></p>
+            <p><span id="total-sc">434,31</span></p>
             <p id="broadband-total-display">
               <span id="total-sum-broadband">451</span> BB included
             </p>
@@ -128,6 +219,20 @@
             <p>Day: <span id="day-average">€4</span></p>
             <p>Week: <span id="week-average">€34,31</span></p>
             <p>Month: <span id="month-average">€124,31</span></p>
+          </div>
+          <!-- <div class="box">
+            <h2>Last 7 days</h2>
+            <p>Day: <span id="day-average">€4</span></p>
+            <p>Week: <span id="week-average">€34,31</span></p>
+            <p>Month: <span id="month-average">€124,31</span></p>
+          </div> -->
+          <div class="box">
+            <h2>EAB Comparison</h2>
+            <!-- <p>Estimate for <span id="total-days-eab">4</span> days</p> -->
+            <p>Daily: <span id="average-eab-daily">€54,31</span></p>
+            <p>Weekly: <span id="average-eab-weekly">€43,31</span></p>
+            <p>Monthly: <span id="average-eab-monthly">€43,31</span></p>
+            <p>Total estimated for <span id="average-usage-esb"></span></p>
           </div>
           <!-- <div class="box">
             <h2>Daily Average</h2>
@@ -143,16 +248,6 @@
             <p>24H: <span id="total-spent-24">434,31 </span></p>
             <p>D/N: <span id="total-spent-dn">434,31</span></p>
             <p>TOU: <span id="total-spent-tou">434,31</span></p>
-          </div>
-          <div class="box">
-            <h2>EAB Comparison</h2>
-            <p>Estimate for <span id="total-days-eab">4</span> days</p>
-            <p>Customer usage: <span id="customer-usage-esb">€54,31</span></p>
-            <p>Average usage: <span id="average-usage-esb">€43,31</span></p>
-            <a
-              href="https://www.prepaypower.ie/why-switch/pricing/estimated-annual-bill-faqs"
-              >EAB info</a
-            >
           </div>
           <div class="box" id="bb-box">
             <h2>Broadband</h2>
