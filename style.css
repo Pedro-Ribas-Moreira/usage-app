@@ -59,6 +59,10 @@ header {
   margin-left: 0;
 }
 .nav-item:nth-child(2) {
+  margin-left: 0;
+  font-family: sans-serif;
+}
+.nav-item:nth-child(3) {
   margin-left: auto;
 }
 .nav-item {
@@ -226,6 +230,7 @@ svg:hover {
   left: 80px;
   width: 300px;
   padding-bottom: 16px;
+
   background-color: #fff;
   box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
   z-index: 50;
@@ -237,7 +242,7 @@ svg:hover {
 .drawer-header {
   width: 100%;
   display: flex;
-  justify-content: ce;
+  /* justify-content: ce; */
   padding: 8px;
   background-color: #f22283;
   margin-bottom: 16px;
@@ -247,10 +252,11 @@ svg:hover {
   font-family: sans-serif;
   font-size: 1.2rem;
   color: white;
+  margin-left: 8px;
 }
 
 .drawer h3 {
-  padding-left: 8px;
+  margin-left: 16px;
   margin-bottom: 8px;
 }
 .drawer ul {
@@ -260,6 +266,7 @@ svg:hover {
 .drawer li {
   list-style-type: none;
   padding: 8px;
+  margin-left: 16px;
 }
 .drawer li:hover {
   background-color: #fbcbe1;
@@ -272,6 +279,10 @@ svg:hover {
   margin-bottom: 10px;
 }
 
+.feedback-link {
+  margin-top: 40px;
+  text-align: center;
+}
 #close-drawer {
   display: block;
   position: absolute;
@@ -406,13 +417,27 @@ tbody > tr:nth-of-type(odd) {
   overflow-y: auto;
   box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
 }
+
+.active-container {
+  grid-area: 2 / 1 / 6 / 6;
+  transition: 1s all ease;
+
+  /* grid-area: 2 / 1 / 6/ 3; */
+}
 #myChart {
   background-color: #fff;
   width: auto;
+  margin-bottom: 16px;
 }
 #mySecondChart {
   background-color: #fff;
   width: auto;
+  margin-bottom: 16px;
+}
+#myThirdChart {
+  background-color: #fff;
+  width: auto;
+  margin-bottom: 16px;
 }
 
 .summary-container {
@@ -422,7 +447,6 @@ tbody > tr:nth-of-type(odd) {
   gap: 16px;
   font-family: sans-serif;
   /* padding: ; */
-
   grid-area: 1 / 1 / 2 / 6;
 }
 .box {

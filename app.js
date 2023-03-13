@@ -9,12 +9,12 @@ import {
   peakRuralArray,
 } from "./scripts/createLists.js";
 
-import { myChart, getChartInfo } from "./scripts/mainChart.js";
+import { myChart, mySecondChart, myThirdChart } from "./scripts/mainChart.js";
 
 const dropArea = document.getElementById("drop-area");
 const loader = document.querySelector(".loader");
 const resetBtn = document.querySelector(".reset-btn");
-const filterContainer = document.querySelector(".filter-container");
+// const filterContainer = document.querySelector(".filter-container");
 const selectTariff = document.querySelector("#tariff");
 const selectLocation = document.querySelector("#location");
 const selectBroadband = document.querySelector("#broadband");
@@ -93,7 +93,7 @@ function handleFileSelect(e) {
         result[i][j] = result[i][j].replace(/\r/g, "");
       }
     }
-    console.log(result);
+    // console.log(result);
     loader.classList.add("hidden");
     let location = selectLocation.value;
     let tariff = selectTariff.value;
@@ -120,6 +120,8 @@ resetBtn.addEventListener("click", () => {
 
   document.querySelector("#csv-table").remove();
   myChart.destroy();
+  mySecondChart.destroy();
+  myThirdChart.destroy();
 
   data = undefined;
 
@@ -186,6 +188,21 @@ selectEAB.addEventListener("change", (e) => {
       selectBroadband.value,
       selectEAB.value
     );
+  }
+});
+
+chartIcon.addEventListener("click", () => {
+  chartIcon.classList.toggle("activeIcon");
+  if (chartIcon.classList.contains("activeIcon")) {
+    listIcon.classList.remove("activeIcon");
+
+    listContainer.style.display = "none";
+    chartContainer.classList.add("active-container");
+  } else {
+    listIcon.classList.add("activeIcon");
+
+    listContainer.style.display = "flex";
+    chartContainer.classList.remove("active-container");
   }
 });
 

@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="style.css" />
     <title>Pedro's Usage Tool</title>
-    <link rel="icon" href="./assets/logo.png" />
+     <link rel="icon" href="./assets/logo.png" />
   </head>
   <body>
     <header>
@@ -14,6 +14,7 @@
         <li class="nav-item">
           <img src="./assets/logo.png" alt="PrepayPower" id="logo" />
         </li>
+        <li class="nav-item"><p class="app-version">1.0 Beta -- Testing Version --</p></li>
         <li class="nav-item">
           <button class="button-3 reset-btn" role="button">New Usage</button>
         </li>
@@ -144,6 +145,7 @@
             </li>
               </a>
         </ul>
+        <a class="feedback-link" href="https://forms.office.com/e/uSCpxnEFip" target="_blank"> <button class="button-3"> Feedback</button> </a>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 320 512"
@@ -215,7 +217,7 @@
             </p>
           </div>
           <div class="box">
-            <h2>Averages</h2>
+            <h2>Customer Averages</h2>
             <p>Day: <span id="day-average">€4</span></p>
             <p>Week: <span id="week-average">€34,31</span></p>
             <p>Month: <span id="month-average">€124,31</span></p>
@@ -241,6 +243,7 @@
           <div class="box">
             <h2>Highest spent</h2>
             <span id="highest-day-spent">12/03/2023</span>
+            
             <span id="highest-day-sum">434,31</span>
           </div>
           <div class="box">
@@ -259,6 +262,7 @@
         <div class="chart-container hidden">
           <canvas id="myChart"></canvas>
           <canvas id="mySecondChart"></canvas>
+          <canvas id="myThirdChart"></canvas>
         </div>
       </div>
     </div>

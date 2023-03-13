@@ -1,7 +1,6 @@
 import { prices, BBprices } from "./prices.js";
 class Day {
   tariff;
-
   // 24H
   units = [];
 

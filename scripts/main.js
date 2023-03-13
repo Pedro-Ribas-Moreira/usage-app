@@ -1,5 +1,9 @@
 import { createLists, peakArray } from "./createLists.js";
-import { getChartInfo, getSecondChartInfo } from "./mainChart.js";
+import {
+  getChartInfo,
+  getSecondChartInfo,
+  getThirdChartInfo,
+} from "./mainChart.js";
 import { testArray } from "./testArray.js";
 import { Day } from "./date.js";
 
@@ -70,8 +74,19 @@ const main = (dataArray) => {
     e2.push(last7days[i][3]);
     e3.push(last7days[i][5]);
   }
-
   getSecondChartInfo(e1, e2, e3, secondDays);
+
+  let f1 = 0;
+  let f2 = 0;
+  let f3 = 0;
+
+  for (let i = 1; i < peakArray.length; i++) {
+    f1 += Number(peakArray[i][1]);
+    f2 += Number(peakArray[i][3]);
+    f3 += Number(peakArray[i][5]);
+  }
+  console.log({ f1, f2, f3 });
+  getThirdChartInfo(f2, f3, f1);
   return dates;
 };
 
