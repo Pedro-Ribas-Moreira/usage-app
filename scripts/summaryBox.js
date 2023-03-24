@@ -40,8 +40,8 @@ const summaryBox = (tariff, array, location, broaband, eab) => {
     sum = sum + a;
     sc = sc + c;
   }
-  ts.innerHTML = `Total Paid: ${euro.format(sum)}`;
-  totalSC.innerHTML = `Total Standing Charges: ${euro.format(sc)}`;
+  ts.innerHTML = `${euro.format(sum)}`;
+  totalSC.innerHTML = `${euro.format(sc)}`;
 
   document.querySelector("#highest-day-spent").innerHTML = highestDay;
   document.querySelector("#highest-day-sum").innerHTML =

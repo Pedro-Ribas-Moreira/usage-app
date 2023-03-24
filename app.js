@@ -132,14 +132,14 @@ resetBtn.addEventListener("click", () => {
   peakArray.length = 1;
   peakRuralArray.length = 1;
 
-  console.log("After reset: ", {
-    dayArray,
-    dayRuralArray,
-    nightArray,
-    nigthRuralArray,
-    peakArray,
-    peakRuralArray,
-  });
+  // console.log("After reset: ", {
+  //   dayArray,
+  //   dayRuralArray,
+  //   nightArray,
+  //   nigthRuralArray,
+  //   peakArray,
+  //   peakRuralArray,
+  // });
   listContainer.classList.add("hidden");
   chartContainer.classList.add("hidden");
   summaryContainer.classList.add("hidden");
@@ -282,3 +282,49 @@ toggleDrawerButton.addEventListener("click", () => {
 closeDrawerButton.addEventListener("click", () => {
   drawer.classList.add("hiddenDrawer");
 });
+
+// chart carousel
+
+const carousel = document.querySelector(".carousel-container");
+const carouselItems = document.querySelectorAll(".carousel-item");
+const prevBtn = document.querySelector("#prevBtn");
+const nextBtn = document.querySelector("#nextBtn");
+
+let currentIndex = 0;
+carouselItems[currentIndex].classList.add("active-div");
+
+function showNext() {
+  carouselItems[currentIndex].classList.remove("active-div");
+  currentIndex++;
+  if (currentIndex >= carouselItems.length) {
+    currentIndex = 0;
+  }
+  carouselItems[currentIndex].classList.add("next");
+  setTimeout(() => {
+    carouselItems[currentIndex].classList.remove("next");
+    carouselItems[currentIndex].classList.add("active-div");
+  }, 100);
+}
+
+function showPrev() {
+  carouselItems[currentIndex].classList.remove("active-div");
+  currentIndex--;
+  if (currentIndex < 0) {
+    currentIndex = carouselItems.length - 1;
+  }
+  carouselItems[currentIndex].classList.add("prev");
+  setTimeout(() => {
+    carouselItems[currentIndex].classList.remove("prev");
+    carouselItems[currentIndex].classList.add("active-div");
+  }, 100);
+}
+
+nextBtn.addEventListener("click", showNext);
+prevBtn.addEventListener("click", showPrev);
+// myChart, mySecondChart, myThirdChart
+
+// display sub-table
+
+function showHiddenRow(i) {
+  document.querySelector("");
+}

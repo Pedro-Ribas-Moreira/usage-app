@@ -159,6 +159,7 @@
       </div>
       <div class="sidebar">
         <ul class="sidebar-nav">
+
           <li class="sidebar-item">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -208,20 +209,25 @@
         <div class="loader hidden"></div>
         <div class="summary-container hidden">
           <div class="box">
-            <h2>Total Spent</h2>
-            <p><span id="total-days">11</span> days</p>
-            <p><span id="total-days-sum">434,31</span></p>
-            <p><span id="total-sc">434,31</span></p>
-            <p id="broadband-total-display">
-              <span id="total-sum-broadband">451</span> BB included
-            </p>
+           
+           <div style="display: flex; align-items: center; justify-content: space-between;">
+             <h2>Total</h2>
+             <p><span id="total-days">99</span> days</p>
           </div>
-          <div class="box">
-            <h2>Customer Averages</h2>
-            <p>Day: <span id="day-average">€4</span></p>
-            <p>Week: <span id="week-average">€34,31</span></p>
-            <p>Month: <span id="month-average">€124,31</span></p>
+            <p style="width: 100%; text-align:  center;"><span id="total-days-sum">999.99</span></p>
+          <div class="total-sum-subinfo">
+            <div style="display: flex; flex-direction: column; align-items: center;"><span id="total-sc" style="font-size: 1rem;">999.99</span>Standing<br>Charges</div>
+            <div id="broadband-total-display" style="display: flex; flex-direction: column; align-items: center;"><span id="total-sum-broadband" style="font-size: 1rem;">999</span>Including<br>Broadband </div>  
+          </div> 
           </div>
+          <div class="box" >
+            <h2>Averages</h2>
+            <div class="average-div" >
+              <div>Day: <span id="day-average">€9</span></div>
+              <div>Week: <span id="week-average">€99,99</span></div>
+              <div>Month: <span id="month-average">€999,99</span></div>
+            </div>
+            </div>
           <!-- <div class="box">
             <h2>Last 7 days</h2>
             <p>Day: <span id="day-average">€4</span></p>
@@ -229,40 +235,43 @@
             <p>Month: <span id="month-average">€124,31</span></p>
           </div> -->
           <div class="box">
-            <h2>EAB Comparison</h2>
+            <h2>National Average</h2>
             <!-- <p>Estimate for <span id="total-days-eab">4</span> days</p> -->
-            <p>Daily: <span id="average-eab-daily">€54,31</span></p>
-            <p>Weekly: <span id="average-eab-weekly">€43,31</span></p>
-            <p>Monthly: <span id="average-eab-monthly">€43,31</span></p>
-            <p>Total estimated for <span id="average-usage-esb"></span></p>
+            <p>Daily: <span id="average-eab-daily">€99.99</span></p>
+            <p>Weekly: <span id="average-eab-weekly">€99.99</span></p>
+            <p>Monthly: <span id="average-eab-monthly">€999.99</span></p>
+            <ps style="display: none;"> Total estimated for <span id="average-usage-esb"></span></p>
           </div>
           <!-- <div class="box">
             <h2>Daily Average</h2>
             <span id="average-days-sum">434,31</span>
           </div> -->
           <div class="box">
-            <h2>Highest spent</h2>
+            <h2>Highest Spend</h2>
             <span id="highest-day-spent">12/03/2023</span>
             
-            <span id="highest-day-sum">434,31</span>
+            <span id="highest-day-sum">€99.99</span>
           </div>
           <div class="box">
             <h2>Tariff Comparison</h2>
-            <p>24H: <span id="total-spent-24">434,31 </span></p>
-            <p>D/N: <span id="total-spent-dn">434,31</span></p>
-            <p>TOU: <span id="total-spent-tou">434,31</span></p>
+            <p>24H: <span id="total-spent-24">€99.99 </span></p>
+            <p>D/N: <span id="total-spent-dn">€99.99</span></p>
+            <p>TOU: <span id="total-spent-tou">€99.99</span></p>
           </div>
           <div class="box" id="bb-box">
             <h2>Broadband</h2>
-            <p><span id="broadband-spend-day">434,31 </span> Daily</p>
-            <p><span id="broadband-spend-total">434,31</span> Total</p>
+            <p><span id="broadband-spend-day">€99.99 </span> Daily</p>
+            <p><span id="broadband-spend-total">€99.99</span> Total</p>
           </div>
         </div>
         <div class="list-container hidden"></div>
-        <div class="chart-container hidden">
-          <canvas id="myChart"></canvas>
-          <canvas id="mySecondChart"></canvas>
-          <canvas id="myThirdChart"></canvas>
+        <div class="chart-container  carousel-container hidden">
+          <canvas id="myChart" class="carousel-item active-item"></canvas>
+          <canvas id="mySecondChart" class="carousel-item"></canvas>
+          <canvas id="myThirdChart" class="carousel-item"></canvas>
+
+          <button id="prevBtn" class="carousel-button">Previous</button>
+          <button id="nextBtn" class="carousel-button">Next</button>
         </div>
       </div>
     </div>

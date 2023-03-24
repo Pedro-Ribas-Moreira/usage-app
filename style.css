@@ -1,7 +1,10 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap");
+
 * {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+  font-family: "Roboto", sans-serif;
 }
 body {
   height: 100vh;
@@ -178,8 +181,7 @@ header {
   position: relative;
   padding: 0 0.5rem 0 0;
   font-size: 1.3rem;
-  /* width: 100%; */
-  width: 80px;
+  min-width: 80px;
   background-color: #fff;
   display: flex;
   flex-direction: column;
@@ -339,6 +341,7 @@ svg:hover {
 /* TABLE */
 .list-container {
   height: 100%;
+  border-radius: 15px;
   overflow-y: auto;
   grid-area: 2 / 1 / 6/ 4;
   box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
@@ -412,10 +415,38 @@ tbody > tr:nth-of-type(odd) {
 
 /* Chart */
 
-.chart-container {
+/* .chart-container {
   grid-area: 2 / 4 /6 / 6;
   overflow-y: auto;
   box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+  border-radius: 15px;
+} */
+
+.carousel-container {
+  grid-area: 2 / 4 /6 / 6;
+  display: flex;
+  overflow-x: hidden;
+  scroll-snap-type: x mandatory;
+}
+.carousel-item {
+  flex: 0 0 100%;
+  scroll-snap-align: start;
+}
+
+.carousel-button {
+  margin-top: 10px;
+}
+
+.active-div {
+  transform: translateX(0);
+}
+
+.next {
+  transform: translateX(-100%);
+}
+
+.prev {
+  transform: translateX(100%);
 }
 
 .active-container {
@@ -424,6 +455,7 @@ tbody > tr:nth-of-type(odd) {
 
   /* grid-area: 2 / 1 / 6/ 3; */
 }
+
 #myChart {
   background-color: #fff;
   width: auto;
@@ -442,20 +474,25 @@ tbody > tr:nth-of-type(odd) {
 
 .summary-container {
   width: 100%;
+  overflow: hidden;
   display: flex;
   justify-content: space-between;
   gap: 16px;
   font-family: sans-serif;
   /* padding: ; */
   grid-area: 1 / 1 / 2 / 6;
+  position: relative;
 }
+
 .box {
-  min-height: 140px;
-  width: 25%;
+  height: 95%;
+  width: 300px;
   padding: 16px;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   background-color: #d91e75;
+  border-radius: 15px;
   color: white;
   box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
 }
@@ -465,6 +502,29 @@ tbody > tr:nth-of-type(odd) {
 /* .box > span {
   font-size: 1.4;
 } */
+
+#total-days-sum {
+  font-size: 1.5rem;
+  font-weight: bolder;
+}
+
+.total-sum-subinfo {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.8rem;
+}
+
+.average-div {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.average-div > div {
+  width: 100%;
+}
+.average-div > div > span {
+}
 .hidden {
   display: none;
 }

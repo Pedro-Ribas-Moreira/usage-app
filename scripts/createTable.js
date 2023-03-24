@@ -1,6 +1,12 @@
+import { dailyArray } from "./main.js";
+
 const listContainer = document.querySelector(".list-container");
 
 const createTable = (array) => {
+  console.log({
+    dailyArray,
+  });
+
   if (document.querySelector("#csv-table") !== null) {
     document.querySelector("#csv-table").remove();
   }
@@ -21,15 +27,23 @@ const createTable = (array) => {
   let tableHeader = document.createElement("thead");
   tableHeader.appendChild(headerRow);
   // Create a table body
-
   let tableBody = document.createElement("tbody");
   // Insert data rows
-  for (let i = array.length - 1; i > 1; i--) {
+  for (let i = array.length - 1; i > 0; i--) {
     let dataRow = tableBody.insertRow();
     for (let j = 0; j < array[i].length; j++) {
       let dataCell = dataRow.insertCell();
       dataCell.innerHTML = array[i][j];
     }
+    let arrayRow = tableBody.insertRow();
+    let arrayCell = arrayRow.insertCell();
+    arrayCell.setAttribute("colspan", "100%");
+    arrayCell.innerHTML = "Hello World!";
+    arrayRow.style.display = "none";
+
+    arrayRow.classList.add(`hidden-row-id-${i}`);
+    arrayRow.classList.add(`showHiddenRow(${i})`);
+    dataRow.classList.add(`row-id-${i}`);
   }
 
   table.appendChild(tableHeader);

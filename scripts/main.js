@@ -9,6 +9,8 @@ import { Day } from "./date.js";
 
 //FOR TESTING ONLY
 // const dataArray = testArray;
+let dailyArray;
+
 const main = (dataArray) => {
   //DATA
   let data = dataArray;
@@ -41,13 +43,20 @@ const main = (dataArray) => {
       if (dates[i].day === data[j][0].split(" ")[0]) {
         // dates[i].totalUsage += Number(data[j][1]);
         let time = data[j][0].split(" ")[1];
-        let unit = Number(data[j][1]);
+        let unit = isNaN(Number(data[j][1])) ? 0 : Number(data[j][1]);
         dates[i].addUnit(time, unit);
       }
     }
-  }
+    console.log("DATE: " + dates[i].day);
+    // console.log("Day: ");
+    // console.log(dates[i].touDayUnits);
+    // console.log("Peak: ");
+    // console.log(dates[i].touPeakUnits);
+    // console.log("Night: ");
+    // console.log(dates[i].touNightUnits);
 
-  // console.log(dates);
+    console.log(dates[i].tariff);
+  }
 
   createLists(dates);
   let d1 = [];
@@ -87,7 +96,9 @@ const main = (dataArray) => {
   }
   console.log({ f1, f2, f3 });
   getThirdChartInfo(f2, f3, f1);
+
+  dailyArray = dates;
   return dates;
 };
 
-export { main };
+export { main, dailyArray };

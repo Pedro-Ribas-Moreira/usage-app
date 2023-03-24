@@ -42,7 +42,7 @@ class Day {
     this.units.push({ time, usage, total: a });
 
     //NIGHTSAVER tariff handler
-    if (time >= "08:00" && time < "23:00") {
+    if (time >= "08:30" && time <= "23:30") {
       let b = usage * this.tariff.dayPrice;
       this.dayUnits.push({ time, usage, total: b });
     } else {
@@ -51,13 +51,13 @@ class Day {
     }
 
     //TOU tariff handler
-    if (time >= "17:00" && time <= "21:00") {
+    if (time >= "17:30" && time <= "19:30") {
       let d = usage * this.tariff.touPeakPrice;
       this.touPeakUnits.push({ time, usage, total: d });
     } else if (
-      time >= "08:00" &&
-      time < "23:00" &&
-      !(time >= "17:00" && time <= "21:00")
+      time >= "08:30" &&
+      time <= "23:30" &&
+      !(time >= "17:30" && time <= "19:30")
     ) {
       let e = usage * this.tariff.touDayPrice;
       this.touDayUnits.push({ time, usage, total: e });
@@ -76,6 +76,8 @@ class Day {
     }
     return { totalUnits, totalPaid };
   }
+
+  getPeak() {}
 }
 
 export { Day };
