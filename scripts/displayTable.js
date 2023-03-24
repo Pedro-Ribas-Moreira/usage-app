@@ -1,3 +1,4 @@
+import { dailyArray, datesMap } from "./main.js";
 import {
   dayArray,
   dayRuralArray,
@@ -12,10 +13,10 @@ import { summaryBox } from "./summaryBox.js";
 const displayTable = (tariff, location, broaband, eab) => {
   if (tariff == "24h") {
     if (location == "urban") {
-      createTable(dayArray);
+      createTable(dayArray, dailyArray, datesMap, tariff);
       summaryBox(tariff, dayArray, location, broaband, eab);
     } else if (location == "rural") {
-      createTable(dayRuralArray);
+      createTable(dayRuralArray, dailyArray, datesMap, tariff);
       summaryBox(tariff, dayRuralArray, location, broaband, eab);
     } else {
       alert("invalid location");
@@ -23,10 +24,10 @@ const displayTable = (tariff, location, broaband, eab) => {
   }
   if (tariff == "nightsaver") {
     if (location == "urban") {
-      createTable(nightArray);
+      createTable(nightArray, dailyArray, datesMap, tariff);
       summaryBox(tariff, nightArray, location, broaband, eab);
     } else if (location == "rural") {
-      createTable(nigthRuralArray);
+      createTable(nigthRuralArray, dailyArray, datesMap, tariff);
       summaryBox(tariff, nigthRuralArray, location, broaband, eab);
     } else {
       alert("invalid location");
@@ -34,10 +35,10 @@ const displayTable = (tariff, location, broaband, eab) => {
   }
   if (tariff == "tou") {
     if (location == "urban") {
-      createTable(peakArray);
+      createTable(peakArray, dailyArray, datesMap, tariff);
       summaryBox(tariff, peakArray, location, broaband, eab);
     } else if (location == "rural") {
-      createTable(peakRuralArray);
+      createTable(peakRuralArray, dailyArray, datesMap, tariff);
       summaryBox(tariff, peakRuralArray, location, broaband, eab);
     } else {
       alert("invalid location");

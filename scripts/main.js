@@ -10,6 +10,7 @@ import { Day } from "./date.js";
 //FOR TESTING ONLY
 // const dataArray = testArray;
 let dailyArray;
+var datesMap = new Map();
 
 const main = (dataArray) => {
   //DATA
@@ -34,6 +35,7 @@ const main = (dataArray) => {
       const newDate = new Day(d);
       //   newDate.findTariff(d);
       dates.push(newDate);
+      // datesMap.set(newDate.day, newDate);
     }
   }
 
@@ -45,9 +47,10 @@ const main = (dataArray) => {
         let time = data[j][0].split(" ")[1];
         let unit = isNaN(Number(data[j][1])) ? 0 : Number(data[j][1]);
         dates[i].addUnit(time, unit);
+        datesMap.set(dates[i].day, dates[i]);
       }
     }
-    console.log("DATE: " + dates[i].day);
+    // console.log("DATE: " + dates[i].day);
     // console.log("Day: ");
     // console.log(dates[i].touDayUnits);
     // console.log("Peak: ");
@@ -55,7 +58,7 @@ const main = (dataArray) => {
     // console.log("Night: ");
     // console.log(dates[i].touNightUnits);
 
-    console.log(dates[i].tariff);
+    // console.log(dates[i].tariff);
   }
 
   createLists(dates);
@@ -94,11 +97,12 @@ const main = (dataArray) => {
     f2 += Number(peakArray[i][3]);
     f3 += Number(peakArray[i][5]);
   }
-  console.log({ f1, f2, f3 });
+  // console.log({ f1, f2, f3 });
   getThirdChartInfo(f2, f3, f1);
-
   dailyArray = dates;
+
   return dates;
 };
 
-export { main, dailyArray };
+// console.log(datesMap);
+export { main, dailyArray, datesMap };

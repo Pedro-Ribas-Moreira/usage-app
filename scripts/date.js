@@ -3,7 +3,8 @@ class Day {
   tariff;
   // 24H
   units = [];
-
+  nightSaver = [];
+  timeOfUsage = [];
   // DAY/NIGHT
   nightUnits = [];
   dayUnits = [];
@@ -45,15 +46,18 @@ class Day {
     if (time >= "08:30" && time <= "23:30") {
       let b = usage * this.tariff.dayPrice;
       this.dayUnits.push({ time, usage, total: b });
+      this.nightSaver.push({ time, usage, total: b });
     } else {
       let c = usage * this.tariff.nightPrice;
       this.nightUnits.push({ time, usage, total: c });
+      this.nightSaver.push({ time, usage, total: c });
     }
 
     //TOU tariff handler
     if (time >= "17:30" && time <= "19:30") {
       let d = usage * this.tariff.touPeakPrice;
       this.touPeakUnits.push({ time, usage, total: d });
+      this.timeOfUsage.push({ time, usage, total: d });
     } else if (
       time >= "08:30" &&
       time <= "23:30" &&
@@ -61,9 +65,11 @@ class Day {
     ) {
       let e = usage * this.tariff.touDayPrice;
       this.touDayUnits.push({ time, usage, total: e });
+      this.timeOfUsage.push({ time, usage, total: e });
     } else {
       let f = usage * this.tariff.touNightPrice;
       this.touNightUnits.push({ time, usage, total: f });
+      this.timeOfUsage.push({ time, usage, total: f });
     }
   }
 

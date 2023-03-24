@@ -33,6 +33,9 @@ const getChartInfo = (d1, d2, d3, days) => {
     options: {
       layout: {
         padding: 20,
+        onClick: (e) => {
+          console.log(e);
+        },
       },
       maintainAspectRatio: false,
       plugins: {

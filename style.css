@@ -305,7 +305,7 @@ svg:hover {
 .flex {
   display: flex;
   width: 100%;
-  background-color: #999797;
+  background-color: #f8e5e5;
   justify-content: center;
   align-items: center;
 }
@@ -332,7 +332,7 @@ svg:hover {
   flex-grow: 1;
   max-height: 90vh;
   display: grid;
-  background-color: #b0adad;
+  background-color: #fbf0f0;
   grid-template-columns: repeat(5, 1fr);
   grid-template-rows: repeat(5, 1f);
   grid-column-gap: 32px;
@@ -404,13 +404,45 @@ td {
   padding-left: 1.5rem;
   padding-right: 1.5rem;
   position: relative;
+  cursor: pointer;
 }
 
-tbody > tr:nth-of-type(odd) {
-  background: rgb(207, 205, 205, 0.2);
+.active-row {
+  background: #d91e75;
+  color: white;
+  transition: 0.2s linear;
+  position: relative;
+}
+.active-row:after {
+  color: #fff;
+  content: "\25BC";
+  pointer-events: none;
+  position: absolute;
+  top: 50%;
+  right: 5px;
+  transform: translateY(-50%);
+  font-size: 16px;
+  font-weight: 600;
 }
 .highlight {
   background: #fbcbe1;
+}
+
+/* SUB-TABLE */
+.subTable {
+  width: 100%;
+  border: 1px solid #d91e75;
+  opacity: 1;
+  transition: 0.5s ease-in-out;
+}
+.subTable td {
+  border: 1px solid #d91e75;
+}
+.subTable > thead {
+  width: 100%;
+}
+.subTable > th {
+  width: 100%;
 }
 
 /* Chart */
@@ -427,6 +459,8 @@ tbody > tr:nth-of-type(odd) {
   display: flex;
   overflow-x: hidden;
   scroll-snap-type: x mandatory;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+  border-radius: 15px;
 }
 .carousel-item {
   flex: 0 0 100%;
@@ -459,17 +493,14 @@ tbody > tr:nth-of-type(odd) {
 #myChart {
   background-color: #fff;
   width: auto;
-  margin-bottom: 16px;
 }
 #mySecondChart {
   background-color: #fff;
   width: auto;
-  margin-bottom: 16px;
 }
 #myThirdChart {
   background-color: #fff;
   width: auto;
-  margin-bottom: 16px;
 }
 
 .summary-container {
@@ -486,7 +517,7 @@ tbody > tr:nth-of-type(odd) {
 
 .box {
   height: 95%;
-  width: 300px;
+  width: 320px;
   padding: 16px;
   display: flex;
   flex-direction: column;
@@ -511,7 +542,7 @@ tbody > tr:nth-of-type(odd) {
 .total-sum-subinfo {
   display: flex;
   justify-content: space-between;
-  font-size: 0.8rem;
+  font-size: 10px;
 }
 
 .average-div {
@@ -527,6 +558,7 @@ tbody > tr:nth-of-type(odd) {
 }
 .hidden {
   display: none;
+  opacity: 0;
 }
 
 /* ===== Scrollbar CSS ===== */
@@ -544,12 +576,13 @@ tbody > tr:nth-of-type(odd) {
 *::-webkit-scrollbar-track {
   background: #ffffff;
   /* border-radius: 10px; */
-  /* border-top-right-radius: 10px;
-  border-bottom-right-radius: 10px; */
+  border-top-right-radius: 15px;
+  border-bottom-right-radius: 15px;
 }
 
 *::-webkit-scrollbar-thumb {
   background-color: #d91e75;
   /* border-radius: 5px; */
+
   border: 3px none #ffffff;
 }
