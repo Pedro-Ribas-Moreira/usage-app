@@ -104,6 +104,7 @@ function handleFileSelect(e) {
     displayTable(tariff, location, broaband, eab);
 
     listContainer.classList.remove("hidden");
+    // chartContainer.classList.remove("hidden");
     chartContainer.classList.remove("hidden");
 
     // listIcon.classList.add("active");
@@ -206,69 +207,69 @@ chartIcon.addEventListener("click", () => {
   }
 });
 
-function sortTable(col) {
-  var rows, switching, i, x, y, shouldSwitch;
-  table = document.getElementById("csv-table");
-  switching = true;
-  /* Make a loop that will continue until
-    no switching has been done: */
-  while (switching) {
-    // Start by saying: no switching is done:
-    switching = false;
-    rows = table.rows;
-    /* Loop through all table rows (except the
-        first, which contains table headers): */
-    for (i = 1; i < rows.length - 1; i++) {
-      // Start by saying there should be no switching:
-      shouldSwitch = false;
-      /* Get the two elements you want to compare,
-          one from current row and one from the next: */
-      x = rows[i].getElementsByTagName("TD")[col];
-      y = rows[i + 1].getElementsByTagName("TD")[col];
-      // Check if the two rows should switch place:
+// function sortTable(col) {
+//   var rows, switching, i, x, y, shouldSwitch;
+//   table = document.getElementById("csv-table");
+//   switching = true;
+//   /* Make a loop that will continue until
+//     no switching has been done: */
+//   while (switching) {
+//     // Start by saying: no switching is done:
+//     switching = false;
+//     rows = table.rows;
+//     /* Loop through all table rows (except the
+//         first, which contains table headers): */
+//     for (i = 1; i < rows.length - 1; i++) {
+//       // Start by saying there should be no switching:
+//       shouldSwitch = false;
+//       /* Get the two elements you want to compare,
+//           one from current row and one from the next: */
+//       x = rows[i].getElementsByTagName("TD")[col];
+//       y = rows[i + 1].getElementsByTagName("TD")[col];
+//       // Check if the two rows should switch place:
 
-      var xValue = parseFloat(x.innerHTML.replace(/[^\d.-]/g, ""));
-      var yValue = parseFloat(y.innerHTML.replace(/[^\d.-]/g, ""));
-      if (isNaN(x.innerHTML) && isNaN(y.innerHTML)) {
-        if (asc) {
-          if (xValue > yValue) {
-            shouldSwitch = true;
-            break;
-          }
-        } else {
-          if (xValue < yValue) {
-            shouldSwitch = true;
-            break;
-          }
-        }
-      }
-    }
-    if (shouldSwitch) {
-      /* If a switch has been marked, make the switch
-        and mark that a switch has been done: */
-      rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
-      switching = true;
-    }
-  }
-  asc = !asc;
-}
+//       var xValue = parseFloat(x.innerHTML.replace(/[^\d.-]/g, ""));
+//       var yValue = parseFloat(y.innerHTML.replace(/[^\d.-]/g, ""));
+//       if (isNaN(x.innerHTML) && isNaN(y.innerHTML)) {
+//         if (asc) {
+//           if (xValue > yValue) {
+//             shouldSwitch = true;
+//             break;
+//           }
+//         } else {
+//           if (xValue < yValue) {
+//             shouldSwitch = true;
+//             break;
+//           }
+//         }
+//       }
+//     }
+//     if (shouldSwitch) {
+//       /* If a switch has been marked, make the switch
+//         and mark that a switch has been done: */
+//       rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+//       switching = true;
+//     }
+//   }
+//   asc = !asc;
+// }
 
-let asc = true;
-document.addEventListener("click", (e) => {
-  if (e.target.classList.contains("header-cell")) {
-    document.querySelectorAll(".header-cell").forEach((e) => {
-      e.classList.remove("down");
-      e.classList.remove("up");
-    });
-    if (asc) {
-      e.target.classList.add("up");
-      e.target.classList.remove("down");
-    } else {
-      e.target.classList.remove("up");
-      e.target.classList.add("down");
-    }
-  }
-});
+// let asc = true;
+// document.addEventListener("click", (e) => {
+//   if (e.target.classList.contains("header-cell")) {
+//     document.querySelectorAll(".header-cell").forEach((e) => {
+//       e.classList.remove("down");
+//       e.classList.remove("up");
+//     });
+//     if (asc) {
+//       e.target.classList.add("up");
+//       e.target.classList.remove("down");
+//     } else {
+//       e.target.classList.remove("up");
+//       e.target.classList.add("down");
+//     }
+//   }
+// });
 
 // OPEN AND CLOSE DRAWER
 const toggleDrawerButton = document.querySelector(".toggle-drawer");
@@ -285,46 +286,50 @@ closeDrawerButton.addEventListener("click", () => {
 
 // chart carousel
 
-const carousel = document.querySelector(".carousel-container");
-const carouselItems = document.querySelectorAll(".carousel-item");
-const prevBtn = document.querySelector("#prevBtn");
-const nextBtn = document.querySelector("#nextBtn");
+// const carousel = document.querySelector(".carousel-container");
+// const carouselItems = document.querySelectorAll(".carousel-item");
+// const prevBtn = document.querySelector("#prevBtn");
+// const nextBtn = document.querySelector("#nextBtn");
 
-let currentIndex = 0;
-carouselItems[currentIndex].classList.add("active-div");
+// let currentIndex = 0;
+// carouselItems[currentIndex].classList.remove("hidden");
 
-function showNext() {
-  carouselItems[currentIndex].classList.remove("active-div");
-  currentIndex++;
-  if (currentIndex >= carouselItems.length) {
-    currentIndex = 0;
-  }
-  carouselItems[currentIndex].classList.add("next");
-  setTimeout(() => {
-    carouselItems[currentIndex].classList.remove("next");
-    carouselItems[currentIndex].classList.add("active-div");
-  }, 100);
-}
+// function showNext() {
+//   console.log("next");
 
-function showPrev() {
-  carouselItems[currentIndex].classList.remove("active-div");
-  currentIndex--;
-  if (currentIndex < 0) {
-    currentIndex = carouselItems.length - 1;
-  }
-  carouselItems[currentIndex].classList.add("prev");
-  setTimeout(() => {
-    carouselItems[currentIndex].classList.remove("prev");
-    carouselItems[currentIndex].classList.add("active-div");
-  }, 100);
-}
+//   carouselItems[currentIndex].classList.add("hidden");
+//   currentIndex++;
+//   if (currentIndex >= carouselItems.length) {
+//     currentIndex = 0;
+//   }
+//   console.log(carouselItems.length);
+//   console.log(carouselItems[currentIndex]);
+//   carouselItems[currentIndex].classList.remove("hidden");
+//   // setTimeout(() => {
+//   //   carouselItems[currentIndex].classList.remove("next");
+//   //   carouselItems[currentIndex].classList.add("active-div");
+//   // }, 100);
+// }
 
-nextBtn.addEventListener("click", showNext);
-prevBtn.addEventListener("click", showPrev);
+// function showPrev() {
+//   console.log("previous");
+//   carouselItems[currentIndex].classList.add("hidden");
+//   currentIndex--;
+//   if (currentIndex < 0) {
+//     currentIndex = carouselItems.length - 1;
+//   }
+//   console.log(carouselItems.length);
+//   console.log(carouselItems[currentIndex]);
+//   carouselItems[currentIndex].classList.remove("hidden");
+//   // setTimeout(() => {
+//   //   console.log(carouselItems[currentIndex]);
+//   //   carouselItems[currentIndex].classList.remove("prev");
+//   //   carouselItems[currentIndex].classList.add("active-div");
+//   // }, 100);
+// }
+
+// nextBtn.addEventListener("click", showNext);
+// prevBtn.addEventListener("click", showPrev);
 // myChart, mySecondChart, myThirdChart
 
 // display sub-table
-
-function showHiddenRow(i) {
-  document.querySelector("");
-}

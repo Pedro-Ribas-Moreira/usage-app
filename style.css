@@ -461,26 +461,28 @@ td {
   scroll-snap-type: x mandatory;
   box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
   border-radius: 15px;
+  position: relative;
 }
 .carousel-item {
-  flex: 0 0 100%;
-  scroll-snap-align: start;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  /* opacity: 0; */
+  transition: opacity 0.3s ease-in-out;
+  background-color: #fff;
+  /* display: none; */
+  /* width: auto; */
 }
 
 .carousel-button {
   margin-top: 10px;
 }
 
-.active-div {
-  transform: translateX(0);
-}
-
-.next {
-  transform: translateX(-100%);
-}
-
-.prev {
-  transform: translateX(100%);
+.disabled-chart {
+  /* display: block; */
+  opacity: 0;
 }
 
 .active-container {
@@ -488,19 +490,6 @@ td {
   transition: 1s all ease;
 
   /* grid-area: 2 / 1 / 6/ 3; */
-}
-
-#myChart {
-  background-color: #fff;
-  width: auto;
-}
-#mySecondChart {
-  background-color: #fff;
-  width: auto;
-}
-#myThirdChart {
-  background-color: #fff;
-  width: auto;
 }
 
 .summary-container {

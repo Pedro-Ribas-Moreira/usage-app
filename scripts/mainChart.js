@@ -1,9 +1,11 @@
+import { prices } from "./prices.js";
+
 const chartContainer = document.querySelector(".chart-container");
 
 let myChart;
 
 const getChartInfo = (d1, d2, d3, days) => {
-  chartContainer.classList.remove("hidden");
+  // chartContainer.classList.remove("hidden");
   const ctx = document.getElementById("myChart");
   const labels = days;
   const chartData = {
@@ -71,7 +73,7 @@ const getChartInfo = (d1, d2, d3, days) => {
 };
 let mySecondChart;
 const getSecondChartInfo = (d1, d2, d3, days) => {
-  chartContainer.classList.remove("hidden");
+  // chartContainer.classList.remove("hidden");
   const ctx = document.getElementById("mySecondChart");
   const labels = days;
   const chartData = {
@@ -126,7 +128,7 @@ const getSecondChartInfo = (d1, d2, d3, days) => {
 
 let myThirdChart;
 const getThirdChartInfo = (d1, d2, d3) => {
-  chartContainer.classList.remove("hidden");
+  // chartContainer.classList.remove("hidden");
   const ctx = document.getElementById("myThirdChart");
   const labels = ["Day", "Peak", "Night"];
   const chartData = {
@@ -169,6 +171,58 @@ const getThirdChartInfo = (d1, d2, d3) => {
     },
   });
 };
+
+let timeChart;
+const getTimeChartInfo = (time, prices, day) => {
+  // chartContainer.classList.remove("hidden");
+  const ctx = document.getElementById("timeChart");
+  const labels = time;
+  const chartData = {
+    labels: labels,
+    datasets: [
+      {
+        label: "Units",
+        data: prices,
+        fill: false,
+        borderColor: "#FFB703",
+        backgroundColor: "#FFB703",
+        tension: 0.1,
+      },
+    ],
+  };
+
+  timeChart = new Chart(ctx, {
+    type: "line",
+    data: chartData,
+    options: {
+      layout: {
+        padding: 20,
+      },
+      maintainAspectRatio: false,
+      plugins: {
+        title: {
+          display: true,
+          text: day,
+        },
+      },
+
+      responsive: true,
+      scales: {
+        x: {
+          stacked: true,
+          autoSkip: false,
+        },
+        y: {
+          type: "linear",
+          min: 0,
+          max:
+            Math.max(...prices) > 3 ? Math.round(Math.max(...prices)) + 1 : 3,
+        },
+      },
+    },
+  });
+};
+
 export {
   myChart,
   getChartInfo,
@@ -176,4 +230,6 @@ export {
   getSecondChartInfo,
   myThirdChart,
   getThirdChartInfo,
+  timeChart,
+  getTimeChartInfo,
 };

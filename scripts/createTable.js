@@ -1,5 +1,8 @@
-// import { dailyArray } from "./main.js";
+import { datesMap } from "./main.js";
+import { timeChart, getTimeChartInfo } from "./mainChart.js";
 
+// import { dailyArray } from "./main.js";
+timeChart;
 const listContainer = document.querySelector(".list-container");
 let euro = Intl.NumberFormat("en-DE", {
   style: "currency",
@@ -140,8 +143,42 @@ const createTable = (array, dailyArray, datesMap, tariff) => {
 window.addEventListener("click", (e) => {
   let row = e.target.parentElement;
   if (row.classList.contains("day-row")) {
-    row.classList.toggle("active-row");
-    row.nextSibling.classList.toggle("hidden");
+    const tc = document.querySelector("#timeChart");
+    if (row.classList.contains("active-row")) {
+      console.log("here");
+      row.classList.remove("active-row");
+      row.nextSibling.classList.add("hidden");
+      timeChart.destroy();
+      document.querySelector("#myChart").classList.remove("disabled-chart");
+      tc.classList.add("disabled-chart");
+    } else {
+      document
+        .querySelectorAll(".day-row")
+        .forEach((e) => e.classList.remove("active-row"));
+      document
+        .querySelectorAll(".time-row")
+        .forEach((e) => e.classList.add("hidden"));
+
+      document
+        .querySelectorAll(".carousel-item")
+        .forEach((e) => e.classList.add("disabled-chart"));
+      row.classList.toggle("active-row");
+      row.nextSibling.classList.toggle("hidden");
+
+      document.querySelector("#timeChart").classList.remove("disabled-chart");
+
+      let d = row.firstChild.innerHTML;
+      if (timeChart) {
+        timeChart.destroy();
+        // timeChart.style.display = "hidden";
+      }
+      // console.log(row.firstChild.innerHTML);
+
+      let time = datesMap.get(d).units.map((e) => e.time.slice(0, 5));
+      let units = datesMap.get(d).units.map((e) => e.usage);
+
+      getTimeChartInfo(time, units, d);
+    }
   }
 });
 
