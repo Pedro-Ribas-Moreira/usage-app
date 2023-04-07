@@ -39,37 +39,79 @@ class Day {
 
   addUnit(time, usage) {
     //24h tariff handler
+    const targetDate = new Date(this.day.split("/").reverse().join("-"));
+    // const dateStart = new Date("2023-03-26");
+    // const dateEnd = new Date("2023-10-29");
+
+    const daylightsaving =
+      (targetDate.getMonth() > 2 && // month is after March
+        targetDate.getMonth() < 9) || // month is before October
+      (targetDate.getMonth() === 2 && targetDate.getDate() >= 26) || // month is March and day is 26 or later
+      (targetDate.getMonth() === 9 && targetDate.getDate() <= 29); // month is October and day is 29 or earlier
+
     let a = usage * this.tariff.allDayPrice;
     this.units.push({ time, usage, total: a });
 
-    //NIGHTSAVER tariff handler
-    if (time >= "08:30" && time <= "23:30") {
-      let b = usage * this.tariff.dayPrice;
-      this.dayUnits.push({ time, usage, total: b });
-      this.nightSaver.push({ time, usage, total: b });
-    } else {
-      let c = usage * this.tariff.nightPrice;
-      this.nightUnits.push({ time, usage, total: c });
-      this.nightSaver.push({ time, usage, total: c });
-    }
+    if (daylightsaving) {
+      //NIGHTSAVER tariff handler
+      if (time >= "00:30" && time <= "09:30") {
+        let c = usage * this.tariff.nightPrice;
+        this.nightUnits.push({ time, usage, total: c });
+        this.nightSaver.push({ time, usage, total: c });
+      } else {
+        let b = usage * this.tariff.dayPrice;
+        this.dayUnits.push({ time, usage, total: b });
+        this.nightSaver.push({ time, usage, total: b });
+      }
 
-    //TOU tariff handler
-    if (time >= "17:30" && time <= "19:30") {
-      let d = usage * this.tariff.touPeakPrice;
-      this.touPeakUnits.push({ time, usage, total: d });
-      this.timeOfUsage.push({ time, usage, total: d });
-    } else if (
-      time >= "08:30" &&
-      time <= "23:30" &&
-      !(time >= "17:30" && time <= "19:30")
-    ) {
-      let e = usage * this.tariff.touDayPrice;
-      this.touDayUnits.push({ time, usage, total: e });
-      this.timeOfUsage.push({ time, usage, total: e });
+      //TOU tariff handler
+      if (time >= "18:30" && time <= "20:30") {
+        let d = usage * this.tariff.touPeakPrice;
+        this.touPeakUnits.push({ time, usage, total: d });
+        this.timeOfUsage.push({ time, usage, total: d });
+      } else if (time >= "00:30" && time <= "09:30") {
+        let f = usage * this.tariff.touNightPrice;
+        this.touNightUnits.push({ time, usage, total: f });
+        this.timeOfUsage.push({ time, usage, total: f });
+      } else if (
+        !(time >= "18:30" && time <= "20:30") &&
+        !(time >= "00:30" && time <= "09:30")
+      ) {
+        let e = usage * this.tariff.touDayPrice;
+        this.touDayUnits.push({ time, usage, total: e });
+        this.timeOfUsage.push({ time, usage, total: e });
+      }
     } else {
-      let f = usage * this.tariff.touNightPrice;
-      this.touNightUnits.push({ time, usage, total: f });
-      this.timeOfUsage.push({ time, usage, total: f });
+      //NOT DAYLIGHT SAVING PERIOD
+      //NIGHTSAVER tariff handler
+      if (time >= "08:30" && time <= "23:30") {
+        let b = usage * this.tariff.dayPrice;
+        this.dayUnits.push({ time, usage, total: b });
+        this.nightSaver.push({ time, usage, total: b });
+      } else {
+        let c = usage * this.tariff.nightPrice;
+        this.nightUnits.push({ time, usage, total: c });
+        this.nightSaver.push({ time, usage, total: c });
+      }
+
+      //TOU tariff handler
+      if (time >= "17:30" && time <= "19:30") {
+        let d = usage * this.tariff.touPeakPrice;
+        this.touPeakUnits.push({ time, usage, total: d });
+        this.timeOfUsage.push({ time, usage, total: d });
+      } else if (
+        time >= "08:30" &&
+        time <= "23:30" &&
+        !(time >= "17:30" && time <= "19:30")
+      ) {
+        let e = usage * this.tariff.touDayPrice;
+        this.touDayUnits.push({ time, usage, total: e });
+        this.timeOfUsage.push({ time, usage, total: e });
+      } else {
+        let f = usage * this.tariff.touNightPrice;
+        this.touNightUnits.push({ time, usage, total: f });
+        this.timeOfUsage.push({ time, usage, total: f });
+      }
     }
   }
 
