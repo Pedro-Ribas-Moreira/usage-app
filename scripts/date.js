@@ -43,12 +43,12 @@ class Day {
     // const dateStart = new Date("2023-03-26");
     // const dateEnd = new Date("2023-10-29");
 
-    const daylightsaving = false;
-    // const daylightsaving =
-    //   (targetDate.getMonth() > 2 && // month is after March
-    //     targetDate.getMonth() < 9) || // month is before October
-    //   (targetDate.getMonth() === 2 && targetDate.getDate() >= 26) || // month is March and day is 26 or later
-    //   (targetDate.getMonth() === 9 && targetDate.getDate() <= 29); // month is October and day is 29 or earlier
+    // const daylightsaving = false;
+    const daylightsaving =
+      (targetDate.getMonth() > 2 && // month is after March
+        targetDate.getMonth() < 9) || // month is before October
+      (targetDate.getMonth() === 2 && targetDate.getDate() >= 26) || // month is March and day is 26 or later
+      (targetDate.getMonth() === 9 && targetDate.getDate() <= 29); // month is October and day is 29 or earlier
 
     let a = usage * this.tariff.allDayPrice;
     this.units.push({ time, usage, total: a });

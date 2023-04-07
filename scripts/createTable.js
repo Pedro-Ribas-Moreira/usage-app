@@ -150,6 +150,8 @@ window.addEventListener("click", (e) => {
       row.nextSibling.classList.add("hidden");
       timeChart.destroy();
       document.querySelector("#myChart").classList.remove("disabled-chart");
+      // document.querySelector("#myChart").style.
+
       tc.classList.add("disabled-chart");
     } else {
       document
