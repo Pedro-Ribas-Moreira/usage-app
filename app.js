@@ -9,7 +9,12 @@ import {
   peakRuralArray,
 } from "./scripts/createLists.js";
 
-import { myChart, mySecondChart, myThirdChart } from "./scripts/mainChart.js";
+import {
+  myChart,
+  mySecondChart,
+  myThirdChart,
+  timeChart,
+} from "./scripts/mainChart.js";
 
 const dropArea = document.getElementById("drop-area");
 const loader = document.querySelector(".loader");
@@ -123,6 +128,12 @@ resetBtn.addEventListener("click", () => {
   myChart.destroy();
   mySecondChart.destroy();
   myThirdChart.destroy();
+  timeChart.destroy();
+
+  if (document.querySelector("#myChart").classList.contains("disabled-chart")) {
+    document.querySelector("#myChart").classList.remove("disabled-chart");
+    document.querySelector("#timeChart").classList.add("disabled-chart");
+  }
 
   data = undefined;
 
@@ -133,14 +144,6 @@ resetBtn.addEventListener("click", () => {
   peakArray.length = 1;
   peakRuralArray.length = 1;
 
-  // console.log("After reset: ", {
-  //   dayArray,
-  //   dayRuralArray,
-  //   nightArray,
-  //   nigthRuralArray,
-  //   peakArray,
-  //   peakRuralArray,
-  // });
   listContainer.classList.add("hidden");
   chartContainer.classList.add("hidden");
   summaryContainer.classList.add("hidden");
@@ -207,70 +210,6 @@ chartIcon.addEventListener("click", () => {
   }
 });
 
-// function sortTable(col) {
-//   var rows, switching, i, x, y, shouldSwitch;
-//   table = document.getElementById("csv-table");
-//   switching = true;
-//   /* Make a loop that will continue until
-//     no switching has been done: */
-//   while (switching) {
-//     // Start by saying: no switching is done:
-//     switching = false;
-//     rows = table.rows;
-//     /* Loop through all table rows (except the
-//         first, which contains table headers): */
-//     for (i = 1; i < rows.length - 1; i++) {
-//       // Start by saying there should be no switching:
-//       shouldSwitch = false;
-//       /* Get the two elements you want to compare,
-//           one from current row and one from the next: */
-//       x = rows[i].getElementsByTagName("TD")[col];
-//       y = rows[i + 1].getElementsByTagName("TD")[col];
-//       // Check if the two rows should switch place:
-
-//       var xValue = parseFloat(x.innerHTML.replace(/[^\d.-]/g, ""));
-//       var yValue = parseFloat(y.innerHTML.replace(/[^\d.-]/g, ""));
-//       if (isNaN(x.innerHTML) && isNaN(y.innerHTML)) {
-//         if (asc) {
-//           if (xValue > yValue) {
-//             shouldSwitch = true;
-//             break;
-//           }
-//         } else {
-//           if (xValue < yValue) {
-//             shouldSwitch = true;
-//             break;
-//           }
-//         }
-//       }
-//     }
-//     if (shouldSwitch) {
-//       /* If a switch has been marked, make the switch
-//         and mark that a switch has been done: */
-//       rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
-//       switching = true;
-//     }
-//   }
-//   asc = !asc;
-// }
-
-// let asc = true;
-// document.addEventListener("click", (e) => {
-//   if (e.target.classList.contains("header-cell")) {
-//     document.querySelectorAll(".header-cell").forEach((e) => {
-//       e.classList.remove("down");
-//       e.classList.remove("up");
-//     });
-//     if (asc) {
-//       e.target.classList.add("up");
-//       e.target.classList.remove("down");
-//     } else {
-//       e.target.classList.remove("up");
-//       e.target.classList.add("down");
-//     }
-//   }
-// });
-
 // OPEN AND CLOSE DRAWER
 const toggleDrawerButton = document.querySelector(".toggle-drawer");
 const drawer = document.querySelector(".drawer");
@@ -283,53 +222,3 @@ toggleDrawerButton.addEventListener("click", () => {
 closeDrawerButton.addEventListener("click", () => {
   drawer.classList.add("hiddenDrawer");
 });
-
-// chart carousel
-
-// const carousel = document.querySelector(".carousel-container");
-// const carouselItems = document.querySelectorAll(".carousel-item");
-// const prevBtn = document.querySelector("#prevBtn");
-// const nextBtn = document.querySelector("#nextBtn");
-
-// let currentIndex = 0;
-// carouselItems[currentIndex].classList.remove("hidden");
-
-// function showNext() {
-//   console.log("next");
-
-//   carouselItems[currentIndex].classList.add("hidden");
-//   currentIndex++;
-//   if (currentIndex >= carouselItems.length) {
-//     currentIndex = 0;
-//   }
-//   console.log(carouselItems.length);
-//   console.log(carouselItems[currentIndex]);
-//   carouselItems[currentIndex].classList.remove("hidden");
-//   // setTimeout(() => {
-//   //   carouselItems[currentIndex].classList.remove("next");
-//   //   carouselItems[currentIndex].classList.add("active-div");
-//   // }, 100);
-// }
-
-// function showPrev() {
-//   console.log("previous");
-//   carouselItems[currentIndex].classList.add("hidden");
-//   currentIndex--;
-//   if (currentIndex < 0) {
-//     currentIndex = carouselItems.length - 1;
-//   }
-//   console.log(carouselItems.length);
-//   console.log(carouselItems[currentIndex]);
-//   carouselItems[currentIndex].classList.remove("hidden");
-//   // setTimeout(() => {
-//   //   console.log(carouselItems[currentIndex]);
-//   //   carouselItems[currentIndex].classList.remove("prev");
-//   //   carouselItems[currentIndex].classList.add("active-div");
-//   // }, 100);
-// }
-
-// nextBtn.addEventListener("click", showNext);
-// prevBtn.addEventListener("click", showPrev);
-// myChart, mySecondChart, myThirdChart
-
-// display sub-table
