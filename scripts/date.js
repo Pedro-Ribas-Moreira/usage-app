@@ -43,11 +43,12 @@ class Day {
     // const dateStart = new Date("2023-03-26");
     // const dateEnd = new Date("2023-10-29");
 
-    const daylightsaving =
-      (targetDate.getMonth() > 2 && // month is after March
-        targetDate.getMonth() < 9) || // month is before October
-      (targetDate.getMonth() === 2 && targetDate.getDate() >= 26) || // month is March and day is 26 or later
-      (targetDate.getMonth() === 9 && targetDate.getDate() <= 29); // month is October and day is 29 or earlier
+    const daylightsaving = false;
+    // const daylightsaving =
+    //   (targetDate.getMonth() > 2 && // month is after March
+    //     targetDate.getMonth() < 9) || // month is before October
+    //   (targetDate.getMonth() === 2 && targetDate.getDate() >= 26) || // month is March and day is 26 or later
+    //   (targetDate.getMonth() === 9 && targetDate.getDate() <= 29); // month is October and day is 29 or earlier
 
     let a = usage * this.tariff.allDayPrice;
     this.units.push({ time, usage, total: a });
@@ -84,7 +85,7 @@ class Day {
     } else {
       //NOT DAYLIGHT SAVING PERIOD
       //NIGHTSAVER tariff handler
-      if (time >= "08:30" && time <= "23:30") {
+      if (time >= "08:00" && time <= "23:00") {
         let b = usage * this.tariff.dayPrice;
         this.dayUnits.push({ time, usage, total: b });
         this.nightSaver.push({ time, usage, total: b });
@@ -95,14 +96,14 @@ class Day {
       }
 
       //TOU tariff handler
-      if (time >= "17:30" && time <= "19:30") {
+      if (time >= "17:00" && time <= "19:00") {
         let d = usage * this.tariff.touPeakPrice;
         this.touPeakUnits.push({ time, usage, total: d });
         this.timeOfUsage.push({ time, usage, total: d });
       } else if (
-        time >= "08:30" &&
-        time <= "23:30" &&
-        !(time >= "17:30" && time <= "19:30")
+        time >= "08:00" &&
+        time <= "23:00" &&
+        !(time >= "17:00" && time <= "19:00")
       ) {
         let e = usage * this.tariff.touDayPrice;
         this.touDayUnits.push({ time, usage, total: e });
