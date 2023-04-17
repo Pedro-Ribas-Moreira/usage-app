@@ -128,7 +128,9 @@ resetBtn.addEventListener("click", () => {
   myChart.destroy();
   mySecondChart.destroy();
   myThirdChart.destroy();
-  timeChart.destroy();
+  if (timeChart) {
+    timeChart.destroy();
+  }
 
   if (document.querySelector("#myChart").classList.contains("disabled-chart")) {
     document.querySelector("#myChart").classList.remove("disabled-chart");
