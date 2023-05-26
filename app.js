@@ -56,12 +56,6 @@ function handleDragLeave(e) {
 }
 
 function handleFileSelect(e) {
-
-  gtag('event', action, {
-    'event_category': fileDropped,
-    'event_label': label
-  });
-}
   this.classList.remove("drag-over");
   dropArea.style.display = "none";
   displayContainer.classList.add("grid");
@@ -87,6 +81,10 @@ function handleFileSelect(e) {
     return;
   }
 
+  gtag("event", action, {
+    event_category: category,
+    event_label: label,
+  });
   loader.classList.remove("hidden");
 
   // process the file
