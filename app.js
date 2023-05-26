@@ -81,10 +81,6 @@ function handleFileSelect(e) {
     return;
   }
 
-  gtag("event", action, {
-    event_category: category,
-    event_label: label,
-  });
   loader.classList.remove("hidden");
 
   // process the file
