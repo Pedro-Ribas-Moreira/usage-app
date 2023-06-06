@@ -71,19 +71,19 @@ let prices = [
     prices: {
       // 24h
       allDayPrice: 0.4154,
-      urbanDaySC: 1.0421,
-      ruralDaySC: 1.3525,
+      urbanDaySC: 1.0083,
+      ruralDaySC: 1.3187,
       //NIGHTSAVER
       nightPrice: 0.2271,
       dayPrice: 0.46,
-      urbanNightsaverSC: 1.3775,
-      ruralNightsaverSC: 1.6246,
+      urbanNightsaverSC: 1.3437,
+      ruralNightsaverSC: 1.5908,
       //TOU
       touNightPrice: 0.2383,
       touDayPrice: 0.4595,
       touPeakPrice: 0.5164,
-      touUrbanSC: 1.083,
-      touRuralSC: 1.3525,
+      touUrbanSC: 1.0083,
+      touRuralSC: 1.3187,
     },
   },
 ];
