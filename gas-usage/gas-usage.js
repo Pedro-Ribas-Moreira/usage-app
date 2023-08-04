@@ -98,9 +98,9 @@ gasForm.addEventListener("click", function (event) {
     
     <p class="script"><strong>Comparison</strong></p>
      <p class="script">So if we take this average figures we can see that in the same time period the average customer would use ${nationalAverageUnitsDaily.toFixed(2)}
-        Units per day which would cost them €${(nationalAverageUnitsDaily * (unitRate + carbonTaxRate)).toFixed(2)}c for their Gas and pay €${standingChargeTotal.toFixed(2)}c in the combined daily charges for a total of €${nationalAverageSpendDaily.toFixed(2)}c. 
+        Units per day which would cost them €${(nationalAverageUnitsDaily * (unitRate + carbonTaxRate)).toFixed(2)}c for their Gas and pay €${dailyChargeRate.toFixed(2)}c in the combined daily charges for a total of €${nationalAverageSpendDaily.toFixed(2)}c. 
         So comparing yourself to them 
-        ${nationalAverageSpendDaily < totalSpend / daysDifference ? `you're €${((totalSpend/daysDifference)-nationalAverageSpendDaily).toFixed(2)}c above the average` : `you're €${(nationalAverageSpendDaily-((totalSpend/daysDifference))).toFixed(2)}c below the average`}.</p>
+        ${nationalAverageSpendDaily < totalSpend / daysDifference ? `you're €${((totalSpend/daysDifference)-nationalAverageSpendDaily).toFixed(2)}c per day above the average` : `you're €${(nationalAverageSpendDaily-((totalSpend/daysDifference))).toFixed(2)}c per day below the average`}.</p>
         
     <h3 class="script">Links</h3>
     <p class="script">The below links will be useful follow up steps that the customer can take to reduce their usage on Gas</p>
