@@ -1,0 +1,126 @@
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  }
+  
+  /* Modal Content/Box */
+  .modal-content {
+    background-color: #fefefe;
+    margin: 10% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; /* Could be more or less, depending on screen size */
+  }
+  
+  /* The Close Button */
+  .close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+  }
+  
+  .close:hover,
+  .close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  form{
+    display: flex;
+    padding: 2rem;
+    justify-content: space-evenly;
+  }
+
+  #submit-form{
+    font-size: 1rem;
+    font-weight: 600;
+    width: 110px;
+    background-color: #E71E70;
+    color: #fafafa;
+    border: 1px solid #E71E70;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.15s ease-in-out;
+  }
+
+  #submit-form:hover{
+    background-color: #fafafa;
+    color: #E71E70;
+  }
+
+  .form-group{
+    display: flex;
+    flex-direction: column;
+    height: 90%;
+    justify-content: space-evenly;
+  }
+
+  input, label{
+    margin: 2px;
+  }
+
+  .results-groups{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    padding: 2rem;
+  }
+
+  .results-group{
+    width: 40%;
+  }
+
+.script{
+  padding: 1rem;
+}
+
+.gas-links{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+.gas-link{
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  color: #fafafa;
+  background-color: #E71E70;
+  padding: 5px 15px;
+  border-radius: 5px;
+  border: 1px solid #E71E70;
+  transition: 0.15s ease-in-out;
+}
+
+.gas-link:hover{
+  color: #E71E70;
+  background-color: #fafafa;
+  border: 1px solid #E71E70;
+}
+
+.gas-card{
+  margin: 1rem;
+  border: 1px solid #E71E70;
+  display: flex;
+  padding: 1rem;
+  flex-direction: column;
+  max-width: 200px;
+  text-align: center;
+  justify-content: space-evenly;
+  border-radius: 5px;
+}
+
+.gas-card p{
+  margin: 1rem;
+  text-align: center;
+}

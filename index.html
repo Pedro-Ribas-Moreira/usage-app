@@ -1,309 +1,300 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-           <!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-  })(window,document,'script','dataLayer','GTM-N4NLBX9');</script>
+
+<head>
+  <!-- Google Tag Manager -->
+  <script>(function (w, d, s, l, i) {
+      w[l] = w[l] || []; w[l].push({
+        'gtm.start':
+          new Date().getTime(), event: 'gtm.js'
+      }); var f = d.getElementsByTagName(s)[0],
+        j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+          'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+    })(window, document, 'script', 'dataLayer', 'GTM-N4NLBX9');</script>
   <!-- End Google Tag Manager -->
 
 
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="style.css" />
-    <title>Pedro's Usage Tool</title>
-     <link rel="icon" href="./assets/logo.png" />
-
-       <!-- Google tag (gtag.js) -->
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="style.css" />
+  <title>Genio - Pedro's Usage Tool</title>
+  <link rel="icon" href="./assets/logo.png" />
+  <link rel="stylesheet" href="gas-usage/gas-usage.css">
+  <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-MDYXLHV6QX"></script>
   <script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
 
-  gtag('config', 'G-MDYXLHV6QX');
-</script>
-  </head>
+    gtag('config', 'G-MDYXLHV6QX');
+  </script>
 
-  <body>
-    <!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-N4NLBX9"
-height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<!-- End Google Tag Manager (noscript) -->
-    <header>
-      <ul class="navbar">
-        <li class="nav-item">
-          <img src="./assets/logo.png" alt="PrepayPower" id="logo" />
-        </li>
-        <li class="nav-item"><p class="app-version">1.0 Beta -- Testing Version --</p></li>
-        <li class="nav-item">
-          <button class="button-3 reset-btn" role="button">New Usage</button>
-        </li>
-        <li class="nav-item">
-          <div class="filter-container">
-            <div class="select-wrapper">
-              <select class="select" name="tariff" id="tariff">
-                <option value="24h" selected>24h</option>
-                <option value="nightsaver">NightSaver</option>
-                <option value="tou">Time of Use</option>
-              </select>
-            </div>
-            <div class="select-wrapper">
-              <select class="select" name="location" id="location">
-                <option value="urban" selected>Urban</option>
-                <option value="rural">Rural</option>
-              </select>
-            </div>
-            <div class="select-wrapper">
-              <select class="select" name="broadband" id="broadband">
-                <option value="no" selected>No broadband</option>
-                <option value="FTTC">BB: FTTC</option>
-                <option value="FTTH-150">BB: FTTH 150MB</option>
-                <option value="FTTH-500">BB: FTTH 500MB</option>
-                <option value="FTTH-1000">BB: FTTH 1000MB</option>
-              </select>
-            </div>
-            <div class="select-wrapper">
-              <select class="select" name="EAB" id="EAB">
-                <option value="eab-one">1-2 Bed Apartment</option>
-                <option value="eab-two">2 Bed Semi Detached</option>
-                <option value="eab-three" selected>3-4 Bed Semi Detached</option>
-                <option value="eab-four">3-4 Bed Detached</option>
-                <option value="eab-five">5-6 Bed Detached</option>
-              </select>
-            </div>
+</head>
+
+<body>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-N4NLBX9" height="0" width="0"
+      style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+  <header>
+    <ul class="navbar">
+      <li class="nav-item">
+        <img src="./assets/logo.png" alt="PrepayPower" id="logo" />
+      </li>
+      <li class="nav-item">
+        <p class="app-version">1.0 Beta -- Testing Version --</p>
+      </li>
+      <li class="nav-item">
+        <button class="button-3 reset-btn" role="button">New Usage</button>
+      </li>
+      <li class="nav-item">
+        <div class="filter-container">
+          <div class="select-wrapper">
+            <select class="select" name="tariff" id="tariff">
+              <option value="24h" selected>24h</option>
+              <option value="nightsaver">NightSaver</option>
+              <option value="tou">Time of Use</option>
+            </select>
           </div>
+          <div class="select-wrapper">
+            <select class="select" name="location" id="location">
+              <option value="urban" selected>Urban</option>
+              <option value="rural">Rural</option>
+            </select>
+          </div>
+          <div class="select-wrapper">
+            <select class="select" name="broadband" id="broadband">
+              <option value="no" selected>No broadband</option>
+              <option value="FTTC">BB: FTTC</option>
+              <option value="FTTH-150">BB: FTTH 150MB</option>
+              <option value="FTTH-500">BB: FTTH 500MB</option>
+              <option value="FTTH-1000">BB: FTTH 1000MB</option>
+            </select>
+          </div>
+          <div class="select-wrapper">
+            <select class="select" name="EAB" id="EAB">
+              <option value="eab-one">1-2 Bed Apartment</option>
+              <option value="eab-two">2 Bed Semi Detached</option>
+              <option value="eab-three" selected>3-4 Bed Semi Detached</option>
+              <option value="eab-four">3-4 Bed Detached</option>
+              <option value="eab-five">5-6 Bed Detached</option>
+            </select>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </header>
+
+  <div class="main">
+    <div class="drawer hiddenDrawer">
+      <div class="drawer-header">
+        <h2>Quick Links</h2>
+      </div>
+      <h3>Website:</h3>
+      <ul class="website-list">
+        <a href="https://www.prepaypower.ie/saving-energy" target="_blank">
+          <li class="website-list-item">Saving Tips</li>
+        </a>
+        <a href="https://www.prepaypower.ie/why-switch/pricing/rates" target="_blank">
+          <li class="website-list-item">Payment Options & Rates</li>
+        </a>
+        <a href="https://www.prepaypower.ie/support/app-support" target="_blank">
+          <li class="website-list-item">App Support</li>
+        </a>
+
+        <a href="https://www.prepaypower.ie/support/pso-levy-refund" target="_blank">
+          <li class="website-list-item">PSO Levy Refund</li>
+        </a>
+
+        <a href="https://www.prepaypower.ie/why-switch/pricing/estimated-annual-bill-faqs">
+          <li class="website-list-item">Estimate Annual Bill FAQs</li>
+        </a>
+      </ul>
+      <h3>Knowledge Base:</h3>
+      <ul class="kb-list">
+        <a href="#" target="_blank" rel="noopener noreferrer">
+          <li class="kb-list-item">Advance Credit</li>
+        </a>
+        <li class="kb-list-item">
+          <a href="#" target="_blank" rel="noopener noreferrer">
+            Customer Vend Request
+        </li>
+        </a>
+
+        <a href="#" target="_blank" rel="noopener noreferrer">
+          <li class="kb-list-item">
+            Emergency Credit in APP
+          </li>
+        </a>
+
+        <a href="#" target="_blank" rel="noopener noreferrer">
+          <li class="kb-list-item">
+            Retention Training
+          </li>
+        </a>
+        <a href="#" target="_blank">
+          <li class="kb-list-item">
+            Usage & Consumption Process
+          </li>
+        </a>
+        <a href="#" target="_blank">
+          <li class="kb-list-item">
+            Interactive App
+          </li>
+        </a>
+      </ul>
+      <a class="feedback-link" href="https://forms.office.com/e/uSCpxnEFip" target="_blank"> <button class="button-3">
+          Feedback</button> </a>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" id="close-drawer">
+        <!--! Font Awesome Pro 6.3.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+        <path
+          d="M310.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L160 210.7 54.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L114.7 256 9.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L160 301.3 265.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L205.3 256 310.6 150.6z" />
+      </svg>
+    </div>
+    <div class="sidebar">
+      <ul class="sidebar-nav">
+
+        <li class="sidebar-item">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" id="list-icon" class="active"
+            style="display: none;">
+            <!--! Font Awesome Pro 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
+            <path
+              d="M0 96C0 60.7 28.7 32 64 32H448c35.3 0 64 28.7 64 64V416c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V96zm64 0v64h64V96H64zm384 0H192v64H448V96zM64 224v64h64V224H64zm384 0H192v64H448V224zM64 352v64h64V352H64zm384 0H192v64H448V352z" />
+          </svg>
+        </li>
+        <li class="sidebar-item">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" id="chart-icon">
+            <!--! Font Awesome Pro 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
+            <path
+              d="M32 32c17.7 0 32 14.3 32 32V400c0 8.8 7.2 16 16 16H480c17.7 0 32 14.3 32 32s-14.3 32-32 32H80c-44.2 0-80-35.8-80-80V64C0 46.3 14.3 32 32 32zM160 224c17.7 0 32 14.3 32 32v64c0 17.7-14.3 32-32 32s-32-14.3-32-32V256c0-17.7 14.3-32 32-32zm128-64V320c0 17.7-14.3 32-32 32s-32-14.3-32-32V160c0-17.7 14.3-32 32-32s32 14.3 32 32zm64 32c17.7 0 32 14.3 32 32v96c0 17.7-14.3 32-32 32s-32-14.3-32-32V224c0-17.7 14.3-32 32-32zM480 96V320c0 17.7-14.3 32-32 32s-32-14.3-32-32V96c0-17.7 14.3-32 32-32s32 14.3 32 32z" />
+          </svg>
+        </li>
+        <li class="sidebar-item">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 512" id="chart-icon" class="info-icon toggle-drawer">
+            <!--! Font Awesome Pro 6.3.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+            <path
+              d="M48 80a48 48 0 1 1 96 0A48 48 0 1 1 48 80zM0 224c0-17.7 14.3-32 32-32H96c17.7 0 32 14.3 32 32V448h32c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H64V256H32c-17.7 0-32-14.3-32-32z" />
+          </svg>
+        </li>
+        <li class="sidebar-item" id="gas-button">
+          <svg xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 384 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+            <path
+              d="M153.6 29.9l16-21.3C173.6 3.2 180 0 186.7 0C198.4 0 208 9.6 208 21.3V43.5c0 13.1 5.4 25.7 14.9 34.7L307.6 159C356.4 205.6 384 270.2 384 337.7C384 434 306 512 209.7 512H192C86 512 0 426 0 320v-3.8c0-48.8 19.4-95.6 53.9-130.1l3.5-3.5c4.2-4.2 10-6.6 16-6.6C85.9 176 96 186.1 96 198.6V288c0 35.3 28.7 64 64 64s64-28.7 64-64v-3.9c0-18-7.2-35.3-19.9-48l-38.6-38.6c-24-24-37.5-56.7-37.5-90.7c0-27.7 9-54.8 25.6-76.9z" />
+          </svg>
+
         </li>
       </ul>
-    </header>
-
-    <div class="main">
-      <div class="drawer hiddenDrawer">
-        <div class="drawer-header">
-          <h2>Quick Links</h2>
-        </div>
-        <h3>Website:</h3>
-        <ul class="website-list">
-          <a href="https://www.prepaypower.ie/saving-energy" target="_blank">
-            <li class="website-list-item">Saving Tips</li>
-          </a>
-          <a
-            href="https://www.prepaypower.ie/why-switch/pricing/rates"
-            target="_blank"
-          >
-            <li class="website-list-item">Payment Options & Rates</li>
-          </a>
-          <a
-            href="https://www.prepaypower.ie/support/app-support"
-            target="_blank"
-          >
-            <li class="website-list-item">App Support</li>
-          </a>
-
-          <a
-            href="https://www.prepaypower.ie/support/pso-levy-refund"
-            target="_blank"
-          >
-            <li class="website-list-item">PSO Levy Refund</li>
-          </a>
-
-          <a
-            href="https://www.prepaypower.ie/why-switch/pricing/estimated-annual-bill-faqs"
-          >
-            <li class="website-list-item">Estimate Annual Bill FAQs</li>
-          </a>
-        </ul>
-        <h3>Knowledge Base:</h3>
-        <ul class="kb-list">
-          <a
-            href="#"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <li class="kb-list-item">Advance Credit</li>
-          </a>
-          <li class="kb-list-item">
-            <a
-              href="#"
-              target="_blank"
-              rel="noopener noreferrer"
-              >
-              Customer Vend Request
-            </li>
-          </a>
-
-          <a
-          href="#"
-          target="_blank"
-          rel="noopener noreferrer"
-          >
-          <li class="kb-list-item">
-              Emergency Credit in APP
-            </li>
-            </a>
-
-            <a
-            href="#"
-            target="_blank"
-            rel="noopener noreferrer"
-            >
-            <li class="kb-list-item">
-              Retention Training
-            </li>
-              </a
-            >
-            <a
-            href="#"
-            target="_blank"
-            >
-            <li class="kb-list-item">
-              Usage & Consumption Process
-            </li>
-            </a>
-            <a href="#" target="_blank">
-              <li class="kb-list-item">
-              Interactive App
-            </li>
-              </a>
-        </ul>
-        <a class="feedback-link" href="https://forms.office.com/e/uSCpxnEFip" target="_blank"> <button class="button-3"> Feedback</button> </a>
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 320 512"
-          id="close-drawer"
-        >
-          <!--! Font Awesome Pro 6.3.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
-          <path
-            d="M310.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L160 210.7 54.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L114.7 256 9.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L160 301.3 265.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L205.3 256 310.6 150.6z"
-          />
-        </svg>
+      <!-- toggle between chart and list -->
+      <!-- compare prices with other tariffs -->
+    </div>
+    <div class="data-display flex">
+      <div id="drop-area">
+        <h2>Drag and Drop CSV File Here</h2>
       </div>
-      <div class="sidebar">
-        <ul class="sidebar-nav">
+      <div class="loader hidden"></div>
+      <div class="summary-container hidden">
+        <div class="box">
 
-          <li class="sidebar-item">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 512 512"
-              id="list-icon"
-              class="active"
-              style="display: none;"
-            >
-              <!--! Font Awesome Pro 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
-              <path
-                d="M0 96C0 60.7 28.7 32 64 32H448c35.3 0 64 28.7 64 64V416c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V96zm64 0v64h64V96H64zm384 0H192v64H448V96zM64 224v64h64V224H64zm384 0H192v64H448V224zM64 352v64h64V352H64zm384 0H192v64H448V352z"
-              />
-            </svg>
-          </li>
-          <li class="sidebar-item">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 512 512"
-              id="chart-icon"
-            >
-              <!--! Font Awesome Pro 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
-              <path
-                d="M32 32c17.7 0 32 14.3 32 32V400c0 8.8 7.2 16 16 16H480c17.7 0 32 14.3 32 32s-14.3 32-32 32H80c-44.2 0-80-35.8-80-80V64C0 46.3 14.3 32 32 32zM160 224c17.7 0 32 14.3 32 32v64c0 17.7-14.3 32-32 32s-32-14.3-32-32V256c0-17.7 14.3-32 32-32zm128-64V320c0 17.7-14.3 32-32 32s-32-14.3-32-32V160c0-17.7 14.3-32 32-32s32 14.3 32 32zm64 32c17.7 0 32 14.3 32 32v96c0 17.7-14.3 32-32 32s-32-14.3-32-32V224c0-17.7 14.3-32 32-32zM480 96V320c0 17.7-14.3 32-32 32s-32-14.3-32-32V96c0-17.7 14.3-32 32-32s32 14.3 32 32z"
-              />
-            </svg>
-          </li>
-          <li class="sidebar-item">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 192 512"
-              id="chart-icon"
-              class="info-icon toggle-drawer"
-            >
-              <!--! Font Awesome Pro 6.3.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
-              <path
-                d="M48 80a48 48 0 1 1 96 0A48 48 0 1 1 48 80zM0 224c0-17.7 14.3-32 32-32H96c17.7 0 32 14.3 32 32V448h32c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H64V256H32c-17.7 0-32-14.3-32-32z"
-              />
-            </svg>
-          </li>
-        </ul>
-        <!-- toggle between chart and list -->
-        <!-- compare prices with other tariffs -->
-      </div>
-      <div class="data-display flex">
-        <div id="drop-area">
-          <h2>Drag and Drop CSV File Here</h2>
-        </div>
-        <div class="loader hidden"></div>
-        <div class="summary-container hidden">
-          <div class="box">
-           
-           <div style="display: flex; align-items: center; justify-content: space-between;">
-             <h2>Total</h2>
-             <p><span id="total-days">99</span> days</p>
+          <div style="display: flex; align-items: center; justify-content: space-between;">
+            <h2>Total</h2>
+            <p><span id="total-days">99</span> days</p>
           </div>
-            <p style="width: 100%; text-align:  center;"><span id="total-days-sum">999.99</span></p>
+          <p style="width: 100%; text-align:  center;"><span id="total-days-sum">999.99</span></p>
           <div class="total-sum-subinfo">
-            <div style="display: flex; flex-direction: column; align-items: center;"><span id="total-sc" style="font-size: 1rem;">999.99</span>Standing<br>Charges</div>
-            <div id="broadband-total-display" style="display: flex; flex-direction: column; align-items: center;"><span id="total-sum-broadband" style="font-size: 1rem;">999</span>Including<br>Broadband </div>  
-          </div> 
+            <div style="display: flex; flex-direction: column; align-items: center;"><span id="total-sc"
+                style="font-size: 1rem;">999.99</span>Standing<br>Charges</div>
+            <div id="broadband-total-display" style="display: flex; flex-direction: column; align-items: center;"><span
+                id="total-sum-broadband" style="font-size: 1rem;">999</span>Including<br>Broadband </div>
           </div>
-          <div class="box" >
-            <h2>Averages</h2>
-            <div class="average-div" >
-              <div>Day: <span id="day-average">€9</span></div>
-              <div>Week: <span id="week-average">€99,99</span></div>
-              <div>Month: <span id="month-average">€999,99</span></div>
-            </div>
-            </div>
-          <!-- <div class="box">
+        </div>
+        <div class="box">
+          <h2>Averages</h2>
+          <div class="average-div">
+            <div>Day: <span id="day-average">€9</span></div>
+            <div>Week: <span id="week-average">€99,99</span></div>
+            <div>Month: <span id="month-average">€999,99</span></div>
+          </div>
+        </div>
+        <!-- <div class="box">
             <h2>Last 7 days</h2>
             <p>Day: <span id="day-average">€4</span></p>
             <p>Week: <span id="week-average">€34,31</span></p>
             <p>Month: <span id="month-average">€124,31</span></p>
           </div> -->
-          <div class="box">
-            <h2>National Average</h2>
-            <!-- <p>Estimate for <span id="total-days-eab">4</span> days</p> -->
-            <p>Daily: <span id="average-eab-daily">€99.99</span></p>
-            <p>Weekly: <span id="average-eab-weekly">€99.99</span></p>
-            <p>Monthly: <span id="average-eab-monthly">€999.99</span></p>
-            <ps style="display: none;"> Total estimated for <span id="average-usage-esb"></span></p>
-          </div>
-          <!-- <div class="box">
+        <div class="box">
+          <h2>National Average</h2>
+          <!-- <p>Estimate for <span id="total-days-eab">4</span> days</p> -->
+          <p>Daily: <span id="average-eab-daily">€99.99</span></p>
+          <p>Weekly: <span id="average-eab-weekly">€99.99</span></p>
+          <p>Monthly: <span id="average-eab-monthly">€999.99</span></p>
+          <ps style="display: none;"> Total estimated for <span id="average-usage-esb"></span></p>
+        </div>
+        <!-- <div class="box">
             <h2>Daily Average</h2>
             <span id="average-days-sum">434,31</span>
           </div> -->
-          <div class="box">
-            <h2>Highest Spend</h2>
-            <span id="highest-day-spent">12/03/2023</span>
-            
-            <span id="highest-day-sum">€99.99</span>
-          </div>
-          <div class="box">
-            <h2>Tariff Comparison</h2>
-            <p>24H: <span id="total-spent-24">€99.99 </span></p>
-            <p>D/N: <span id="total-spent-dn">€99.99</span></p>
-            <p>TOU: <span id="total-spent-tou">€99.99</span></p>
-          </div>
-          <div class="box" id="bb-box">
-            <h2>Broadband</h2>
-            <p><span id="broadband-spend-day">€99.99 </span> Daily</p>
-            <p><span id="broadband-spend-total">€99.99</span> Total</p>
-          </div>
-        </div>
-        <div class="list-container hidden"></div>
-        <!-- <button id="prevBtn" class="carousel-button">Previous</button>
-        <button id="nextBtn" class="carousel-button">Next</button> -->
-        <div class="chart-container  carousel-container hidden">
-          <canvas id="timeChart" class="carousel-item "></canvas>
-          <canvas id="myChart" class="carousel-item"></canvas>
-          <canvas id="mySecondChart" class="carousel-item disabled-chart"></canvas>
-          <canvas id="myThirdChart"  class="carousel-item disabled-chart"></canvas>
+        <div class="box">
+          <h2>Highest Spend</h2>
+          <span id="highest-day-spent">12/03/2023</span>
 
- 
+          <span id="highest-day-sum">€99.99</span>
+        </div>
+        <div class="box">
+          <h2>Tariff Comparison</h2>
+          <p>24H: <span id="total-spent-24">€99.99 </span></p>
+          <p>D/N: <span id="total-spent-dn">€99.99</span></p>
+          <p>TOU: <span id="total-spent-tou">€99.99</span></p>
+        </div>
+        <div class="box" id="bb-box">
+          <h2>Broadband</h2>
+          <p><span id="broadband-spend-day">€99.99 </span> Daily</p>
+          <p><span id="broadband-spend-total">€99.99</span> Total</p>
         </div>
       </div>
+      <div class="list-container hidden"></div>
+      <!-- <button id="prevBtn" class="carousel-button">Previous</button>
+        <button id="nextBtn" class="carousel-button">Next</button> -->
+      <div class="chart-container  carousel-container hidden">
+        <canvas id="timeChart" class="carousel-item "></canvas>
+        <canvas id="myChart" class="carousel-item"></canvas>
+        <canvas id="mySecondChart" class="carousel-item disabled-chart"></canvas>
+        <canvas id="myThirdChart" class="carousel-item disabled-chart"></canvas>
+
+
+
+      </div>
+    </div>
+  </div>
+  <div id="myModal" class="modal">
+
+    <!-- Modal content -->
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <form action="">
+        <div class="form-group">
+          <input type="date" id="first-date" name="first-date">
+          <label for="first-date">Date of first read</label>
+        </div>
+        <div class="form-group">
+          <input type="date" id="second-date" name="second-date">
+          <label for="second-date">Date of second read</label>
+        </div>
+        <div class="form-group">
+          <input type="number" id="mr-consumption" name="mr-consumption">
+          <label for="mr-consumption">mrConsumption figure</label>
+        </div>
+        <input type="submit" id="submit-form">
+      </form>
+      <div id="results"></div>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script type="module" src="app.js"></script>
-  </body>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script type="module" src="app.js"></script>
+  <script defer type="module" src="./gas-usage/gas-usage.js"></script>
+</body>
+
 </html>
