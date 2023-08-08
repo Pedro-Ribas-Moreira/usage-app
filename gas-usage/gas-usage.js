@@ -56,17 +56,18 @@ gasForm.addEventListener("click", function (event) {
     <p>Total Carbon Tax: €${carbonTaxTotal}c</p>
     <p>Total Unit Costs: €${unitsTotal}c</p>
     <p>Standing Charge: €${standingChargeRate}c</p>
+    <p>Total Standing Charge: €${standingChargeTotal.toFixed(2)}</p>
+    <p> Total Spend: ${totalSpend.toFixed(2)}</p>
+    <p> Average Daily Spend (This Customer): €${(totalSpend / daysDifference).toFixed(2)}</p>
     </div>
     <div class="results-group">
-    <p>Total Standing Charge: ${standingChargeTotal.toFixed(2)}</p>
-    <p> Total Spend: ${totalSpend.toFixed(2)}</p>
-    <p>National Yearly Average: ${nationalAverageUnitsYearly.toFixed(2)} </p>
+    <p>National Yearly Average Units: ${nationalAverageUnitsYearly.toFixed(2)} </p>
     <p>National Daily Average: ${nationalAverageUnitsDaily.toFixed(2)} Units</p>
-    <p>National Average Gas Unit Cost: ${nationalAverageUnitsDaily * daysDifference}</p>
-    <p>National Average Gas Carbon Tax: ${daysDifference * carbonTaxRate}</p>
-    <p>Standing Charges for the period: ${daysDifference * standingChargeRate}</p>
-    <p>National Average Total Cost for days: ${(nationalAverageUnitsDaily * unitRate) + (daysDifference * standingChargeTotal)}</p>
-    <p>Difference between this customer and national average: ${(nationalAverageUnitsDaily * unitRate) + (daysDifference * standingChargeTotal)} </p>
+    <p>National Average Gas Unit Cost: €${(nationalAverageUnitsDaily * daysDifference).toFixed(2)}</p>
+    <p>National Average Gas Carbon Tax: €${daysDifference * carbonTaxRate}</p>
+    <p>Standing Charges for the period: €${daysDifference * standingChargeRate}</p>
+    <p>National Average Total Cost for this period: €${((nationalAverageUnitsDaily * unitRate) + (daysDifference * standingChargeTotal)).toFixed(2)}</p>
+    <p>Difference between this customer and national average: €${((nationalAverageUnitsDaily * unitRate) + (daysDifference * standingChargeTotal)).toFixed(2)} </p>
     </div>
     </div>
     <br>
@@ -98,9 +99,9 @@ gasForm.addEventListener("click", function (event) {
     
     <p class="script"><strong>Comparison</strong></p>
      <p class="script">So if we take this average figures we can see that in the same time period the average customer would use ${nationalAverageUnitsDaily.toFixed(2)}
-        Units per day which would cost them €${(nationalAverageUnitsDaily * (unitRate + carbonTaxRate)).toFixed(2)}c for their Gas and pay €${standingChargeTotal.toFixed(2)}c in the combined daily charges for a total of €${nationalAverageSpendDaily.toFixed(2)}c. 
+        Units per day which would cost them €${(nationalAverageUnitsDaily * (unitRate + carbonTaxRate)).toFixed(2)}c for their Gas and pay €${dailyChargeRate.toFixed(2)}c in the combined daily charges for a total of €${nationalAverageSpendDaily.toFixed(2)}c. 
         So comparing yourself to them 
-        ${nationalAverageSpendDaily < totalSpend / daysDifference ? `you're €${((totalSpend/daysDifference)-nationalAverageSpendDaily).toFixed(2)}c above the average` : `you're €${(nationalAverageSpendDaily-((totalSpend/daysDifference))).toFixed(2)}c below the average`}.</p>
+        ${nationalAverageSpendDaily < totalSpend / daysDifference ? `you're €${((totalSpend/daysDifference)-nationalAverageSpendDaily).toFixed(2)}c per day above the average` : `you're €${(nationalAverageSpendDaily-((totalSpend/daysDifference))).toFixed(2)}c per day below the average`}.</p>
         
     <h3 class="script">Links</h3>
     <p class="script">The below links will be useful follow up steps that the customer can take to reduce their usage on Gas</p>
@@ -108,6 +109,9 @@ gasForm.addEventListener("click", function (event) {
         <div class="gas-card">
         <p>Click here to view Gas Usage Tips on the Knowledge Base</p>
         <a class="gas-link" target="_blank" href="http://intranet.prepaypower.ie/customer-experience/knowledge-base/gas-product/#articleTOC_13">Gas Usage Tips</a>
+        </div><div class="gas-card">
+        <p>Click here to Generate a Gas Statement</p>
+        <a class="gas-link" target="_blank" href="http://crmnext:8181/Finance/CustomerStatement.aspx">Gas Statement</a>
         </div>
         <div class="gas-card">
         <p>Click here to check if the customer has a BER report</p>
