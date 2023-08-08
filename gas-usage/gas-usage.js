@@ -56,17 +56,18 @@ gasForm.addEventListener("click", function (event) {
     <p>Total Carbon Tax: €${carbonTaxTotal}c</p>
     <p>Total Unit Costs: €${unitsTotal}c</p>
     <p>Standing Charge: €${standingChargeRate}c</p>
+    <p>Total Standing Charge: €${standingChargeTotal.toFixed(2)}</p>
+    <p> Total Spend: ${totalSpend.toFixed(2)}</p>
+    <p> Average Daily Spend (This Customer): €${(totalSpend / daysDifference).toFixed(2)}</p>
     </div>
     <div class="results-group">
-    <p>Total Standing Charge: ${standingChargeTotal.toFixed(2)}</p>
-    <p> Total Spend: ${totalSpend.toFixed(2)}</p>
-    <p>National Yearly Average: ${nationalAverageUnitsYearly.toFixed(2)} </p>
+    <p>National Yearly Average Units: ${nationalAverageUnitsYearly.toFixed(2)} </p>
     <p>National Daily Average: ${nationalAverageUnitsDaily.toFixed(2)} Units</p>
-    <p>National Average Gas Unit Cost: ${nationalAverageUnitsDaily * daysDifference}</p>
-    <p>National Average Gas Carbon Tax: ${daysDifference * carbonTaxRate}</p>
-    <p>Standing Charges for the period: ${daysDifference * standingChargeRate}</p>
-    <p>National Average Total Cost for days: ${(nationalAverageUnitsDaily * unitRate) + (daysDifference * standingChargeTotal)}</p>
-    <p>Difference between this customer and national average: ${(nationalAverageUnitsDaily * unitRate) + (daysDifference * standingChargeTotal)} </p>
+    <p>National Average Gas Unit Cost: €${(nationalAverageUnitsDaily * daysDifference).toFixed(2)}</p>
+    <p>National Average Gas Carbon Tax: €${daysDifference * carbonTaxRate}</p>
+    <p>Standing Charges for the period: €${daysDifference * standingChargeRate}</p>
+    <p>National Average Total Cost for this period: €${((nationalAverageUnitsDaily * unitRate) + (daysDifference * standingChargeTotal)).toFixed(2)}</p>
+    <p>Difference between this customer and national average: €${((nationalAverageUnitsDaily * unitRate) + (daysDifference * standingChargeTotal)).toFixed(2)} </p>
     </div>
     </div>
     <br>
