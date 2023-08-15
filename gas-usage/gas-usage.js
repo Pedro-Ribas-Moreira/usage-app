@@ -63,7 +63,7 @@ gasForm.addEventListener("click", function (event) {
     <div class="results-group">
     <p>National Yearly Average Units: ${nationalAverageUnitsYearly.toFixed(2)} </p>
     <p>National Daily Average: ${nationalAverageUnitsDaily.toFixed(2)} Units</p>
-    <p>National Average Gas Unit Cost: €${(nationalAverageUnitsDaily * daysDifference).toFixed(2)}</p>
+    <p>National Average Gas Unit Cost: €${(nationalAverageUnitsDaily * daysDifference * unitRate).toFixed(2)}</p>
     <p>National Average Gas Carbon Tax: €${daysDifference * carbonTaxRate}</p>
     <p>Standing Charges for the period: €${daysDifference * standingChargeRate}</p>
     <p>National Average Total Cost for this period: €${((nationalAverageUnitsDaily * unitRate) + (daysDifference * standingChargeTotal)).toFixed(2)}</p>
