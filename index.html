@@ -30,7 +30,23 @@
 
     gtag('config', 'G-MDYXLHV6QX');
   </script>
-
+  <!-- FONT AWESOME -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <!-- TAILWIND -->
+  <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            transparent: 'transparent',
+            mainPink: '#d91e75',
+            hoverPink: '#f4368f'
+          }
+        }
+      }
+    }
+  </script>
 </head>
 
 <body>
@@ -38,43 +54,35 @@
   <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-N4NLBX9" height="0" width="0"
       style="display:none;visibility:hidden"></iframe></noscript>
   <!-- End Google Tag Manager (noscript) -->
-  <header>
-    <ul class="navbar">
-      <li class="nav-item">
+  <header class="p-4 shadow-sm z-10 ">
+    <ul class="flex flex-row items-center justify-between bg-white">
+      <li class="w-28 h-auto">
         <img src="./assets/logo.png" alt="PrepayPower" id="logo" />
       </li>
-      <li class="nav-item">
-        <p class="app-version">1.0 Beta -- Testing Version --</p>
-      </li>
-      <li class="nav-item">
-        <button class="button-3 reset-btn" role="button">New Usage</button>
-      </li>
-      <li class="nav-item">
-        <div class="filter-container">
-          <div class="select-wrapper">
-            <select class="select" name="tariff" id="tariff">
+
+      <li class="">
+        <div class="flex flex-row gap-2 bg-transparent">
+          <button class="bg-mainPink hover:bg-hoverPink text-white font-bold py-2 px-4 rounded reset-btn active:translate-y-1" role="button">New Usage</button>
+          <label class="block">
+            <select class="border-mainPink focus:outline-none focus:border-hoverPink focus:ring-hoverPink rounded" name="tariff" id="tariff">
               <option value="24h" selected>24h</option>
               <option value="nightsaver">NightSaver</option>
               <option value="tou">Time of Use</option>
             </select>
-          </div>
-          <div class="select-wrapper">
-            <select class="select" name="location" id="location">
+             </label>
+    
+            <select class="border-mainPink focus:outline-none focus:border-hoverPink focus:ring-hoverPink rounded" name="location" id="location">
               <option value="urban" selected>Urban</option>
               <option value="rural">Rural</option>
             </select>
-          </div>
-          <div class="select-wrapper">
-            <select class="select" name="broadband" id="broadband">
+            <select class="border-mainPink focus:outline-none focus:border-hoverPink focus:ring-hoverPink rounded" name="broadband" id="broadband">
               <option value="no" selected>No broadband</option>
               <option value="FTTC">BB: FTTC</option>
               <option value="FTTH-150">BB: FTTH 150MB</option>
               <option value="FTTH-500">BB: FTTH 500MB</option>
               <option value="FTTH-1000">BB: FTTH 1000MB</option>
             </select>
-          </div>
-          <div class="select-wrapper">
-            <select class="select" name="EAB" id="EAB">
+            <select class="border-mainPink focus:outline-none focus:border-hoverPink focus:ring-hoverPink rounded" name="EAB" id="EAB">
               <option value="eab-one">1-2 Bed Apartment</option>
               <option value="eab-two">2 Bed Semi Detached</option>
               <option value="eab-three" selected>3-4 Bed Semi Detached</option>
@@ -82,117 +90,203 @@
               <option value="eab-five">5-6 Bed Detached</option>
             </select>
           </div>
-        </div>
       </li>
     </ul>
   </header>
 
+
+
+
+
   <div class="main">
-    <div class="drawer hiddenDrawer">
-      <div class="drawer-header">
+    <div id="savings-modal" class="savings-modal bottom-10 absolute right-28 shadow-lg bg-white hidden  text-center justify-items-center	 z-20 p-4 flex flex-col w-auto">
+      <span class="savings-modal-close absolute top-2 right-2 fill-white cursor-pointer" id="savings-modal-close">&times;</span>
+      <p id="savings-modal-content" class="savings-modal-content">Some text in the Modal..</p>
+      <svg class="h-10" xmlns="http://www.w3.org/2000/svg"
+      xmlns:xlink="http://www.w3.org/1999/xlink"
+      version="1.1"
+      x="0px"
+      y="0px"
+      viewBox="0 0 60 75"
+      enable-background="new 0 0 60 60"
+      xml:space="preserve"
+    >
+      <g>
+        <g>
+          <path d="M47.6,53H12.4l8-16h-4.1l7-13h-3L30,7l9.7,17h-3l7,13h-4.1L47.6,53z M15.6,51h28.8l-8-16h3.9l-7-13h3L30,11l-6.3,11h3    l-7,13h3.9L15.6,51z" />
+        </g>
+        <g>
+          <path d="M34,60h-8v-9h8V60z M28,58h4v-5h-4V58z" />
+        </g>
+        <g>
+          <path d="M16,49v-2c10.2,0,18.4-0.8,25.5-4.9l1,1.7C35,48.1,26.5,49,16,49z" />
+        </g>
+        <g>
+          <path d="M40,33c-7.4,0-12.5-1.2-18.4-4.1l0.9-1.8C28.1,29.9,32.9,31,40,31V33z" />
+        </g>
+        <g>
+          <path d="M24,20v-2c4.1,0,7.6-1,9.3-2.7l1.4,1.4C32.6,18.8,28.6,20,24,20z" />
+        </g>
+        <g>
+          <polygon points="30,0 31.2,2.5 34,2.9 32,4.9 32.5,7.6 30,6.3 27.5,7.6 28,4.9 26,2.9 28.8,2.5   " />
+        </g>
+        <g>
+          <circle cx="30" cy="21" r="1" />
+        </g>
+        <g>
+          <circle cx="33" cy="35" r="1" />
+        </g>
+        <g>
+          <circle cx="26" cy="33" r="1" />
+        </g>
+        <g>
+          <circle cx="39" cy="48" r="1" />
+        </g>
+        <g>
+          <circle cx="31" cy="26" r="2" />
+        </g>
+        <g>
+          <circle cx="25" cy="43" r="2" />
+        </g>
+        <g>
+          <circle cx="34" cy="42" r="1" />
+        </g>
+      </g>
+    
+    </svg>
+    </div>
+    <div  class="drawer absolute left-28 shadow-lg bg-white hidden z-20	">
+    <!-- <div class="drawer hiddenDrawer"> -->
+      <div class="drawer-header bg-mainPink p-4 text-white text-bold">
         <h2>Quick Links</h2>
+        <svg class="absolute top-2 right-2 h-5 fill-white cursor-pointer" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" id="close-drawer">
+          <!--! Font Awesome Pro 6.3.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+          <path
+            d="M310.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L160 210.7 54.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L114.7 256 9.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L160 301.3 265.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L205.3 256 310.6 150.6z" />
+        </svg>
       </div>
-      <h3>Website:</h3>
-      <ul class="website-list">
-        <a href="https://www.prepaypower.ie/saving-energy" target="_blank">
-          <li class="website-list-item">Saving Tips</li>
-        </a>
-        <a href="https://www.prepaypower.ie/why-switch/pricing/rates" target="_blank">
-          <li class="website-list-item">Payment Options & Rates</li>
-        </a>
-        <a href="https://www.prepaypower.ie/support/app-support" target="_blank">
-          <li class="website-list-item">App Support</li>
-        </a>
+      <div class="pb-4 pl-2 pt-4 pr-2">
+        <p class="mb-2 text-xs text-slate-500 uppercase font-semibold">Website</p>
+        <ul class="website-list mb-4  flex flex-col items-start bg-white	gap-2 ">
 
-        <a href="https://www.prepaypower.ie/support/pso-levy-refund" target="_blank">
-          <li class="website-list-item">PSO Levy Refund</li>
-        </a>
-
-        <a href="https://www.prepaypower.ie/why-switch/pricing/estimated-annual-bill-faqs">
-          <li class="website-list-item">Estimate Annual Bill FAQs</li>
-        </a>
-      </ul>
-      <h3>Knowledge Base:</h3>
-      <ul class="kb-list">
-        <a href="#" target="_blank" rel="noopener noreferrer">
-          <li class="kb-list-item">Advance Credit</li>
-        </a>
-        <li class="kb-list-item">
-          <a href="#" target="_blank" rel="noopener noreferrer">
-            Customer Vend Request
-        </li>
-        </a>
-
-        <a href="#" target="_blank" rel="noopener noreferrer">
-          <li class="kb-list-item">
-            Emergency Credit in APP
+          <a class="w-full" href="https://www.prepaypower.ie/saving-energy" target="_blank">
+            <li class="pl-4  list-disc	list-inside	hover:bg-rose-50 website-list-item">Saving Tips</li>
+          </a>
+          <a class="w-full" href="https://www.prepaypower.ie/why-switch/pricing/rates" target="_blank">
+            <li class="pl-4 list-disc	list-inside	 hover:bg-rose-50 website-list-item">Payment Options & Rates</li>
+          </a>
+          <a class="w-full" href="https://www.prepaypower.ie/support/app-support" target="_blank">
+            <li class="pl-4 list-disc	list-inside	 hover:bg-rose-50 website-list-item">App Support</li>
+          </a>
+          
+          <a class="w-full" href="https://www.prepaypower.ie/support/pso-levy-refund" target="_blank">
+            <li class="pl-4 list-disc	list-inside	 hover:bg-rose-50 website-list-item">PSO Levy Refund</li>
+          </a>
+          
+          <a class="w-full" href="https://www.prepaypower.ie/why-switch/pricing/estimated-annual-bill-faqs">
+            <li class="pl-4 list-disc	list-inside	 hover:bg-rose-50 website-list-item">Estimate Annual Bill FAQs</li>
+          </a>
+        </ul>
+        <hr class="mb-4">
+        <p class="mb-2 text-xs text-slate-500 uppercase font-semibold">Knowledge Base</p>
+        <ul class="kb-list mb-4  mb-4  flex flex-col items-start bg-white	gap-2 ">
+          <a class="w-full" href="http://intranet.prepaypower.ie/customer-experience/knowledge-base/advance-credit/" target="_blank" rel="noopener noreferrer">
+            <li class="pl-4 list-disc	list-inside	 hover:bg-rose-50 kb-list-item">Advance Credit</li>
+          </a>
+          <li class="pl-4 list-disc	list-inside	 hover:bg-rose-50 kb-list-item">
+            <a class="w-full" href="http://intranet.prepaypower.ie/customer-experience/knowledge-base/customer-mabs-vend-requests/" target="_blank" rel="noopener noreferrer">
+              Customer Vend Request            </li>
+          </a>
+          <a class="w-full" href="http://intranet.prepaypower.ie/customer-experience/knowledge-base/emergency-credit-in-app/" target="_blank" rel="noopener noreferrer">
+            <li class="pl-4 list-disc	list-inside	 hover:bg-rose-50 kb-list-item">
+            Emergency Credit
           </li>
         </a>
-
-        <a href="#" target="_blank" rel="noopener noreferrer">
-          <li class="kb-list-item">
+        <a class="w-full" href="http://intranet.prepaypower.ie/customer-experience/knowledge-base/retention-training/" target="_blank" rel="noopener noreferrer">
+          <li class="pl-4 list-disc	list-inside	 hover:bg-rose-50 kb-list-item">
             Retention Training
           </li>
         </a>
-        <a href="#" target="_blank">
-          <li class="kb-list-item">
+        <a class="w-full" href="http://intranet.prepaypower.ie/customer-experience/knowledge-base/retention-cheat-sheet/" target="_blank" rel="noopener noreferrer">
+          <li class="pl-4 list-disc	list-inside	 hover:bg-rose-50 kb-list-item">
+            Retention Cheat Sheet          </li>
+        </a>
+        <a class="w-full" href="http://intranet.prepaypower.ie/customer-experience/knowledge-base/usage-consumption-process/" target="_blank">
+          <li class="pl-4 list-disc	list-inside	 hover:bg-rose-50 kb-list-item">
             Usage & Consumption Process
           </li>
         </a>
-        <a href="#" target="_blank">
-          <li class="kb-list-item">
+        <a class="w-full" href="http://intranet.prepaypower.ie/customer-experience/knowledge-base/electricity-usage-cheat-sheet/" target="_blank">
+          <li class="pl-4 list-disc	list-inside	 hover:bg-rose-50 kb-list-item">
+            Electricity Usage Cheat Sheet
+          </li>
+        <a class="w-full" href="http://intranet.prepaypower.ie/our-app/" target="_blank">
+          <li class="pl-4 list-disc	list-inside	 hover:bg-rose-50 kb-list-item">
             Interactive App
           </li>
         </a>
+        </a>
+
+       
       </ul>
-      <a class="feedback-link" href="https://forms.office.com/e/uSCpxnEFip" target="_blank"> <button class="button-3">
-          Feedback</button> </a>
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" id="close-drawer">
-        <!--! Font Awesome Pro 6.3.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
-        <path
-          d="M310.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L160 210.7 54.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L114.7 256 9.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L160 301.3 265.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L205.3 256 310.6 150.6z" />
-      </svg>
+      <!-- <button class=" role="button">New Usage</button> -->
+      <div class="flex bg-white">
+
+        <a class=" bg-mainPink  hover:bg-hoverPink text-white font-bold py-2 px-4 rounded reset-btn active:translate-y-1 feedback-link" href="https://forms.office.com/e/uSCpxnEFip" target="_blank"> 
+          Feedback </a>
+          
+        </div>
+      </div>
     </div>
-    <div class="sidebar">
-      <ul class="sidebar-nav">
+      <div class="sidebar w-28">
+        <ul class="h-full flex flex-col	justify-center bg-white	gap-6 sidebar-nav">
+          <li class="sidebar-item">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" id="list-icon" class="active"
+              style="display: none;">
+              <!--! Font Awesome Pro 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
+              <path
+                d="M0 96C0 60.7 28.7 32 64 32H448c35.3 0 64 28.7 64 64V416c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V96zm64 0v64h64V96H64zm384 0H192v64H448V96zM64 224v64h64V224H64zm384 0H192v64H448V224zM64 352v64h64V352H64zm384 0H192v64H448V352z" />
+            </svg>
+          </li>
+          <li class="cursor-pointer"  id="chart-icon">
+            <svg class="fill-mainPink hover:fill-hoverPink h-10" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-5 h-5">
+              <path d="M15.5 2A1.5 1.5 0 0014 3.5v13a1.5 1.5 0 001.5 1.5h1a1.5 1.5 0 001.5-1.5v-13A1.5 1.5 0 0016.5 2h-1zM9.5 6A1.5 1.5 0 008 7.5v9A1.5 1.5 0 009.5 18h1a1.5 1.5 0 001.5-1.5v-9A1.5 1.5 0 0010.5 6h-1zM3.5 10A1.5 1.5 0 002 11.5v5A1.5 1.5 0 003.5 18h1A1.5 1.5 0 006 16.5v-5A1.5 1.5 0 004.5 10h-1z" />
+            </svg>
+            
+  
+          </li>
+          <li class="toggle-drawer cursor-pointer">
+            <svg class="fill-mainPink hover:fill-hoverPink stroke-white h-10" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6">
+              <path d="M11.25 4.533A9.707 9.707 0 006 3a9.735 9.735 0 00-3.25.555.75.75 0 00-.5.707v14.25a.75.75 0 001 .707A8.237 8.237 0 016 18.75c1.995 0 3.823.707 5.25 1.886V4.533zM12.75 20.636A8.214 8.214 0 0118 18.75c.966 0 1.89.166 2.75.47a.75.75 0 001-.708V4.262a.75.75 0 00-.5-.707A9.735 9.735 0 0018 3a9.707 9.707 0 00-5.25 1.533v16.103z" />
+            </svg>
+           
+            
+            
+          </li>
+          <li class="cursor-pointer" id="gas-button">
+            <svg class="fill-mainPink hover:fill-hoverPink stroke-white h-11"  xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M15.362 5.214A8.252 8.252 0 0112 21 8.25 8.25 0 016.038 7.048 8.287 8.287 0 009 9.6a8.983 8.983 0 013.361-6.867 8.21 8.21 0 003 2.48z" />
+              <path strokeLinecap="round" strokeLinejoin="round" d="M12 18a3.75 3.75 0 00.495-7.467 5.99 5.99 0 00-1.925 3.546 5.974 5.974 0 01-2.133-1A3.75 3.75 0 0012 18z" />
+            </svg>
+            
+            
+          </li>
+          <li class="cursor-pointer" id="savings-button">
+          <svg  class="fill-mainPink hover:fill-hoverPink stroke-white h-9"xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 576 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M400 96l0 .7c-5.3-.4-10.6-.7-16-.7H256c-16.5 0-32.5 2.1-47.8 6c-.1-2-.2-4-.2-6c0-53 43-96 96-96s96 43 96 96zm-16 32c3.5 0 7 .1 10.4 .3c4.2 .3 8.4 .7 12.6 1.3C424.6 109.1 450.8 96 480 96h11.5c10.4 0 18 9.8 15.5 19.9l-13.8 55.2c15.8 14.8 28.7 32.8 37.5 52.9H544c17.7 0 32 14.3 32 32v96c0 17.7-14.3 32-32 32H512c-9.1 12.1-19.9 22.9-32 32v64c0 17.7-14.3 32-32 32H416c-17.7 0-32-14.3-32-32V448H256v32c0 17.7-14.3 32-32 32H192c-17.7 0-32-14.3-32-32V416c-34.9-26.2-58.7-66.3-63.2-112H68c-37.6 0-68-30.4-68-68s30.4-68 68-68h4c13.3 0 24 10.7 24 24s-10.7 24-24 24H68c-11 0-20 9-20 20s9 20 20 20H99.2c12.1-59.8 57.7-107.5 116.3-122.8c12.9-3.4 26.5-5.2 40.5-5.2H384zm64 136a24 24 0 1 0 -48 0 24 24 0 1 0 48 0z"/></svg>
+        </li>      
+        </ul>
 
-        <li class="sidebar-item">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" id="list-icon" class="active"
-            style="display: none;">
-            <!--! Font Awesome Pro 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
-            <path
-              d="M0 96C0 60.7 28.7 32 64 32H448c35.3 0 64 28.7 64 64V416c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V96zm64 0v64h64V96H64zm384 0H192v64H448V96zM64 224v64h64V224H64zm384 0H192v64H448V224zM64 352v64h64V352H64zm384 0H192v64H448V352z" />
-          </svg>
-        </li>
-        <li class="sidebar-item">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" id="chart-icon">
-            <!--! Font Awesome Pro 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
-            <path
-              d="M32 32c17.7 0 32 14.3 32 32V400c0 8.8 7.2 16 16 16H480c17.7 0 32 14.3 32 32s-14.3 32-32 32H80c-44.2 0-80-35.8-80-80V64C0 46.3 14.3 32 32 32zM160 224c17.7 0 32 14.3 32 32v64c0 17.7-14.3 32-32 32s-32-14.3-32-32V256c0-17.7 14.3-32 32-32zm128-64V320c0 17.7-14.3 32-32 32s-32-14.3-32-32V160c0-17.7 14.3-32 32-32s32 14.3 32 32zm64 32c17.7 0 32 14.3 32 32v96c0 17.7-14.3 32-32 32s-32-14.3-32-32V224c0-17.7 14.3-32 32-32zM480 96V320c0 17.7-14.3 32-32 32s-32-14.3-32-32V96c0-17.7 14.3-32 32-32s32 14.3 32 32z" />
-          </svg>
-        </li>
-        <li class="sidebar-item">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 512" id="chart-icon" class="info-icon toggle-drawer">
-            <!--! Font Awesome Pro 6.3.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
-            <path
-              d="M48 80a48 48 0 1 1 96 0A48 48 0 1 1 48 80zM0 224c0-17.7 14.3-32 32-32H96c17.7 0 32 14.3 32 32V448h32c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H64V256H32c-17.7 0-32-14.3-32-32z" />
-          </svg>
-        </li>
-        <li class="sidebar-item" id="gas-button">
-          <svg xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 384 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
-            <path
-              d="M153.6 29.9l16-21.3C173.6 3.2 180 0 186.7 0C198.4 0 208 9.6 208 21.3V43.5c0 13.1 5.4 25.7 14.9 34.7L307.6 159C356.4 205.6 384 270.2 384 337.7C384 434 306 512 209.7 512H192C86 512 0 426 0 320v-3.8c0-48.8 19.4-95.6 53.9-130.1l3.5-3.5c4.2-4.2 10-6.6 16-6.6C85.9 176 96 186.1 96 198.6V288c0 35.3 28.7 64 64 64s64-28.7 64-64v-3.9c0-18-7.2-35.3-19.9-48l-38.6-38.6c-24-24-37.5-56.7-37.5-90.7c0-27.7 9-54.8 25.6-76.9z" />
-          </svg>
-
-        </li>
-      </ul>
       <!-- toggle between chart and list -->
       <!-- compare prices with other tariffs -->
     </div>
     <div class="data-display flex">
-      <div id="drop-area">
-        <h2>Drag and Drop CSV File Here</h2>
+      <div class="border-2 border-gray-300 border-dashed m-auto flex flex-col justify-center items-center w-5/6 h-5/6"  id="drop-area">
+        <svg class="h-10 stroke-mainPink stroke-1" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+          <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m6.75 12l-3-3m0 0l-3 3m3-3v6m-1.5-15H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" />
+        </svg>
+        
+        <h2 class="text-mainPink font-bold text-lg">Select a CSV File to upload </h2>
+        <p class="text-gray-500 font-light">drag and drop it here</p>
       </div>
       <div class="loader hidden"></div>
       <div class="summary-container hidden">

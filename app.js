@@ -44,7 +44,7 @@ let data;
 
 //drag and drop handlres
 function handleDragEnter(e) {
-  this.classList.add("drag-over");
+  this.classList.add("bg-rose-200");
 }
 function handleDragOver(e) {
   e.preventDefault();
@@ -52,11 +52,11 @@ function handleDragOver(e) {
 }
 
 function handleDragLeave(e) {
-  this.classList.remove("drag-over");
+  this.classList.remove("bg-rose-200");
 }
 
 function handleFileSelect(e) {
-  this.classList.remove("drag-over");
+  this.classList.remove("bg-rose-200");
   dropArea.style.display = "none";
   displayContainer.classList.add("grid");
   displayContainer.classList.remove("flex");
@@ -217,10 +217,54 @@ const toggleDrawerButton = document.querySelector(".toggle-drawer");
 const drawer = document.querySelector(".drawer");
 const closeDrawerButton = document.getElementById("close-drawer");
 
+// "drawer", "absolute", "left-28", "bg-white";
+
 toggleDrawerButton.addEventListener("click", () => {
-  drawer.classList.toggle("hiddenDrawer");
+  drawer.classList.toggle("hidden");
+  // drawer.classList.toggle("-left-1000");
 });
 
 closeDrawerButton.addEventListener("click", () => {
-  drawer.classList.add("hiddenDrawer");
+  drawer.classList.toggle("hidden");
 });
+
+const savingsBtn = document.getElementById("savings-button");
+const contentDiv = document.getElementById("savings-modal");
+const closeSavingsModal = document.getElementById("savings-modal-close");
+const savingsModalContent = document.getElementById("savings-modal-content");
+
+savingsBtn.addEventListener("click", () => {
+  contentDiv.classList.toggle("hidden");
+  // Get the current date
+  const currentDate = new Date();
+
+  // Get the date for Christmas of the current year
+  const christmasDate = new Date(currentDate.getFullYear(), 11, 25);
+
+  // Calculate the time difference in milliseconds
+  const timeDifference = christmasDate - currentDate;
+
+  // Convert milliseconds to weeks
+  const weeksUntilChristmas = Math.floor(
+    timeDifference / (1000 * 60 * 60 * 24 * 7)
+  );
+
+  // Output the result
+  console.log(`There are ${weeksUntilChristmas} weeks until Christmas!`);
+
+  savingsModalContent.innerHTML = `There are ${weeksUntilChristmas} weeks until Christmas<br>  If you set up your Savings feature now to put aside <strong>€5</strong> per week <br>You'll have<strong> €${
+    weeksUntilChristmas * 5
+  } </strong>of credit to cover your Christmas energy spend.  `;
+});
+
+// When the user clicks on <span> (x), close the modal
+closeSavingsModal.onclick = function () {
+  contentDiv.classList.toggle("hidden");
+};
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function (event) {
+  if (event.target == contentDiv) {
+    contentDiv.classList.toggle("hidden");
+  }
+};
