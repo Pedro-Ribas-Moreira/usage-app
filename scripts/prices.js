@@ -88,6 +88,27 @@ let prices = [
   },
   {
     dateStart: "01/10/2023",
+    dateEnd: "31/10/2023",
+    prices: {
+      // 24h
+      allDayPrice: 0.4154,
+      urbanDaySC: 1.4621,
+      ruralDaySC: 1.7726,
+      //NIGHTSAVER
+      nightPrice: 0.2271,
+      dayPrice: 0.46,
+      urbanNightsaverSC: 1.7975,
+      ruralNightsaverSC: 2.0446,
+      //TOU
+      touNightPrice: 0.2383,
+      touDayPrice: 0.4595,
+      touPeakPrice: 0.5164,
+      touUrbanSC: 1.4621,
+      touRuralSC: 1.7726,
+    },
+  },
+  {
+    dateStart: "01/11/2023",
     dateEnd: undefined,
     prices: {
       // 24h
