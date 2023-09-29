@@ -67,7 +67,7 @@ let prices = [
   //MARCH - GOV DISCOUNT ON PSO LEVY
   {
     dateStart: "01/03/2023",
-    dateEnd: undefined,
+    dateEnd: "30/09/2023",
     prices: {
       // 24h
       allDayPrice: 0.4154,
@@ -84,6 +84,27 @@ let prices = [
       touPeakPrice: 0.5164,
       touUrbanSC: 1.0083,
       touRuralSC: 1.3187,
+    },
+  },
+  {
+    dateStart: "01/10/2023",
+    dateEnd: undefined,
+    prices: {
+      // 24h
+      allDayPrice: 0.3622,
+      urbanDaySC: 1.4621,
+      ruralDaySC: 1.7726,
+      //NIGHTSAVER
+      nightPrice: 0.1981,
+      dayPrice: 0.4011,
+      urbanNightsaverSC: 1.7975,
+      ruralNightsaverSC: 2.0446,
+      //TOU
+      touNightPrice: 0.4132,
+      touDayPrice: 0.4007,
+      touPeakPrice: 0.4503,
+      touUrbanSC: 1.4621,
+      touRuralSC: 1.7726,
     },
   },
 ];
