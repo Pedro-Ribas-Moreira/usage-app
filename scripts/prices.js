@@ -121,7 +121,7 @@ let prices = [
       urbanNightsaverSC: 1.7975,
       ruralNightsaverSC: 2.0446,
       //TOU
-      touNightPrice: 0.4132,
+      touNightPrice: 0.2078,
       touDayPrice: 0.4007,
       touPeakPrice: 0.4503,
       touUrbanSC: 1.4621,
