@@ -28,7 +28,7 @@ gasForm.addEventListener("click", function (event) {
     const timeDifferenceMs = secondDate - firstDate;
 
     // Constants
-    const unitRate = 0.1427
+    const unitRate = 0.1234
     const carbonTaxRate = 0.00956
     const standingChargeRate = 0.43
     const prepayServiceChargeRate = 0.1942
