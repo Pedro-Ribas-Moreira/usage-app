@@ -54,7 +54,7 @@ gasForm.addEventListener("click", function (event) {
     <p>Cost per Unit: €${unitRate}c</p>
     <p>Carbon Tax per Unit: €${carbonTaxRate}c</p>
     <p>Total Carbon Tax: €${carbonTaxTotal}c</p>
-    <p>Total Unit Costs: €${unitsTotal}c</p>
+    <p>Total Unit Costs: €${unitsTotal.toFixed(2)}c</p>
     <p>Standing Charge: €${standingChargeRate}c</p>
     <p>Total Standing Charge: €${standingChargeTotal.toFixed(2)}</p>
     <p> Total Spend: ${totalSpend.toFixed(2)}</p>
@@ -74,7 +74,7 @@ gasForm.addEventListener("click", function (event) {
     <hr>
     <h3 class="script">Scripting</h3>
     <p class="script"><strong>Units</strong></p><p class="script">So, we're doing a read for ${daysDifference} days, in that time you used a total of ${mrConsumptionInput} Kilowatt Hours or "units". 
-    With our Gas Unit rate of €${unitRate}c and the carbon tax per unit of €${carbonTaxRate}c this means you spent €${unitsTotal} on your gas in this period. </p>
+    With our Gas Unit rate of €${unitRate}c and the carbon tax per unit of €${carbonTaxRate}c this means you spent €${unitsTotal.toFixed(2)} on your gas in this period. </p>
     
     <p class="script"><strong>Standing Charges</strong></p>
     <p class="script">
