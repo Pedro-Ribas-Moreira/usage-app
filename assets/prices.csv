@@ -1,4 +1,4 @@
-FROM,TO,24h Tariff,Urban 24H Standing Charge,Rural 24h Standing Charge,Day Tariff,Night Tariff,Day/Night Urban Standing Charge,Day/Night Rural Standing Charge,Day Tariff,Peak Tariff,Night Tariff,TOU Urban Standing Charge,TOU Rural Standing Charge
+FROM,TO,24h Tariff,Urban 24H Standing Charge,Rural 24h Standing Charge,Day Tariff,Night Tariff,Day/Night Urban Standing Charge,Day/Night Rural Standing Charge,TOU Day Tariff,TOU Peak Tariff,TOU Night Tariff,TOU Urban Standing Charge,TOU Rural Standing Charge
 01/07/2022,30/09/2022,0.302,1.4365,1.6918,0.3298,0.1629,1.7123,1.9155,0.2663,0.293,0.1384,1.4621,1.7267
 01/10/2022,30/11/2022,0.3673,1.4621,1.7725,0.401,0.198,1.7975,2.0446,0.3832,0.387,0.1987,1.4422,1.765
 01/12/2022,28/02/2023,0.4154,1.4621,1.7725,0.46,0.2271,1.7975,2.0446,0.4334,0.4376,0.2247,1.4422,1.7725
