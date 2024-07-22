@@ -28,7 +28,7 @@ gasForm.addEventListener("click", function (event) {
     const timeDifferenceMs = secondDate - firstDate;
 
     // Constants
-    const unitRate = 0.1234
+    const unitRate = 0.1133
     const carbonTaxRate = 0.00956
     const standingChargeRate = 0.43
     const prepayServiceChargeRate = 0.1942
@@ -67,7 +67,10 @@ gasForm.addEventListener("click", function (event) {
     <p>National Average Gas Carbon Tax: €${daysDifference * carbonTaxRate}</p>
     <p>Standing Charges for the period: €${daysDifference * standingChargeRate}</p>
     <p>National Average Total Cost for this period: €${((nationalAverageUnitsDaily * unitRate) + (daysDifference * standingChargeTotal)).toFixed(2)}</p>
-    <p>Difference between this customer and national average: €${((nationalAverageUnitsDaily * unitRate) + (daysDifference * standingChargeTotal)).toFixed(2)} </p>
+    <p>Difference between this customer and national average: €${
+        (totalSpend / daysDifference).toFixed(2) -
+        (nationalAverageUnitsDaily * unitRate + daysDifference * standingChargeTotal).toFixed(2)
+      } </p>
     </div>
     </div>
     <br>
