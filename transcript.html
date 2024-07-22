@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Transcript Parser</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp"></script>
+    <style>
+      #dropZone {
+        border-color: #d1d5db;
+        transition: background-color 0.3s ease;
+      }
+      #dropZone.bg-gray-200 {
+        background-color: #e5e7eb;
+      }
+    </style>
+  </head>
+  <body class="bg-gray-100 flex items-center justify-center min-h-screen bg-gradient-to-r from-violet-200 to-pink-200">
+    <div
+      class="bg-white shadow-lg rounded-lg p-8 fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-120"
+    >
+      <h1 id="transcriptParserTitle" class="text-2xl font-bold text-blue-600 mb-8 text-center">Transcript Parser</h1>
+
+      <!-- Drag and drop area with file input -->
+      <div
+        id="dropZone"
+        class="relative flex items-center justify-center border-2 border-dashed border-gray-300 rounded-md p-4 bg-gray-50 cursor-pointer hover:bg-gray-200 mb-4"
+      >
+        <input type="file" accept=".json" id="fileInput" class="absolute inset-0 opacity-0 cursor-pointer" />
+        <span id="fileInstructions" class="text-gray-500 text-center">
+          <i class="fa-solid fa-file-arrow-up text-2xl"></i><br />
+          Drag & Drop JSON File Here<br />
+          or <br />Click to Select
+        </span>
+      </div>
+      <div
+        id="itemFound"
+        class="relative flex items-center justify-center border-2 border-dashed border-green-300 rounded-md p-4 bg-green-50 cursor-pointer hover:bg-green-200 mb-4 hidden"
+      >
+        <p class="text-wrap">
+          <i class="fa-solid fa-file-circle-check text-2xl text-gray-500 mr-3"></i>
+          <span id="fileName" class="text-gray-500 text-center text-wrap text-sm"> FileName </span>
+        </p>
+      </div>
+      <!-- Form container initially hidden -->
+      <div id="formContainer" class="hidden">
+        <div class="mb-4">
+          <label for="customerName" class="block text-gray-700 font-medium mb-1">Customer Name</label>
+          <input
+            type="text"
+            id="customerName"
+            aria-required="true"
+            class="block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50"
+          />
+        </div>
+        <div class="mb-8">
+          <label for="agentName" class="block text-gray-700 font-medium mb-1">Agent Name</label>
+          <input
+            type="text"
+            id="agentName"
+            aria-required="true"
+            class="block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50"
+          />
+        </div>
+        <button
+          id="runButton"
+          type="button"
+          class="w-full bg-blue-600 text-white py-2 px-4 rounded-md shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
+        >
+          Run
+        </button>
+      </div>
+    </div>
+    <script src="transcriptApp.js"></script>
+  </body>
+</html>
