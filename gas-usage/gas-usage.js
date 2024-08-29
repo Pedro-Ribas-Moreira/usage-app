@@ -111,10 +111,10 @@ gasForm.addEventListener("click", function (event) {
         <div class="gas-links">
         <div class="gas-card">
         <p>Click here to view Gas Usage Tips on the Knowledge Base</p>
-        <a class="gas-link" target="_blank" href="http://intranet.prepaypower.ie/customer-experience/knowledge-base/gas-product/#articleTOC_13">Gas Usage Tips</a>
+        <a class="gas-link" target="_blank" href="https://yuno.shelf-eu.com/read/93860c86-9221-4e9a-914d-a5c3599ae60b/?searchEventId=01J6EHJ249W37941BGK1EG7MXB&source=shelf&trigger=title&view=snippet-view#gas-savings-usage-tips">Gas Usage Tips</a>
         </div><div class="gas-card">
         <p>Click here to Generate a Gas Statement</p>
-        <a class="gas-link" target="_blank" href="http://crmnext:8181/Finance/CustomerStatement.aspx">Gas Statement</a>
+        <a class="gas-link" target="_blank" href="http://crmnext:8181/Finance/CustomerStatement.aspx?id=ContentPlaceHolder1_StatementTypeList_ddlStatementType&value=2">Gas Statement</a>
         </div>
         <div class="gas-card">
         <p>Click here to check if the customer has a BER report</p>
