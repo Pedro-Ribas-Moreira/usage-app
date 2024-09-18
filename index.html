@@ -1,395 +1,405 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <!-- Google Tag Manager -->
+    <script>
+      (function (w, d, s, l, i) {
+        w[l] = w[l] || [];
+        w[l].push({
+          'gtm.start': new Date().getTime(),
+          event: 'gtm.js',
+        });
+        var f = d.getElementsByTagName(s)[0],
+          j = d.createElement(s),
+          dl = l != 'dataLayer' ? '&l=' + l : '';
+        j.async = true;
+        j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+        f.parentNode.insertBefore(j, f);
+      })(window, document, 'script', 'dataLayer', 'GTM-N4NLBX9');
+    </script>
+    <!-- End Google Tag Manager -->
 
-<head>
-  <!-- Google Tag Manager -->
-  <script>(function (w, d, s, l, i) {
-      w[l] = w[l] || []; w[l].push({
-        'gtm.start':
-          new Date().getTime(), event: 'gtm.js'
-      }); var f = d.getElementsByTagName(s)[0],
-        j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
-          'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
-    })(window, document, 'script', 'dataLayer', 'GTM-N4NLBX9');</script>
-  <!-- End Google Tag Manager -->
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&family=Roboto+Mono:wght@400&display=swap"
+      rel="stylesheet"
+    />
 
-
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="style.css" />
-  <title>Genio - Usage Tool</title>
-  <link rel="icon" href="./assets/logo.png" />
-  <link rel="stylesheet" href="gas-usage/gas-usage.css">
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-MDYXLHV6QX"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag() { dataLayer.push(arguments); }
-    gtag('js', new Date());
-
-    gtag('config', 'G-MDYXLHV6QX');
-  </script>
-  <!-- FONT AWESOME -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-  <!-- TAILWIND -->
-  <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            transparent: 'transparent',
-            mainPink: '#d91e75',
-            hoverPink: '#f4368f'
-          }
-        }
+    <link rel="stylesheet" href="style.css" />
+    <title>Genio - Usage Tool</title>
+    <link rel="icon" href="./assets/logo.png" />
+    <link rel="stylesheet" href="gas-usage/gas-usage.css" />
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-MDYXLHV6QX"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+      integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
       }
-    }
-  </script>
-</head>
+      gtag('js', new Date());
 
-<body>
-  <!-- Google Tag Manager (noscript) -->
-  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-N4NLBX9" height="0" width="0"
-      style="display:none;visibility:hidden"></iframe></noscript>
-  <!-- End Google Tag Manager (noscript) -->
-  <header class="p-4 shadow-sm z-10 ">
-    <ul class="flex flex-row items-center justify-between bg-white">
-      <li class="w-28 h-auto">
-        <img src="./assets/logo.png" alt="PrepayPower" id="logo" />
-      </li>
+      gtag('config', 'G-MDYXLHV6QX');
+    </script>
+    <!-- FONT AWESOME -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+      integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <!-- TAILWIND -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              transparent: 'transparent',
+              mainPink: '#E71E70',
+              hoverPink: '#f6bac8',
+            },
+            fontFamily: {
+              display: ['Poppins', 'sans-serif'],
+              currency: ['Roboto Mono', 'monospace'],
+            },
+          },
+          screens: {
+            tablet: '640px',
+            // => @media (min-width: 640px) { ... }
 
-      <li class="">
-        <div class="flex flex-row gap-2 bg-transparent">
-          <button class="bg-mainPink hover:bg-hoverPink text-white font-bold py-2 px-4 rounded reset-btn active:translate-y-1" role="button">New Usage</button>
-          <label class="block">
-            <select class="border-mainPink focus:outline-none focus:border-hoverPink focus:ring-hoverPink rounded" name="tariff" id="tariff">
-              <option value="24h" selected>24h</option>
-              <option value="nightsaver">NightSaver</option>
-              <option value="tou">Time of Use</option>
-            </select>
-             </label>
-    
-            <select class="border-mainPink focus:outline-none focus:border-hoverPink focus:ring-hoverPink rounded" name="location" id="location">
-              <option value="urban" selected>Urban</option>
-              <option value="rural">Rural</option>
-            </select>
-            <select class="border-mainPink focus:outline-none focus:border-hoverPink focus:ring-hoverPink rounded" name="broadband" id="broadband">
-              <option value="no" selected>No broadband</option>
-              <option value="FTTC">BB: FTTC</option>
-              <option value="FTTH-150">BB: FTTH 150MB</option>
-              <option value="FTTH-500">BB: FTTH 500MB</option>
-              <option value="FTTH-1000">BB: FTTH 1000MB</option>
-            </select>
-            <select class="border-mainPink focus:outline-none focus:border-hoverPink focus:ring-hoverPink rounded" name="EAB" id="EAB">
-              <option value="eab-one">1-2 Bed Apartment</option>
-              <option value="eab-two">2 Bed Semi Detached</option>
-              <option value="eab-three" selected>3-4 Bed Semi Detached</option>
-              <option value="eab-four">3-4 Bed Detached</option>
-              <option value="eab-five">5-6 Bed Detached</option>
-            </select>
-          </div>
-      </li>
-    </ul>
-  </header>
+            laptop: '1300px',
+            // => @media (min-width: 1024px) { ... }
 
+            desktop: '1600px',
+            // => @media (min-width: 1280px) { ... }
+          },
+        },
+        darkMode: 'class',
+      };
+    </script>
 
+    <!-- Carrousel -->
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+  </head>
 
-
-
-  <div class="main">
-    <div id="savings-modal" class="savings-modal bottom-10 absolute right-28 shadow-lg bg-white hidden  text-center justify-items-center	 z-20 p-4 flex flex-col w-auto">
-      <span class="savings-modal-close absolute top-2 right-2 fill-white cursor-pointer" id="savings-modal-close">&times;</span>
-      <p id="savings-modal-content" class="savings-modal-content">Some text in the Modal..</p>
-      <svg class="h-10" xmlns="http://www.w3.org/2000/svg"
-      xmlns:xlink="http://www.w3.org/1999/xlink"
-      version="1.1"
-      x="0px"
-      y="0px"
-      viewBox="0 0 60 75"
-      enable-background="new 0 0 60 60"
-      xml:space="preserve"
-    >
-      <g>
-        <g>
-          <path d="M47.6,53H12.4l8-16h-4.1l7-13h-3L30,7l9.7,17h-3l7,13h-4.1L47.6,53z M15.6,51h28.8l-8-16h3.9l-7-13h3L30,11l-6.3,11h3    l-7,13h3.9L15.6,51z" />
-        </g>
-        <g>
-          <path d="M34,60h-8v-9h8V60z M28,58h4v-5h-4V58z" />
-        </g>
-        <g>
-          <path d="M16,49v-2c10.2,0,18.4-0.8,25.5-4.9l1,1.7C35,48.1,26.5,49,16,49z" />
-        </g>
-        <g>
-          <path d="M40,33c-7.4,0-12.5-1.2-18.4-4.1l0.9-1.8C28.1,29.9,32.9,31,40,31V33z" />
-        </g>
-        <g>
-          <path d="M24,20v-2c4.1,0,7.6-1,9.3-2.7l1.4,1.4C32.6,18.8,28.6,20,24,20z" />
-        </g>
-        <g>
-          <polygon points="30,0 31.2,2.5 34,2.9 32,4.9 32.5,7.6 30,6.3 27.5,7.6 28,4.9 26,2.9 28.8,2.5   " />
-        </g>
-        <g>
-          <circle cx="30" cy="21" r="1" />
-        </g>
-        <g>
-          <circle cx="33" cy="35" r="1" />
-        </g>
-        <g>
-          <circle cx="26" cy="33" r="1" />
-        </g>
-        <g>
-          <circle cx="39" cy="48" r="1" />
-        </g>
-        <g>
-          <circle cx="31" cy="26" r="2" />
-        </g>
-        <g>
-          <circle cx="25" cy="43" r="2" />
-        </g>
-        <g>
-          <circle cx="34" cy="42" r="1" />
-        </g>
-      </g>
-    
-    </svg>
-    </div>
-    <div  class="drawer absolute left-28 shadow-lg bg-white hidden z-20	">
-    <!-- <div class="drawer hiddenDrawer"> -->
-      <div class="drawer-header bg-mainPink p-4 text-white text-bold">
-        <h2>Quick Links</h2>
-        <svg class="absolute top-2 right-2 h-5 fill-white cursor-pointer" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" id="close-drawer">
-          <!--! Font Awesome Pro 6.3.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
-          <path
-            d="M310.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L160 210.7 54.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L114.7 256 9.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L160 301.3 265.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L205.3 256 310.6 150.6z" />
-        </svg>
+  <body class="bg-rose-50 dark:bg-slate-900 desktop:overflow-hidden">
+    <!-- Google Tag Manager (noscript) -->
+    <noscript
+      ><iframe
+        src="https://www.googletagmanager.com/ns.html?id=GTM-N4NLBX9"
+        height="0"
+        width="0"
+        style="display: none; visibility: hidden"
+      ></iframe
+    ></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+    <header class="px-16 p-2 flex w-full py-4 m-auto flex justify-between md:px-16 lg:px-16 xs:px-8 sm:px-8">
+      <div id="logo" class="grid rounded-full bg-white shadow dark:bg-slate-700 px-16 place-content-center">
+        <img src="./assets/logo.png" alt="Logo-PrepayPower" id="lightLogo" class="max-w-16 dark:hidden" />
+        <img src="./assets/logo_dark.png" alt="Logo-PrepayPower" id="darkLogo" class="max-w-16 hidden dark:block" />
+        <!-- <img src="./assets/logo_dark.png" alt="" class="max-w-28 hidden dark:block" /> -->
       </div>
-      <div class="pb-4 pl-2 pt-4 pr-2">
-        <p class="mb-2 text-xs text-slate-500 uppercase font-semibold">Website</p>
-        <ul class="website-list mb-4  flex flex-col items-start bg-white	gap-2 ">
-
-          <a class="w-full" href="https://www.prepaypower.ie/saving-energy" target="_blank">
-            <li class="pl-4  list-disc	list-inside	hover:bg-rose-50 website-list-item">Saving Tips</li>
-          </a>
-          <a class="w-full" href="https://www.prepaypower.ie/why-switch/pricing/rates" target="_blank">
-            <li class="pl-4 list-disc	list-inside	 hover:bg-rose-50 website-list-item">Payment Options & Rates</li>
-          </a>
-          <a class="w-full" href="https://www.prepaypower.ie/support/app-support" target="_blank">
-            <li class="pl-4 list-disc	list-inside	 hover:bg-rose-50 website-list-item">App Support</li>
-          </a>
-          
-          <a class="w-full" href="https://www.prepaypower.ie/support/pso-levy-refund" target="_blank">
-            <li class="pl-4 list-disc	list-inside	 hover:bg-rose-50 website-list-item">PSO Levy Refund</li>
-          </a>
-          
-          <a class="w-full" href="https://www.prepaypower.ie/why-switch/pricing/estimated-annual-bill-faqs">
-            <li class="pl-4 list-disc	list-inside	 hover:bg-rose-50 website-list-item">Estimate Annual Bill FAQs</li>
-          </a>
-        </ul>
-        <hr class="mb-4">
-        <p class="mb-2 text-xs text-slate-500 uppercase font-semibold">Knowledge Base</p>
-        <ul class="kb-list mb-4  mb-4  flex flex-col items-start bg-white	gap-2 ">
-          <a class="w-full" href="http://intranet.prepaypower.ie/customer-experience/knowledge-base/advance-credit/" target="_blank" rel="noopener noreferrer">
-            <li class="pl-4 list-disc	list-inside	 hover:bg-rose-50 kb-list-item">Advance Credit</li>
-          </a>
-          <li class="pl-4 list-disc	list-inside	 hover:bg-rose-50 kb-list-item">
-            <a class="w-full" href="http://intranet.prepaypower.ie/customer-experience/knowledge-base/customer-mabs-vend-requests/" target="_blank" rel="noopener noreferrer">
-              Customer Vend Request            </li>
-          </a>
-          <a class="w-full" href="http://intranet.prepaypower.ie/customer-experience/knowledge-base/emergency-credit-in-app/" target="_blank" rel="noopener noreferrer">
-            <li class="pl-4 list-disc	list-inside	 hover:bg-rose-50 kb-list-item">
-            Emergency Credit
-          </li>
-        </a>
-        <a class="w-full" href="http://intranet.prepaypower.ie/customer-experience/knowledge-base/retention-training/" target="_blank" rel="noopener noreferrer">
-          <li class="pl-4 list-disc	list-inside	 hover:bg-rose-50 kb-list-item">
-            Retention Training
-          </li>
-        </a>
-        <a class="w-full" href="http://intranet.prepaypower.ie/customer-experience/knowledge-base/retention-cheat-sheet/" target="_blank" rel="noopener noreferrer">
-          <li class="pl-4 list-disc	list-inside	 hover:bg-rose-50 kb-list-item">
-            Retention Cheat Sheet          </li>
-        </a>
-        <a class="w-full" href="http://intranet.prepaypower.ie/customer-experience/knowledge-base/usage-consumption-process/" target="_blank">
-          <li class="pl-4 list-disc	list-inside	 hover:bg-rose-50 kb-list-item">
-            Usage & Consumption Process
-          </li>
-        </a>
-        <a class="w-full" href="http://intranet.prepaypower.ie/customer-experience/knowledge-base/electricity-usage-cheat-sheet/" target="_blank">
-          <li class="pl-4 list-disc	list-inside	 hover:bg-rose-50 kb-list-item">
-            Electricity Usage Cheat Sheet
-          </li>
-        <a class="w-full" href="http://intranet.prepaypower.ie/our-app/" target="_blank">
-          <li class="pl-4 list-disc	list-inside	 hover:bg-rose-50 kb-list-item">
-            Interactive App
-          </li>
-        </a>
-        </a>
-
-       
+      <ul
+        class="h-full flex flex-row rounded-full shadow dark:bg-slate-700 px-16 justify-center bg-white c dark:bg-slate-700 gap-8 sidebar-nav"
+      >
+        <li
+          id="toggle-drawer"
+          class="cursor-pointer border-b-2 border-transparent hover:border-mainPink dark:hover:border-white hover:rounded-b text-mainPink p-2 transition"
+        >
+          <div class="flex flex-col items-center bg-white dark:bg-slate-700 dark:text-white">
+            <i class="fa-solid fa-book-bookmark text-2xl text-center"></i>
+            <!-- <p class=" text-sm">Bookmarks</p> -->
+          </div>
+        </li>
+        <li
+          class="cursor-pointer border-b-2 border-transparent hover:border-mainPink dark:hover:border-white hover:rounded-b text-mainPink p-2 transition"
+          id="gas-button"
+        >
+          <div class="flex flex-col items-center bg-white dark:bg-slate-700 dark:text-white">
+            <i class="fa-solid fa-fire text-2xl"></i>
+            <!-- <p class=" text-sm">Gas Usage</p> -->
+          </div>
+        </li>
+        <li
+          class="cursor-pointer border-b-2 border-transparent hover:border-mainPink dark:hover:border-white hover:rounded-b text-mainPink p-2 transition"
+          id="savings-button"
+        >
+          <div class="flex flex-col items-center bg-white dark:bg-slate-700 dark:text-white">
+            <i class="fa-solid fa-piggy-bank text-2xl"></i>
+            <!-- <p class="text-sm">Savings</p>   -->
+          </div>
+        </li>
       </ul>
-      <!-- <button class=" role="button">New Usage</button> -->
-      <div class="flex bg-white">
 
-        <a class=" bg-mainPink  hover:bg-hoverPink text-white font-bold py-2 px-4 rounded reset-btn active:translate-y-1 feedback-link" href="https://forms.office.com/e/uSCpxnEFip" target="_blank"> 
-          Feedback </a>
-          
+      <div class="flex gap-2">
+        <button
+          id="resetBtn"
+          class="bg-mainPink hover:bg-hoverPink text-white font-bold py-2 px-4 rounded reset-btn active:translate-y-.5 active:drop-shadow-lg shadow-sm rounded-full px-8 dark:bg-blue-500 dark:hover:bg-blue-400"
+          role="button"
+        >
+          <i class="fa-solid fa-arrow-rotate-left"></i>
+        </button>
+
+        <div
+          id="theme-toggle"
+          class="flex-0 grid bg-white shadow hover:shadow place-content-center rounded-full px-8 dark:bg-slate-700 cursor-pointer"
+        >
+          <i id="theme-toggle-dark-icon" class="fa-solid fa-moon text-mainPink text-lg text-center"></i>
+          <i id="theme-toggle-light-icon" class="fa-regular fa-sun text-white text-lg text-center hidden"></i>
         </div>
       </div>
+    </header>
+
+    <div id="settings-main-div" class=" flex h-full">
+      <div class="w-full p-10 bg-rose-50 dark:bg-slate-900">
+        <div
+          class="border-2 border-gray-300 border-dashed m-auto flex flex-col justify-center items-center w-5/6 h-5/6 dark:bg-gradient-to-tr dark:bg-slate-900"
+          id="drop-area"
+        >
+          <i class="fa-solid fa-file-arrow-up text-mainPink text-3xl dark:text-white text-center"></i>
+
+          <h2 class="text-mainPink font-bold text-lg dark:text-white">Select a CSV File to upload</h2>
+          <p class="text-gray-500 font-light dark:text-white">drag and drop it here</p>
+        </div>
+
+        <div
+          id="customerSettingsForm"
+          class="flex flex-col gap-2 bg-white dark:bg-slate-700 dark:text-white w-80 p-6 drop-shadow-lg rounded-lg m-auto mt-20 hidden"
+        >
+          <h2 class="text-xl font-semibold text-gray-700 dark:text-white text-center mb-4">Customer Usage Settings</h2>
+          <select
+            class="border-mainPink focus:outline-none focus:border-hoverPink focus:ring-hoverPink dark:border-white dark:bg-slate-700 dark:border-slate-100 dark:border-2 dark:border-slate-700 dark:focus:border-blue-500 dark:focus:ring-blue-700 rounded w-full"
+            name="tariff"
+            id="tariff"
+          >
+            <option value = '' selected disabled>Select Tariff</option>
+            <option value="24h" >24h</option>
+            <option value="nightsaver">NightSaver</option>
+            <option value="tou">Time of Use</option>
+          </select>
+          <select
+            class="border-mainPink focus:outline-none focus:border-hoverPink focus:ring-hoverPink dark:border-white dark:bg-slate-700 dark:border-slate-100 dark:border-2 dark:border-slate-700 dark:focus:border-blue-500 dark:focus:ring-blue-700 rounded w-full"
+            name="location"
+            id="location"
+          >
+            <option value="" selected disabled>Select Location</option>
+            <option value="urban" >Urban</option>
+            <option value="rural">Rural</option>
+          </select>
+          <select
+            class="border-mainPink focus:outline-none focus:border-hoverPink focus:ring-hoverPink dark:border-white dark:bg-slate-700 dark:border-slate-100 dark:border-2 dark:border-slate-700 dark:focus:border-blue-500 dark:focus:ring-blue-700 rounded w-full"
+            name="broadband"
+            id="broadband"
+          >
+            <option value= '' selected disabled>Select BB Tarrif</option>
+            <option value="no">No broadband</option>
+            <option value="FTTC">BB: FTTC</option>
+            <option value="FTTH-150">BB: FTTH 150MB</option>
+            <option value="FTTH-500">BB: FTTH 500MB</option>
+            <option value="FTTH-1000">BB: FTTH 1000MB</option>
+          </select>
+          <select
+            class="border-mainPink focus:outline-none focus:border-hoverPink focus:ring-hoverPink dark:border-white dark:bg-slate-700 dark:border-slate-100 dark:border-2 dark:border-slate-700 dark:focus:border-blue-500 dark:focus:ring-blue-700 rounded w-full"
+            name="EAB"
+            id="EAB"
+          >
+            <option value = '' selected disabled>Select Property Type</option>
+            <option value="eab-one">1-2 Bed Apartment</option>
+            <option value="eab-two">2 Bed Semi Detached</option>
+            <option value="eab-three" >3-4 Bed Semi Detached</option>
+            <option value="eab-four">3-4 Bed Detached</option>
+            <option value="eab-five">5-6 Bed Detached</option>
+          </select>
+          <button
+            id="form-new-btn"
+            class="bg-mainPink hover:bg-hoverPink text-white dark:bg-blue-500 dark:hover:bg-blue-400 font-bold py-2 px-4 rounded reset-btn active:translate-y-1 drop-shadow-md mt-4"
+            role="button"
+          >
+            Calculate
+          </button>
+        </div>
+        <div class="loader hidden"></div>
+      </div>
     </div>
-      <div class="sidebar w-28">
-        <ul class="h-full flex flex-col	justify-center bg-white	gap-6 sidebar-nav">
-          <li class="sidebar-item">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" id="list-icon" class="active"
-              style="display: none;">
-              <!--! Font Awesome Pro 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
-              <path
-                d="M0 96C0 60.7 28.7 32 64 32H448c35.3 0 64 28.7 64 64V416c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V96zm64 0v64h64V96H64zm384 0H192v64H448V96zM64 224v64h64V224H64zm384 0H192v64H448V224zM64 352v64h64V352H64zm384 0H192v64H448V352z" />
-            </svg>
-          </li>
-          <li class="cursor-pointer"  id="chart-icon">
-            <svg class="fill-mainPink hover:fill-hoverPink h-10" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-5 h-5">
-              <path d="M15.5 2A1.5 1.5 0 0014 3.5v13a1.5 1.5 0 001.5 1.5h1a1.5 1.5 0 001.5-1.5v-13A1.5 1.5 0 0016.5 2h-1zM9.5 6A1.5 1.5 0 008 7.5v9A1.5 1.5 0 009.5 18h1a1.5 1.5 0 001.5-1.5v-9A1.5 1.5 0 0010.5 6h-1zM3.5 10A1.5 1.5 0 002 11.5v5A1.5 1.5 0 003.5 18h1A1.5 1.5 0 006 16.5v-5A1.5 1.5 0 004.5 10h-1z" />
-            </svg>
+
+    <div
+      id="result-main-div"
+      class=" hidden data-display relative flex w-full m-auto desktop:h-[90%] laptop:h-[90%] max-h-[1000px] flex-columns flex-grow px-4 desktop:px-8 laptop:px-8 grid  grid-rows-[80px_1fr_1fr_1fr_1fr_1f]  grid-cols-8 gap-6 bg-rose-50 dark:bg-slate-900 mb-8"
+    >
+      <!-- SUMARRY RESULTS -->
+      <div
+        class="swiper-container min-h-24 text-white col-span-8 row-span-1 font-light dark:bg-slate-900 rounded-3xl grid gap-3 grid-rows-1 grid-cols-8 mr-8"
+      >
+        <div class="swiper-wrapper">
+          <div
+            class="swiper-slide col-span-2 shadow-sm hover:shadow bg-mainPink dark:bg-slate-700 rounded-3xl pl-6 p-2 flex flex-col justify-between"
+          >
+            <h4 class="text-white">Total</h4>
+            <p><span id="total-days-sum" class="font-currency text-2xl laptop:text-2xl desktop:text-3xl">999.99</span></p>
+            <p class="absolute top-2 right-6"><span id="total-days">99</span> days</p>
+          </div>
+          <div
             
+            class="hidden broadband-display  min-w-80 swiper-slide col-span-2 shadow-sm hover:shadow bg-mainPink dark:bg-slate-700 rounded-3xl pl-6 p-2 flex flex-col justify-between"
+          >
+            <div>
+              <h4 class="text-white">Broadband</h4>
+            </div>
+
+            <div class="absolute top-2 right-6 ">
+              <p class="text-xs"> Daily Charge </p>
+              <p class="text-center"><span id="broadband-spend-day" class="font-currency" >999.99</span></p>
+            </div>
+            <span id="broadband-spend-total" class="font-currency text-2xl laptop:text-2xl desktop:text-3xl">999</span>
+            <span id="total-sum-broadband" class="hidden font-currency text-2xl desktop:text-3xl">999</span>
+          </div>
+          <div
+            class="swiper-slide col-span-2 shadow-sm hover:shadow bg-mainPink dark:bg-slate-700 rounded-3xl pl-6 p-2 flex flex-col justify-between"
+          >
+            <h4 class="text-white">Standing Charges</h4>
+
+            <span id="total-sc" class="font-currency text-2xl desktop:text-3xl" >999.99</span>
+          </div>
   
-          </li>
-          <li class="toggle-drawer cursor-pointer">
-            <svg class="fill-mainPink hover:fill-hoverPink stroke-white h-10" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6">
-              <path d="M11.25 4.533A9.707 9.707 0 006 3a9.735 9.735 0 00-3.25.555.75.75 0 00-.5.707v14.25a.75.75 0 001 .707A8.237 8.237 0 016 18.75c1.995 0 3.823.707 5.25 1.886V4.533zM12.75 20.636A8.214 8.214 0 0118 18.75c.966 0 1.89.166 2.75.47a.75.75 0 001-.708V4.262a.75.75 0 00-.5-.707A9.735 9.735 0 0018 3a9.707 9.707 0 00-5.25 1.533v16.103z" />
-            </svg>
-           
-            
-            
-          </li>
-          <li class="cursor-pointer" id="gas-button">
-            <svg class="fill-mainPink hover:fill-hoverPink stroke-white h-11"  xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M15.362 5.214A8.252 8.252 0 0112 21 8.25 8.25 0 016.038 7.048 8.287 8.287 0 009 9.6a8.983 8.983 0 013.361-6.867 8.21 8.21 0 003 2.48z" />
-              <path strokeLinecap="round" strokeLinejoin="round" d="M12 18a3.75 3.75 0 00.495-7.467 5.99 5.99 0 00-1.925 3.546 5.974 5.974 0 01-2.133-1A3.75 3.75 0 0012 18z" />
-            </svg>
-            
-            
-          </li>
-          <li class="cursor-pointer" id="savings-button">
-          <svg  class="fill-mainPink hover:fill-hoverPink stroke-white h-9"xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 576 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M400 96l0 .7c-5.3-.4-10.6-.7-16-.7H256c-16.5 0-32.5 2.1-47.8 6c-.1-2-.2-4-.2-6c0-53 43-96 96-96s96 43 96 96zm-16 32c3.5 0 7 .1 10.4 .3c4.2 .3 8.4 .7 12.6 1.3C424.6 109.1 450.8 96 480 96h11.5c10.4 0 18 9.8 15.5 19.9l-13.8 55.2c15.8 14.8 28.7 32.8 37.5 52.9H544c17.7 0 32 14.3 32 32v96c0 17.7-14.3 32-32 32H512c-9.1 12.1-19.9 22.9-32 32v64c0 17.7-14.3 32-32 32H416c-17.7 0-32-14.3-32-32V448H256v32c0 17.7-14.3 32-32 32H192c-17.7 0-32-14.3-32-32V416c-34.9-26.2-58.7-66.3-63.2-112H68c-37.6 0-68-30.4-68-68s30.4-68 68-68h4c13.3 0 24 10.7 24 24s-10.7 24-24 24H68c-11 0-20 9-20 20s9 20 20 20H99.2c12.1-59.8 57.7-107.5 116.3-122.8c12.9-3.4 26.5-5.2 40.5-5.2H384zm64 136a24 24 0 1 0 -48 0 24 24 0 1 0 48 0z"/></svg>
-        </li>      
-        </ul>
-
-      <!-- toggle between chart and list -->
-      <!-- compare prices with other tariffs -->
-    </div>
-    <div class="data-display flex">
-      <div class="border-2 border-gray-300 border-dashed m-auto flex flex-col justify-center items-center w-5/6 h-5/6"  id="drop-area">
-        <svg class="h-10 stroke-mainPink stroke-1" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
-          <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m6.75 12l-3-3m0 0l-3 3m3-3v6m-1.5-15H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" />
-        </svg>
-        
-        <h2 class="text-mainPink font-bold text-lg">Select a CSV File to upload </h2>
-        <p class="text-gray-500 font-light">drag and drop it here</p>
-      </div>
-      <div class="loader hidden"></div>
-      <div class="summary-container hidden">
-        <div class="box">
-
-          <div style="display: flex; align-items: center; justify-content: space-between;">
-            <h2>Total</h2>
-            <p><span id="total-days">99</span> days</p>
+          <div
+            class="swiper-slide min-w-80 col-span-2 shadow-sm hover:shadow bg-mainPink dark:bg-slate-700 rounded-3xl pl-6 p-2 flex flex-col justify-between"
+          >
+            <div class="grid grid grid-cols-4 grid-rows-4 h-full gap-1">
+              <div class="col-span-1 row-span-2"><h4 class="text-white">Averages</h4></div>
+              <div class="col-span-1 row-span-2 text-xs mt-auto">Day</div>
+              <div class="col-span-1 row-span-2 text-xs mt-auto">Week</div>
+              <div class="col-span-1 row-span-2 text-xs mt-auto">Month</div>
+              <div class="col-span-1 row-span-1 text-xs">Customer</div>
+              <div class="col-span-1 row-span-1"><span id="day-average">€9</span></div>
+              <div class="col-span-1 row-span-1"><span id="week-average">€99,99</span></div>
+              <div class="col-span-1 row-span-1"><span id="month-average">€999,99</span></div>
+              <div class="col-span-1 row-span-1 text-xs">National</div>
+              <div class="col-span-1 row-span-1"><span id="average-eab-daily">€99.99</span></div>
+              <div class="col-span-1 row-span-1"><span id="average-eab-weekly">€99.99</span></div>
+              <div class="col-span-1 row-span-1"><span id="average-eab-monthly">€999.99</span></div>
+            </div>
           </div>
-          <p style="width: 100%; text-align:  center;"><span id="total-days-sum">999.99</span></p>
-          <div class="total-sum-subinfo">
-            <div style="display: flex; flex-direction: column; align-items: center;"><span id="total-sc"
-                style="font-size: 1rem;">999.99</span>Standing<br>Charges</div>
-            <div id="broadband-total-display" style="display: flex; flex-direction: column; align-items: center;"><span
-                id="total-sum-broadband" style="font-size: 1rem;">999</span>Including<br>Broadband </div>
+          <div
+            class="swiper-slide col-span-2 shadow-sm hover:shadow bg-mainPink dark:bg-slate-700 rounded-3xl pl-6 p-2 flex flex-col justify-between"
+          >
+            <h4>Highest Spend</h2>
+            <div class="flex justify-between items-end
+            ">
+              <span id="highest-day-sum" class="font-currency text-2xl desktop:text-3xl">€99.99</span>
+              <span id="highest-day-spent" class="pr-6">12/03/2023</span>
+            </div>
           </div>
-        </div>
-        <div class="box">
-          <h2>Averages</h2>
-          <div class="average-div">
-            <div>Day: <span id="day-average">€9</span></div>
-            <div>Week: <span id="week-average">€99,99</span></div>
-            <div>Month: <span id="month-average">€999,99</span></div>
-          </div>
-        </div>
-        <!-- <div class="box">
-            <h2>Last 7 days</h2>
-            <p>Day: <span id="day-average">€4</span></p>
-            <p>Week: <span id="week-average">€34,31</span></p>
-            <p>Month: <span id="month-average">€124,31</span></p>
-          </div> -->
-        <div class="box">
-          <h2>National Average</h2>
-          <!-- <p>Estimate for <span id="total-days-eab">4</span> days</p> -->
-          <p>Daily: <span id="average-eab-daily">€99.99</span></p>
-          <p>Weekly: <span id="average-eab-weekly">€99.99</span></p>
-          <p>Monthly: <span id="average-eab-monthly">€999.99</span></p>
-          <ps style="display: none;"> Total estimated for <span id="average-usage-esb"></span></p>
-        </div>
-        <!-- <div class="box">
-            <h2>Daily Average</h2>
-            <span id="average-days-sum">434,31</span>
-          </div> -->
-        <div class="box">
-          <h2>Highest Spend</h2>
-          <span id="highest-day-spent">12/03/2023</span>
+          <div
+            class="swiper-slide col-span-2 min-w-80   shadow-sm hover:shadow bg-mainPink dark:bg-slate-700 rounded-3xl pl-6 p-2 flex flex-col justify-between"
+          >  
+          <h4>Tariff Comparison</h2>
+            <div class="grid grid-cols-3 grid-rows-2 h-full">
+              <div class="text-xs mt-auto">24H:</div>
+              <div class="text-xs mt-auto">D/N</div>
+              <div class="text-xs mt-auto">TOU</div>
+              <div class="mt-auto"><span id="total-spent-24">€99.99 </span></div>
+              <div class="mt-auto"><span id="total-spent-dn">€99.99</span></div>
+              <div class="mt-auto"> <span id="total-spent-tou">€99.99</span></div>
+           </div>
 
-          <span id="highest-day-sum">€99.99</span>
-        </div>
-        <div class="box">
-          <h2>Tariff Comparison</h2>
-          <p>24H: <span id="total-spent-24">€99.99 </span></p>
-          <p>D/N: <span id="total-spent-dn">€99.99</span></p>
-          <p>TOU: <span id="total-spent-tou">€99.99</span></p>
-        </div>
-        <div class="box" id="bb-box">
-          <h2>Broadband</h2>
-          <p><span id="broadband-spend-day">€99.99 </span> Daily</p>
-          <p><span id="broadband-spend-total">€99.99</span> Total</p>
+            </div>
+          <div
+            class="swiper-slide col-span-2 shadow-sm hover:shadow bg-transparent rounded-3xl pl-6 p-2 flex flex-col justify-between"
+          ></div>
+
+          <!-- Add more items as needed -->
         </div>
       </div>
-      <div class="list-container hidden"></div>
-      <!-- <button id="prevBtn" class="carousel-button">Previous</button>
-        <button id="nextBtn" class="carousel-button">Next</button> -->
-      <div class="chart-container  carousel-container hidden">
-        <canvas id="timeChart" class="carousel-item "></canvas>
+
+      <!-- table -->
+      <div
+        id="list-container"
+        class="desktop:col-span-4 laptop:col-span-4  col-span-8 desktop:row-span-5 laptop:row-span-5 row-span-3 shadow bg-white dark:bg-slate-700 rounded-3xl overflow-auto"
+      ></div>
+
+      <!-- chart -->
+      <div class="desktop:col-span-4  laptop:col-span-4 col-span-8 desktop:row-span-5  laptop:row-span-5 row-span-1 shadow bg-white dark:bg-slate-700 rounded-3xl min-h-96 " >
+        <canvas id="timeChart" class="carousel-item hidden"></canvas>
         <canvas id="myChart" class="carousel-item"></canvas>
-        <canvas id="mySecondChart" class="carousel-item disabled-chart"></canvas>
-        <canvas id="myThirdChart" class="carousel-item disabled-chart"></canvas>
-
-
-
       </div>
     </div>
-  </div>
-  <div id="myModal" class="modal">
 
-    <!-- Modal content -->
-    <div class="modal-content">
-      <span class="close">&times;</span>
-      <form action="">
-        <div class="form-group">
-          <input type="date" id="first-date" name="first-date">
-          <label for="first-date">Date of first read</label>
-        </div>
-        <div class="form-group">
-          <input type="date" id="second-date" name="second-date">
-          <label for="second-date">Date of second read</label>
-        </div>
-        <div class="form-group">
-          <input type="number" id="mr-consumption" name="mr-consumption">
-          <label for="mr-consumption">mrConsumption figure</label>
-        </div>
-        <input type="submit" id="submit-form">
-      </form>
-      <div id="results"></div>
+    <div
+      id="savings-modal"
+      class="savings-modal bottom-10 absolute right-28 shadow-lg bg-white hidden text-center justify-items-center z-20 p-4 flex flex-col w-auto"
+    >
+      <span class="savings-modal-close absolute top-2 right-2 fill-white cursor-pointer" id="savings-modal-close"
+        >&times;</span
+      >
+      <p id="savings-modal-content" class="savings-modal-content">Some text in the Modal..</p>
+      <i class="fa-solid fa-gifts text-3xl"></i>
     </div>
 
-  </div>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <script type="module" src="app.js"></script>
-  <script defer type="module" src="./gas-usage/gas-usage.js"></script>
-</body>
+    <div
+      id="Links-Drawer"
+      class="drawer fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 transition-opacity ease-in-out hidden"
+    >
+      <div class="bg-white  dark:bg-slate-700 shadow-lg rounded-lg w-auto relative">
+        <div class="bg-mainPink dark:bg-blue-500 p-4 text-white font-bold relative flex justify-between">
+          <h2>Quick Links</h2>
+          <i class="fa-solid fa-xmark cursor-pointer" id="close-drawer"></i>
+        </div>
+        <div class="flex gap-12 bg-white  dark:bg-slate-700 pb-8 pr-8 pl-8 pt-4">
+          <div class="border-r-2 pr-8 border-slate-100 mr-4">
+            <p class="mb-4 text-xs text-gray-500  dark:text-white uppercase">Website</p>
+            <ul id="WebsiteLinks" class="website-list bg-white  dark:bg-slate-700 dark:text-white flex flex-col items-start gap-4">
+              <!-- LIST CREATED IN QuickLinksScript.JS -->
+            </ul>
+          </div>
+          <div>
+            <p class="mb-4 text-xs text-gray-500 dark:text-white uppercase">Knowledge Base</p>
+            <ul id="KnowledgeBaseList" class="kb-list bg-white  dark:bg-slate-700 dark:text-white  flex flex-col items-start gap-4">
+              <!-- LIST CREATED IN QuickLinksScript.JS -->
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
 
+    <div id="myModal" class="modal">
+      <!-- Modal content -->
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <form action="">
+          <div class="form-group">
+            <input type="date" id="first-date" name="first-date" />
+            <label for="first-date">Date of first read</label>
+          </div>
+          <div class="form-group">
+            <input type="date" id="second-date" name="second-date" />
+            <label for="second-date">Date of second read</label>
+          </div>
+          <div class="form-group">
+            <input type="number" id="mr-consumption" name="mr-consumption" />
+            <label for="mr-consumption">mrConsumption figure</label>
+          </div>
+          <input type="submit" id="submit-form" />
+        </form>
+        <div id="results"></div>
+      </div>
+    </div>
+    <script type="module" src="app.js"></script>
+    <script src="QuickLinksScript.js"></script>
+    <script src="darkMode.js"></script>
+    <script src="slider.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script defer type="module" src="./gas-usage/gas-usage.js"></script>
+  </body>
 </html>

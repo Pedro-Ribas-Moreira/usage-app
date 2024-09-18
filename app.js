@@ -10,22 +10,25 @@ import {
 } from './scripts/createLists.js';
 
 // import renderPricesTable from './scripts/pricesTable.js';
-import { myChart, mySecondChart, myThirdChart, timeChart } from './scripts/mainChart.js';
+import { myChart, timeChart } from './scripts/mainChart.js';
 
 const dropArea = document.getElementById('drop-area');
 const loader = document.querySelector('.loader');
-const resetBtn = document.querySelector('.reset-btn');
+const resetBtn = document.querySelector('#resetBtn');
 // const filterContainer = document.querySelector(".filter-container");
 const selectTariff = document.querySelector('#tariff');
 const selectLocation = document.querySelector('#location');
 const selectBroadband = document.querySelector('#broadband');
 const selectEAB = document.querySelector('#EAB');
-const listContainer = document.querySelector('.list-container');
-const chartContainer = document.querySelector('.chart-container');
 const chartIcon = document.querySelector('#chart-icon');
 const displayContainer = document.querySelector('.data-display');
 const listIcon = document.querySelector('#list-icon');
 const summaryContainer = document.querySelector('.summary-container');
+const newBtnForm = document.querySelector('#form-new-btn');
+const customerSettingsForm = document.querySelector('#customerSettingsForm');
+
+const settingsMainDiv = document.querySelector('#settings-main-div');
+const resultMainDiv = document.querySelector('#result-main-div');
 
 let dataIsLoaded = false;
 let chartIsLoaded = false;
@@ -37,10 +40,12 @@ dropArea.addEventListener('dragleave', handleDragLeave, false);
 dropArea.addEventListener('drop', handleFileSelect, false);
 
 let data;
+let file;
 
 //drag and drop handlres
 function handleDragEnter(e) {
-  this.classList.add('bg-rose-200');
+  console.log(e);
+  this.classList.add('bg-rose-200', 'dark:brightness-150');
 }
 function handleDragOver(e) {
   e.preventDefault();
@@ -48,18 +53,18 @@ function handleDragOver(e) {
 }
 
 function handleDragLeave(e) {
-  this.classList.remove('bg-rose-200');
+  this.classList.remove('bg-rose-200', 'dark:brightness-150');
 }
 
 function handleFileSelect(e) {
-  this.classList.remove('bg-rose-200');
-  dropArea.style.display = 'none';
-  displayContainer.classList.add('grid');
-  displayContainer.classList.remove('flex');
+  this.classList.remove('bg-rose-200', 'dark:brightness-150');
+  // dropArea.style.display = 'none';
+  // displayContainer.classList.add('grid');
+  // displayContainer.classList.remove('flex');
 
-  listContainer.classList.remove('hidden');
-  chartContainer.classList.remove('hidden');
-  summaryContainer.classList.remove('hidden');
+  // listContainer.classList.remove('hidden');
+  // chartContainer.classList.remove('hidden');
+  // summaryContainer.classList.remove('hidden');
 
   e.preventDefault();
   e.stopPropagation();
@@ -71,15 +76,57 @@ function handleFileSelect(e) {
   }
 
   // check if file is a csv
-  let file = e.dataTransfer.files[0];
+  file = e.dataTransfer.files[0];
   if (file.type !== 'text/csv') {
     alert('Please only drop CSV files.');
     return;
   }
 
-  loader.classList.remove('hidden');
-
+  customerSettingsForm.classList.remove('hidden');
+  dropArea.classList.add('hidden');
   // process the file
+  // let reader = new FileReader();
+  // reader.onload = function () {
+  //   let csvData = reader.result;
+  //   let lines = csvData.split('\n');
+  //   let result = [];
+  //   for (let i = 0; i < lines.length; i++) {
+  //     let currentLine = lines[i].split(',');
+  //     result.push(currentLine);
+  //   }
+  //   for (let i = 0; i < result.length; i++) {
+  //     for (let j = 0; j < result[i].length; j++) {
+  //       result[i][j] = result[i][j].replace(/\r/g, '');
+  //     }
+  //   }
+  //   // console.log(result);
+  //   loader.classList.add('hidden');
+  //   let location = selectLocation.value;
+  //   let tariff = selectTariff.value;
+  //   let broaband = selectBroadband.value;
+  //   let eab = selectEAB.value;
+
+  //   main(result);
+  //   displayTable(tariff, location, broaband, eab);
+
+  //   // chartContainer.classList.remove("hidden");
+  //   // listIcon.classList.add("active");
+  //   dataIsLoaded = true;
+  //   data = result;
+  // };
+  // reader.readAsText(file);
+}
+
+newBtnForm.addEventListener('click', () => {
+  if (selectTariff.value == '' || selectLocation.value == '' || selectBroadband.value == '' || selectEAB.value == '') {
+    alert('All options are required.');
+    return;
+  }
+
+  // dropArea.classList.remove('hidden');
+  loader.classList.remove('hidden');
+  customerSettingsForm.classList.add('hidden');
+
   let reader = new FileReader();
   reader.onload = function () {
     let csvData = reader.result;
@@ -104,33 +151,40 @@ function handleFileSelect(e) {
     main(result);
     displayTable(tariff, location, broaband, eab);
 
-    listContainer.classList.remove('hidden');
     // chartContainer.classList.remove("hidden");
-    chartContainer.classList.remove('hidden');
-
     // listIcon.classList.add("active");
     dataIsLoaded = true;
     data = result;
   };
   reader.readAsText(file);
-}
+  loader.classList.add('hidden');
+
+  resultMainDiv.classList.remove('hidden');
+  settingsMainDiv.classList.add('hidden');
+
+  summaryContainer.classList.remove('hidden');
+});
 
 resetBtn.addEventListener('click', () => {
-  dropArea.style.display = 'flex';
-  displayContainer.classList.add('flex');
-  displayContainer.classList.remove('grid');
+  dropArea.classList.remove('hidden');
+  customerSettingsForm.classList.add('hidden');
+  displayContainer.classList.add('hidden');
+  settingsMainDiv.classList.remove('hidden');
+
+  selectLocation.value = '';
+  selectTariff.value = '';
+  selectBroadband.value = '';
+  selectEAB.value = '';
 
   document.querySelector('#csv-table').remove();
   myChart.destroy();
-  mySecondChart.destroy();
-  myThirdChart.destroy();
   if (timeChart) {
     timeChart.destroy();
+    document.querySelector('#timeChart').classList.add('hidden');
   }
 
-  if (document.querySelector('#myChart').classList.contains('disabled-chart')) {
-    document.querySelector('#myChart').classList.remove('disabled-chart');
-    document.querySelector('#timeChart').classList.add('disabled-chart');
+  if (document.querySelector('#myChart').classList.contains('hidden')) {
+    document.querySelector('#myChart').classList.remove('hidden');
   }
 
   data = undefined;
@@ -141,10 +195,6 @@ resetBtn.addEventListener('click', () => {
   nigthRuralArray.length = 1;
   peakArray.length = 1;
   peakRuralArray.length = 1;
-
-  listContainer.classList.add('hidden');
-  chartContainer.classList.add('hidden');
-  summaryContainer.classList.add('hidden');
 
   dataIsLoaded = false;
 });
@@ -173,29 +223,30 @@ selectEAB.addEventListener('change', (e) => {
   }
 });
 
-chartIcon.addEventListener('click', () => {
-  chartIcon.classList.toggle('activeIcon');
-  if (chartIcon.classList.contains('activeIcon')) {
-    listIcon.classList.remove('activeIcon');
+// chartIcon.addEventListener('click', () => {
+//   chartIcon.classList.toggle('activeIcon');
+//   if (chartIcon.classList.contains('activeIcon')) {
+//     listIcon.classList.remove('activeIcon');
 
-    listContainer.style.display = 'none';
-    chartContainer.classList.add('active-container');
-  } else {
-    listIcon.classList.add('activeIcon');
+//     listContainer.style.display = 'none';
+//     chartContainer.classList.add('active-container');
+//   } else {
+//     listIcon.classList.add('activeIcon');
 
-    listContainer.style.display = 'flex';
-    chartContainer.classList.remove('active-container');
-  }
-});
+//     listContainer.style.display = 'flex';
+//     chartContainer.classList.remove('active-container');
+//   }
+// });
 
 // OPEN AND CLOSE DRAWER
-const toggleDrawerButton = document.querySelector('.toggle-drawer');
+const toggleDrawerButton = document.querySelector('#toggle-drawer');
 const drawer = document.querySelector('.drawer');
 const closeDrawerButton = document.getElementById('close-drawer');
 
 // "drawer", "absolute", "left-28", "bg-white";
 
 toggleDrawerButton.addEventListener('click', () => {
+  console.log('click');
   drawer.classList.toggle('hidden');
   // drawer.classList.toggle("-left-1000");
 });

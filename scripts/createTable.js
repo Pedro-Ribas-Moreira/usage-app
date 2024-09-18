@@ -1,173 +1,159 @@
-import { datesMap } from "./main.js";
-import { timeChart, getTimeChartInfo } from "./mainChart.js";
+import { datesMap } from './main.js';
+import { timeChart, getTimeChartInfo } from './mainChart.js';
 
 // import { dailyArray } from "./main.js";
 timeChart;
-const listContainer = document.querySelector(".list-container");
-let euro = Intl.NumberFormat("en-DE", {
-  style: "currency",
-  currency: "EUR",
+const listContainer = document.querySelector('#list-container');
+let euro = Intl.NumberFormat('en-DE', {
+  style: 'currency',
+  currency: 'EUR',
 });
 
 const createTable = (array, dailyArray, datesMap, tariff) => {
-  if (document.querySelector("#csv-table") !== null) {
-    document.querySelector("#csv-table").remove();
+  if (document.querySelector('#csv-table') !== null) {
+    document.querySelector('#csv-table').remove();
   }
-  // Create a table header row
-  let table = document.createElement("table");
-  table.setAttribute("id", "csv-table");
 
-  let headerRow = table.insertRow();
+  // Create a table element
+  let table = document.createElement('table');
+  table.setAttribute('id', 'csv-table');
+  table.classList.add('display', 'table-auto', 'h-full', 'w-full'); // Use 'display' for DataTables styling
+
+  // Create a table header row
+  let tableHeader = document.createElement('thead');
+  let headerRow = document.createElement('tr');
   for (let i = 0; i < array[0].length; i++) {
-    let headerCell = document.createElement("th");
+    let headerCell = document.createElement('th');
     headerCell.innerText = array[0][i];
-    headerCell.setAttribute("id", array[0][i]);
-    headerCell.setAttribute("onclick", `sortTable(${i})`);
-    headerCell.classList.add("header-cell");
-    headerCell.classList.add("table-sortable");
+    headerCell.classList.add(
+      'header-cell',
+      'table-sortable',
+      'text-white',
+      'bg-mainPink',
+      'dark:bg-blue-500',
+      'font-light',
+      'p-4',
+      'border',
+      'border-b-1',
+      'border-t-0',
+      'border-l-1',
+      'first:border-l-0',
+      'border-zinc-100',
+      'sticky',
+      'top-0',
+    );
     headerRow.appendChild(headerCell);
   }
-  let tableHeader = document.createElement("thead");
   tableHeader.appendChild(headerRow);
+
   // Create a table body
-  let tableBody = document.createElement("tbody");
+  let tableBody = document.createElement('tbody');
+  tableBody.classList.add('dark:text-white', 'font-light');
+
   // Insert data rows
   for (let i = array.length - 1; i > 0; i--) {
-    let dataRow = tableBody.insertRow();
+    let dataRow = document.createElement('tr');
     for (let j = 0; j < array[i].length; j++) {
-      let dataCell = dataRow.insertCell();
+      let dataCell = document.createElement('td');
+      dataCell.classList.add('p-1', 'pl-2', 'text-center');
       dataCell.innerHTML = array[i][j];
+      dataRow.appendChild(dataCell);
     }
-    let arrayRow = tableBody.insertRow();
-    arrayRow.classList.add(`${i}`);
-    arrayRow.classList.add("hidden");
-    arrayRow.classList.add("time-row");
+    tableBody.appendChild(dataRow);
 
-    let arrayCell = arrayRow.insertCell();
-    arrayCell.setAttribute("colspan", "100%");
+    // Hidden detailed rows (if required by your design)
+    let arrayRow = document.createElement('tr');
+    arrayRow.classList.add(`${i}`, 'hidden', 'time-row');
+    let arrayCell = document.createElement('td');
+    arrayCell.setAttribute('colspan', '100%');
+    arrayCell.classList.add('text-center');
 
-    // ADDING DAY TOTALS
-    // HEADERS TIME UNITS TOTAL (based on )
+    // Create a subtable for additional details
+    const subTable = document.createElement('table');
+    subTable.classList.add('subTable', 'w-4/5', 'border', 'boder-1', 'm-auto');
 
-    const subTable = document.createElement("table");
-    subTable.classList.add("subTable");
-    const subTableHeader = document.createElement("thead");
-    const subHeaderRow = subTableHeader.insertRow();
-    const subTableBody = document.createElement("tbody");
+    const subTableHeader = document.createElement('thead');
+    const subHeaderRow = document.createElement('tr');
+    subHeaderRow.classList.add('bg-mainPink', 'text-white', 'dark:bg-blue-500', 'transition-all', 'font-display');
 
-    subTable.appendChild(subTableHeader);
+    const subTableBody = document.createElement('tbody');
+
     subTableHeader.appendChild(subHeaderRow);
+    subTable.appendChild(subTableHeader);
     subTable.appendChild(subTableBody);
 
     arrayCell.appendChild(subTable);
+    arrayRow.appendChild(arrayCell);
+    tableBody.appendChild(arrayRow);
 
-    const firstLabel = "Time";
-    const secondLabel = "Unit";
-    const thirdLabel = "Total";
+    // Add headers to the subtable
+    ['Time', 'Unit', 'Total'].forEach((label) => {
+      const th = document.createElement('th');
+      th.innerHTML = label;
+      subHeaderRow.appendChild(th);
+    });
 
-    const firsCell = document.createElement("th");
-    firsCell.innerHTML = firstLabel;
-    subHeaderRow.appendChild(firsCell);
-
-    const secondCell = document.createElement("th");
-    secondCell.innerHTML = secondLabel;
-    subHeaderRow.appendChild(secondCell);
-
-    const thirdCell = document.createElement("th");
-    thirdCell.innerHTML = thirdLabel;
-    subHeaderRow.appendChild(thirdCell);
-
-    // console.log(`lenght: ${dailyArray.length}`);
-
-    for (let j = 0; j < dailyArray.length; j++) {
-      if (array[i][0] == dailyArray[j].day) {
-        // console.log("here");
-        // console.log(datesMap.get(dailyArray[j].day));
-        if (tariff == "24h") {
-          datesMap.get(dailyArray[j].day).units.map((e) => {
-            const subBodyRow = subTableBody.insertRow();
-            let timeCell = subBodyRow.insertCell();
-            timeCell.innerHTML = e.time;
-
-            let usageCell = subBodyRow.insertCell();
-            usageCell.innerHTML = e.usage;
-
-            let totalCell = subBodyRow.insertCell();
-            totalCell.innerHTML = euro.format(e.total);
-          });
-        }
-        if (tariff == "nightsaver") {
-          datesMap.get(dailyArray[j].day).nightSaver.map((e) => {
-            const subBodyRow = subTableBody.insertRow();
-            let timeCell = subBodyRow.insertCell();
-            timeCell.innerHTML = e.time;
-
-            let usageCell = subBodyRow.insertCell();
-            usageCell.innerHTML = e.usage;
-
-            let totalCell = subBodyRow.insertCell();
-            totalCell.innerHTML = euro.format(e.total);
-          });
-        }
-        if (tariff == "tou") {
-          datesMap.get(dailyArray[j].day).timeOfUsage.map((e) => {
-            const subBodyRow = subTableBody.insertRow();
-            let timeCell = subBodyRow.insertCell();
-            timeCell.innerHTML = e.time;
-
-            let usageCell = subBodyRow.insertCell();
-            usageCell.innerHTML = e.usage;
-
-            let totalCell = subBodyRow.insertCell();
-            totalCell.innerHTML = euro.format(e.total);
-          });
-        }
+    // Populate the subtable based on tariff type
+    const dailyData = dailyArray.find((d) => d.day === array[i][0]);
+    if (dailyData) {
+      let dataSet;
+      if (tariff === '24h') {
+        dataSet = datesMap.get(dailyData.day).units;
+      } else if (tariff === 'nightsaver') {
+        dataSet = datesMap.get(dailyData.day).nightSaver;
+      } else if (tariff === 'tou') {
+        dataSet = datesMap.get(dailyData.day).timeOfUsage;
       }
+
+      dataSet.forEach((e) => {
+        const subBodyRow = subTableBody.insertRow();
+        subBodyRow.classList.add('border', 'border-x-0', 'border-y-1', 'border-mainPink', 'dark:border-slate-500');
+        subBodyRow.insertCell().innerHTML = e.time;
+        subBodyRow.insertCell().innerHTML = e.usage;
+        subBodyRow.insertCell().innerHTML = euro.format(e.total);
+      });
     }
 
-    // arrayCell.innerHTML = "Hello World!";
-
-    // arrayRow.classList.add(`${i}`);
-    dataRow.classList.add(`${i}`);
-    dataRow.classList.add("day-row");
+    // Additional row styling and classes
+    dataRow.classList.add(`${i}`, 'day-row', 'hover:bg-hoverPink', 'hover:dark:bg-blue-500', 'hover:text-white');
   }
 
+  // Append table parts to the main table element
   table.appendChild(tableHeader);
   table.appendChild(tableBody);
 
   // Append the table to the document
   listContainer.appendChild(table);
-  listContainer.classList.remove("hidden");
+  listContainer.classList.remove('hidden');
 };
 
-window.addEventListener("click", (e) => {
+//
+
+window.addEventListener('click', (e) => {
   let row = e.target.parentElement;
-  if (row.classList.contains("day-row")) {
-    const tc = document.querySelector("#timeChart");
-    if (row.classList.contains("active-row")) {
-      console.log("here");
-      row.classList.remove("active-row");
-      row.nextSibling.classList.add("hidden");
+  if (row.classList.contains('day-row')) {
+    const tc = document.querySelector('#timeChart');
+    if (row.classList.contains('active-row')) {
+      console.log('here');
+      row.classList.remove('active-row');
+      row.nextSibling.classList.add('hidden');
       timeChart.destroy();
-      document.querySelector("#myChart").classList.remove("disabled-chart");
+      document.querySelector('#myChart').classList.remove('hidden');
+      document.querySelector('#myChart').style.display = 'block';
+
       // document.querySelector("#myChart").style.
 
-      tc.classList.add("disabled-chart");
+      tc.classList.add('hidden');
     } else {
-      document
-        .querySelectorAll(".day-row")
-        .forEach((e) => e.classList.remove("active-row"));
-      document
-        .querySelectorAll(".time-row")
-        .forEach((e) => e.classList.add("hidden"));
+      document.querySelectorAll('.day-row').forEach((e) => e.classList.remove('active-row'));
+      document.querySelectorAll('.time-row').forEach((e) => e.classList.add('hidden'));
 
-      document
-        .querySelectorAll(".carousel-item")
-        .forEach((e) => e.classList.add("disabled-chart"));
-      row.classList.toggle("active-row");
-      row.nextSibling.classList.toggle("hidden");
+      document.querySelectorAll('.carousel-item').forEach((e) => e.classList.add('hidden'));
+      row.classList.toggle('active-row');
+      row.nextSibling.classList.toggle('hidden');
 
-      document.querySelector("#timeChart").classList.remove("disabled-chart");
+      document.querySelector('#timeChart').classList.remove('hidden');
+      document.querySelector('#myChart').style.display = 'none';
 
       let d = row.firstChild.innerHTML;
       if (timeChart) {
