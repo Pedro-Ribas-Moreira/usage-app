@@ -47,13 +47,13 @@ const main = (dataArray) => {
       }
     }
     console.log('DATE: ' + dates[i].day);
-    console.log('Day: ');
-    console.log(dates[i].touDayUnits);
-    console.log('Peak: ');
-    console.log(dates[i].touPeakUnits);
-    console.log('Night: ');
-    console.log(dates[i].touNightUnits);
-
+    // console.log('Day: ');
+    // console.log(dates[i].touDayUnits);
+    // console.log('Peak: ');
+    // console.log(dates[i].touPeakUnits);
+    // console.log('Night: ');
+    // console.log(dates[i].touNightUnits);
+    console.log('Check below the prices applied for: ', dates[i].day);
     console.log(dates[i].tariff);
   }
 

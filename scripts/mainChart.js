@@ -13,7 +13,6 @@ const getChartInfo = (d1, d2, d3, days) => {
     return day + '/' + month;
   });
 
-  console.log(dates);
   // chartContainer.classList.remove("hidden");
   const ctx = document.getElementById('myChart');
   const labels = dates;

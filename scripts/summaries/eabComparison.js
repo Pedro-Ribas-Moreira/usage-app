@@ -8,13 +8,17 @@ const eabComparison = (tariff, arr, location, eab) => {
   const esbAverageDaily = document.querySelector('#average-eab-daily');
   const esbAverageWeekly = document.querySelector('#average-eab-weekly');
   const esbAverageMonthly = document.querySelector('#average-eab-monthly');
-  // const esbAverage = document.querySelector('#average-usage-esb');
 
-  // <p>Daily: <span id="average-eab-daily">€54,31</span></p>
-  // <p>Weekly: <span id="average-eab-weekly">€43,31</span></p>
-  // <p>Monthly: <span id="average-eab-monthly">€43,31</span></p>
+  let pricesLength = prices.length - 1;
+  let recentTariff = prices[prices.length];
 
-  const days = arr.length - 1;
+  while (recentTariff === undefined || recentTariff === '') {
+    pricesLength--;
+    recentTariff = prices[pricesLength];
+    console.log({ recentTariff });
+  }
+  let lastPrice = recentTariff.prices;
+  console.log({ lastPrice });
 
   let eabValue;
   switch (eab) {
@@ -34,40 +38,46 @@ const eabComparison = (tariff, arr, location, eab) => {
       eabValue = 8000;
       break;
     default:
+      alert('something went wrong while calculating the national averages');
       return;
   }
+  console.log('National Average - Units per Year: ', eabValue);
 
   let estimateUnitsDay = eabValue / 365;
+
+  console.log('National Average - Units per Day: ', estimateUnitsDay);
+
   let estimateTotal = 0;
   if (tariff == '24h') {
-    estimateTotal = estimateUnitsDay * prices[2].prices.allDayPrice;
+    estimateTotal = estimateUnitsDay * lastPrice.allDayPrice;
     if (location == 'urban') {
-      estimateTotal = estimateTotal + prices[2].prices.urbanDaySC;
+      estimateTotal = estimateTotal + lastPrice.urbanDaySC;
     } else if (location == 'rural') {
-      estimateTotal = estimateTotal + prices[2].prices.ruralDaySC;
+      estimateTotal = estimateTotal + lastPrice.ruralDaySC;
     } else {
     }
   }
+
   if (tariff == 'nightsaver') {
-    let dayUnits = (estimateUnitsDay / 2) * prices[2].prices.dayPrice;
-    let nightUnits = (estimateUnitsDay / 2) * prices[2].prices.nightPrice;
+    let dayUnits = (estimateUnitsDay / 2) * lastPrice.dayPrice;
+    let nightUnits = (estimateUnitsDay / 2) * lastPrice.nightPrice;
     let totalUnits = dayUnits + nightUnits;
     if (location == 'urban') {
-      estimateTotal = totalUnits + prices[2].prices.urbanNightsaverSC;
+      estimateTotal = totalUnits + lastPrice.urbanNightsaverSC;
     } else if (location == 'rural') {
-      estimateTotal = totalUnits + prices[2].prices.ruralNightsaverSC;
+      estimateTotal = totalUnits + lastPrice.ruralNightsaverSC;
     } else {
     }
   }
   if (tariff == 'tou') {
-    let dayUnits = (estimateUnitsDay / 3) * prices[2].prices.touDayPrice;
-    let peakUnits = (estimateUnitsDay / 3) * prices[2].prices.touPeakPrice;
-    let nightUnits = (estimateUnitsDay / 3) * prices[2].prices.touNightPrice;
+    let dayUnits = (estimateUnitsDay / 3) * lastPrice.touDayPrice;
+    let peakUnits = (estimateUnitsDay / 3) * lastPrice.touPeakPrice;
+    let nightUnits = (estimateUnitsDay / 3) * lastPrice.touNightPrice;
     let totalUnits = dayUnits + nightUnits + peakUnits;
     if (location == 'urban') {
-      estimateTotal = totalUnits + prices[2].prices.touUrbanSC;
+      estimateTotal = totalUnits + lastPrice.touUrbanSC;
     } else if (location == 'rural') {
-      estimateTotal = totalUnits + prices[2].prices.touRuralSC;
+      estimateTotal = totalUnits + lastPrice.touRuralSC;
     } else {
     }
   }
@@ -75,7 +85,8 @@ const eabComparison = (tariff, arr, location, eab) => {
   esbAverageDaily.innerHTML = euro.format(estimateTotal);
   esbAverageWeekly.innerHTML = euro.format(estimateTotal * 7);
   esbAverageMonthly.innerHTML = euro.format(estimateTotal * 30);
-  estimateTotal = estimateTotal * days;
+
+  // estimateTotal = estimateTotal * days;
   // esbAverage.innerHTML = `${days} days: ${euro.format(estimateTotal)}`;
 
   // let total = 0;
