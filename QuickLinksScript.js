@@ -28,7 +28,7 @@ const WebsiteList = [
 const KnowledgeBaseList = [
   {
     name: ' Customer Vend Request    ',
-    url: 'http://intranet.prepaypower.ie/customer-experience/knowledge-base/advance-credit',
+    url: 'http://https://yuno.shelf-eu.com/read/97a1f29e-ab9a-4bfe-857d-8636d4d84206/?component=auto-suggest&source=shelf&view=dashboard',
   },
   {
     name: 'Emergency Credit',
