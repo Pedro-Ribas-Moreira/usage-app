@@ -93,7 +93,7 @@
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
   </head>
 
-  <body class="bg-rose-50 dark:bg-slate-900 desktop:overflow-hidden">
+  <body class="bg-rose-50 dark:bg-slate-900 overflow-x-hidden desktop:overflow-hidden">
     <!-- Google Tag Manager (noscript) -->
     <noscript
       ><iframe
@@ -161,10 +161,10 @@
       </div>
     </header>
 
-    <div id="settings-main-div" class=" flex h-full">
+    <div id="settings-main-div" class="flex h-full">
       <div class="w-full p-10 bg-rose-50 dark:bg-slate-900">
         <div
-          class="border-2 border-gray-300 border-dashed m-auto flex flex-col justify-center items-center w-5/6 h-5/6 dark:bg-gradient-to-tr dark:bg-slate-900"
+          class="border-slate-300 border-dashed border-2 m-auto flex flex-col justify-center items-center w-5/6 h-5/6 dark:bg-gradient-to-tr dark:bg-slate-900"
           id="drop-area"
         >
           <i class="fa-solid fa-file-arrow-up text-mainPink text-3xl dark:text-white text-center"></i>
@@ -183,8 +183,8 @@
             name="tariff"
             id="tariff"
           >
-            <option value = '' selected disabled>Select Tariff</option>
-            <option value="24h" >24h</option>
+            <option value="" selected disabled>Select Tariff</option>
+            <option value="24h">24h</option>
             <option value="nightsaver">NightSaver</option>
             <option value="tou">Time of Use</option>
           </select>
@@ -194,7 +194,7 @@
             id="location"
           >
             <option value="" selected disabled>Select Location</option>
-            <option value="urban" >Urban</option>
+            <option value="urban">Urban</option>
             <option value="rural">Rural</option>
           </select>
           <select
@@ -202,7 +202,7 @@
             name="broadband"
             id="broadband"
           >
-            <option value= '' selected disabled>Select BB Tarrif</option>
+            <option value="" selected disabled>Select BB Tarrif</option>
             <option value="no">No broadband</option>
             <option value="FTTC">BB: FTTC</option>
             <option value="FTTH-150">BB: FTTH 150MB</option>
@@ -214,10 +214,10 @@
             name="EAB"
             id="EAB"
           >
-            <option value = '' selected disabled>Select Property Type</option>
+            <option value="" selected disabled>Select Property Type</option>
             <option value="eab-one">1-2 Bed Apartment</option>
             <option value="eab-two">2 Bed Semi Detached</option>
-            <option value="eab-three" >3-4 Bed Semi Detached</option>
+            <option value="eab-three">3-4 Bed Semi Detached</option>
             <option value="eab-four">3-4 Bed Detached</option>
             <option value="eab-five">5-6 Bed Detached</option>
           </select>
@@ -235,101 +235,237 @@
 
     <div
       id="result-main-div"
-      class=" hidden data-display relative flex w-full m-auto desktop:h-[90%] laptop:h-[90%] max-h-[1000px] flex-columns flex-grow px-4 desktop:px-8 laptop:px-8 grid  grid-rows-[80px_1fr_1fr_1fr_1fr_1f]  grid-cols-8 gap-6 bg-rose-50 dark:bg-slate-900 mb-8"
+      class="hidden data-display relative flex w-full m-auto desktop:h-[90%] laptop:h-[90%] max-h-[1000px] flex-columns flex-grow px-4 desktop:px-8 laptop:px-8 grid grid-rows-[80px_1fr_1fr_1fr_1fr_1f] grid-cols-8 gap-6 bg-rose-50 dark:bg-slate-900 mb-8"
     >
       <!-- SUMARRY RESULTS -->
       <div
-        class="swiper-container min-h-24 text-white col-span-8 row-span-1 font-light dark:bg-slate-900 rounded-3xl grid gap-3 grid-rows-1 grid-cols-8 mr-8"
+        class="swiper-container text-white col-span-8 row-span-1 font-light dark:bg-slate-900 rounded-3xl mr-8 relative"
       >
         <div class="swiper-wrapper">
+          <!-- ELECTRICITY TOTAL  -->
           <div
-            class="swiper-slide col-span-2 shadow-sm hover:shadow bg-mainPink dark:bg-slate-700 rounded-3xl pl-6 p-2 flex flex-col justify-between"
+            id="copy-electotal"
+            class="swiper-slide cursor-pointer col-span-2 shadow-md hover:shadow-lg bg-mainPink dark:bg-slate-700 rounded-3xl py-4 px-6 flex flex-col relative min-h-[200px] max-h-[215px] min-w-[260px]"
           >
-            <h4 class="text-white">Total</h4>
-            <p><span id="total-days-sum" class="font-currency text-2xl laptop:text-2xl desktop:text-3xl">999.99</span></p>
-            <p class="absolute top-2 right-6"><span id="total-days">99</span> days</p>
-          </div>
-          <div
-            
-            class="hidden broadband-display  min-w-80 swiper-slide col-span-2 shadow-sm hover:shadow bg-mainPink dark:bg-slate-700 rounded-3xl pl-6 p-2 flex flex-col justify-between"
-          >
-            <div>
-              <h4 class="text-white">Broadband</h4>
+            <div
+              id="copy-elec-feedback"
+              class="absolute z-20 bg-black bg-opacity-50 h-full w-full grid place-content-center top-0 left-0 rounded-3xl hidden"
+            >
+              <p>Copied! <i class="fa-solid fa-copy"></i></p>
+            </div>
+            <!-- Section Title -->
+            <h4 class="text-white text-lg font-semibold mb-2 grow">Electricity</h4>
+
+            <!-- Usage Details -->
+            <div class="flex justify-between items-center text-md desktop:text-lg text-white py-2 relative">
+              <p>Usage</p>
+              <p id="total-usageAndSC">€68.26</p>
             </div>
 
-            <div class="absolute top-2 right-6 ">
-              <p class="text-xs"> Daily Charge </p>
-              <p class="text-center"><span id="broadband-spend-day" class="font-currency" >999.99</span></p>
+            <!-- Standing Charge -->
+            <div
+              class="flex justify-between items-center text-md desktop:text-lg text-white border-t border-white/30 py-2"
+            >
+              <p>Standing Charge</p>
+              <span id="total-sc">€9.99</span>
             </div>
-            <span id="broadband-spend-total" class="font-currency text-2xl laptop:text-2xl desktop:text-3xl">999</span>
+
+            <!-- Total -->
+            <div class="flex justify-between items-center text-white border-t border-white/30 py-2">
+              <p class="text-md desktop:text-lg">Total</p>
+              <p>
+                <span id="total-days-sum" class="text-xl desktop:text-2xl font-medium"> €999.99 </span>
+              </p>
+            </div>
+
+            <!-- Days Info -->
+            <p class="absolute top-4 right-6 text-xs text-white bg-black/20 px-3 py-1 rounded-full">
+              <span id="total-days" class="font-medium">99</span> days
+            </p>
+          </div>
+
+          <!-- ------------****  BROADBAND TOTAL ------------****  -->
+
+          <div
+            id="copy-bb-total"
+            class="hidden broadband-display swiper-slide cursor-pointer col-span-2 shadow-md hover:shadow-lg bg-mainPink dark:bg-slate-700 rounded-3xl py-4 px-6 flex flex-col relative min-h-[200px] max-h-[215px] min-w-[260px] max-w-[360px]"
+          >
+            <div
+              id="copy-bb-feedback"
+              class="absolute z-20 bg-black bg-opacity-50 h-full w-full grid place-content-center top-0 left-0 rounded-3xl hidden"
+            >
+              <p>Copied! <i class="fa-solid fa-copy"></i></p>
+            </div>
+
+            <h4 class="text-white text-lg font-semibold mb-2 grow">Broadband</h4>
+
+            <!-- Standing Charge -->
+            <div class="flex justify-between items-center text-md desktop:text-lg text-white py-2">
+              <p>Daily Charge</p>
+              <span id="broadband-spend-day">999.99</span>
+            </div>
+
+            <!-- Total -->
+            <div class="flex justify-between items-center text-white border-t border-white/30 py-2">
+              <p class="text-md desktop:text-lg">Total</p>
+              <p>
+                <span id="broadband-spend-total" class="text-xl desktop:text-2xl font-medium"> €999.99 </span>
+              </p>
+            </div>
+
             <span id="total-sum-broadband" class="hidden font-currency text-2xl desktop:text-3xl">999</span>
           </div>
-          <div
-            class="swiper-slide col-span-2 shadow-sm hover:shadow bg-mainPink dark:bg-slate-700 rounded-3xl pl-6 p-2 flex flex-col justify-between"
-          >
-            <h4 class="text-white">Standing Charges</h4>
 
-            <span id="total-sc" class="font-currency text-2xl desktop:text-3xl" >999.99</span>
-          </div>
-  
+          <!-- ------------****  AVERAGES ------------****  -->
           <div
-            class="swiper-slide min-w-80 col-span-2 shadow-sm hover:shadow bg-mainPink dark:bg-slate-700 rounded-3xl pl-6 p-2 flex flex-col justify-between"
+            id="copy-averages-total"
+            class="swiper-slide cursor-pointer col-span-3 shadow-md hover:shadow-lg bg-mainPink dark:bg-slate-700 rounded-3xl py-4 px-6 flex flex-col relative min-h-[200px] max-h-[215px] min-w-[360px]"
           >
-            <div class="grid grid grid-cols-4 grid-rows-4 h-full gap-1">
-              <div class="col-span-1 row-span-2"><h4 class="text-white">Averages</h4></div>
-              <div class="col-span-1 row-span-2 text-xs mt-auto">Day</div>
-              <div class="col-span-1 row-span-2 text-xs mt-auto">Week</div>
-              <div class="col-span-1 row-span-2 text-xs mt-auto">Month</div>
-              <div class="col-span-1 row-span-1 text-xs">Customer</div>
-              <div class="col-span-1 row-span-1"><span id="day-average">€9</span></div>
-              <div class="col-span-1 row-span-1"><span id="week-average">€99,99</span></div>
-              <div class="col-span-1 row-span-1"><span id="month-average">€999,99</span></div>
-              <div class="col-span-1 row-span-1 text-xs">National</div>
-              <div class="col-span-1 row-span-1"><span id="average-eab-daily">€99.99</span></div>
-              <div class="col-span-1 row-span-1"><span id="average-eab-weekly">€99.99</span></div>
-              <div class="col-span-1 row-span-1"><span id="average-eab-monthly">€999.99</span></div>
+            <div
+              id="copy-average-feedback"
+              class="absolute z-20 bg-black bg-opacity-50 h-full w-full grid place-content-center top-0 left-0 rounded-3xl hidden"
+            >
+              <p>Copied! <i class="fa-solid fa-copy"></i></p>
             </div>
-          </div>
-          <div
-            class="swiper-slide col-span-2 shadow-sm hover:shadow bg-mainPink dark:bg-slate-700 rounded-3xl pl-6 p-2 flex flex-col justify-between"
-          >
-            <h4>Highest Spend</h2>
-            <div class="flex justify-between items-end
-            ">
-              <span id="highest-day-sum" class="font-currency text-2xl desktop:text-3xl">€99.99</span>
-              <span id="highest-day-spent" class="pr-6">12/03/2023</span>
-            </div>
-          </div>
-          <div
-            class="swiper-slide col-span-2 min-w-80   shadow-sm hover:shadow bg-mainPink dark:bg-slate-700 rounded-3xl pl-6 p-2 flex flex-col justify-between"
-          >  
-          <h4>Tariff Comparison</h2>
-            <div class="grid grid-cols-3 grid-rows-2 h-full">
-              <div class="text-xs mt-auto">24H:</div>
-              <div class="text-xs mt-auto">D/N:</div>
-              <div class="text-xs mt-auto">TOU: </div>
-              <div class="mt-auto"><span id="total-spent-24">€99.99 </span></div>
-              <div class="mt-auto"><span id="total-spent-dn">€99.99</span></div>
-              <div class="mt-auto"> <span id="total-spent-tou">€99.99</span></div>
-           </div>
+            <h4 class="text-white text-lg font-semibold mb-2 grow">Averages</h4>
 
+            <div class="grid grid grid-cols-4 grid-rows-4 gap-1">
+              <div class="col-span-1 p-1 row-span-2"><h4 class="text-white"></h4></div>
+              <div class="col-span-1 p-1 row-span-2 text-md mt-auto border-b border-white/30 grid place-content-center">
+                Day
+              </div>
+              <div class="col-span-1 p-1 row-span-2 text-md mt-auto border-b border-white/30 grid place-content-center">
+                Week
+              </div>
+              <div class="col-span-1 p-1 row-span-2 text-md mt-auto border-b border-white/30 grid place-content-center">
+                Month
+              </div>
+              <div class="col-span-1 p-1 row-span-1 text-md border-b border-white/30 item grid place-content-center">
+                Customer
+              </div>
+              <div class="col-span-1 p-1 row-span-1 border-b border-white/30 grid place-content-center">
+                <span id="day-average">€9</span>
+              </div>
+              <div class="col-span-1 p-1 row-span-1 border-b border-white/30 grid place-content-center">
+                <span id="week-average">€99,99</span>
+              </div>
+              <div class="col-span-1 p-1 row-span-1 border-b border-white/30 grid place-content-center">
+                <span id="month-average">€999,99</span>
+              </div>
+              <div class="col-span-1 p-1 row-span-1 text-md grid place-content-center">National</div>
+              <div class="col-span-1 p-1 row-span-1 grid place-content-center">
+                <span id="average-eab-daily">€99.99</span>
+              </div>
+              <div class="col-span-1 p-1 row-span-1 grid place-content-center">
+                <span id="average-eab-weekly">€99.99</span>
+              </div>
+              <div class="col-span-1 p-1 row-span-1 grid place-content-center">
+                <span id="average-eab-monthly">€999.99</span>
+              </div>
             </div>
+          </div>
+
+          <!-- HIGHEST SPEND DIV -->
           <div
-            class="swiper-slide col-span-2 shadow-sm hover:shadow bg-transparent rounded-3xl pl-6 p-2 flex flex-col justify-between"
+            id="copy-hs-total"
+            class="swiper-slide cursor-pointer col-span-3 shadow-md hover:shadow-lg bg-mainPink dark:bg-slate-700 rounded-3xl py-4 px-6 flex flex-col relative min-h-[200px] max-h-[215px] min-w-[360px]"
+          >
+            <div
+              id="copy-hs-feedback"
+              class="absolute z-20 bg-black bg-opacity-50 h-full w-full grid place-content-center top-0 left-0 rounded-3xl hidden"
+            >
+              <p>Copied! <i class="fa-solid fa-copy"></i></p>
+            </div>
+            <h4 class="text-white text-lg font-semibold mb-2 grow">Highest Spend</h4>
+            <div class="flex justify-between items-center text-md desktop:text-lg text-white py-2">
+              <p>Date</p>
+              <span id="highest-day-spent">12/03/2023</span>
+            </div>
+
+            <!-- Total -->
+            <div class="flex justify-between items-center text-white border-t border-white/30 py-2">
+              <p class="text-md desktop:text-lg">Total</p>
+              <p>
+                <span id="highest-day-sum" class="text-xl desktop:text-2xl font-medium"> €999.99 </span>
+              </p>
+            </div>
+          </div>
+
+          <!-- TARIFF COMPARISON DIV  -->
+          <div
+            id="copy-tc-total"
+            class="swiper-slide cursor-pointer col-span-3 shadow-md hover:shadow-lg bg-mainPink dark:bg-slate-700 rounded-3xl py-4 px-6 flex flex-col relative min-h-[200px] max-h-[215px] min-w-[360px]"
+          >
+            <div
+              id="copy-tc-feedback"
+              class="absolute z-20 bg-black bg-opacity-50 h-full w-full grid place-content-center top-0 left-0 rounded-3xl hidden"
+            >
+              <p>Copied! <i class="fa-solid fa-copy"></i></p>
+            </div>
+
+            <h4 class="text-white text-lg font-semibold mb-2 grow">Tariff Comparison</h4>
+
+            <div class="grid grid-cols-3 grid-rows-2 gap-2">
+              <div class="text-md flex items-end">24H</div>
+              <div class="text-md flex items-end">D/N</div>
+              <div class="text-md flex items-end">TOU</div>
+              <div class="text-lg border-t border-white/30 py-2 font-medium grid place-content-start">
+                <span id="total-spent-24">€99.99 </span>
+              </div>
+              <div class="text-lg border-t border-white/30 py-2 font-medium grid place-content-start">
+                <span id="total-spent-dn">€99.99</span>
+              </div>
+              <div class="text-lg border-t border-white/30 py-2 font-medium grid place-content-start">
+                <span id="total-spent-tou">€99.99</span>
+              </div>
+            </div>
+          </div>
+
+          <div
+            id="copy-ud-total"
+            class="swiper-slide cursor-pointer col-span-3 shadow-md hover:shadow-lg bg-mainPink dark:bg-slate-700 rounded-3xl py-4 px-6 flex flex-col relative min-h-[200px] max-h-[215px] min-w-[360px]"
+          >
+            <div
+              id="copy-ud-feedback"
+              class="absolute z-20 bg-black bg-opacity-50 h-full w-full grid place-content-center top-0 left-0 rounded-3xl hidden"
+            >
+              <p>Copied! <i class="fa-solid fa-copy"></i></p>
+            </div>
+            <h4 class="text-white text-lg font-semibold mb-2 grow">Usage Distribution</h4>
+            <div class="flex justify-between items-center text-md desktop:text-lg text-white py-2">
+              <p>Night</p>
+              <span id="nightUsage">25%</span>
+            </div>
+            <div
+              class="flex justify-between items-center text-md border-t border-white/30 desktop:text-lg text-white py-2"
+            >
+              <p>Day</p>
+              <span id="dayUsage">75%</span>
+            </div>
+          </div>
+
+          <div
+            id="copy-ud-total"
+            class="swiper-slide cursor-pointer col-span-3 ml-4 hover:shadow-lg bg-transparent rounded-3xl py-4 px-6 flex flex-col relative min-h-[200px] max-h-[215px] min-w-[360px]"
           ></div>
-
           <!-- Add more items as needed -->
         </div>
+        <!-- <div class="swiper-button-next hidden"></div>
+        <div class="swiper-button-prev"></div> -->
+        <!-- Add pagination -->
+        <div class="swiper-pagination absolute"></div>
       </div>
 
       <!-- table -->
       <div
         id="list-container"
-        class="desktop:col-span-4 laptop:col-span-4  col-span-8 desktop:row-span-5 laptop:row-span-5 row-span-3 shadow bg-white dark:bg-slate-700 rounded-3xl overflow-auto"
+        class="desktop:col-span-4 laptop:col-span-4 col-span-8 desktop:row-span-5 laptop:row-span-5 row-span-3 shadow bg-white dark:bg-slate-700 rounded-3xl overflow-auto"
       ></div>
 
       <!-- chart -->
-      <div class="desktop:col-span-4  laptop:col-span-4 col-span-8 desktop:row-span-5  laptop:row-span-5 row-span-1 shadow bg-white dark:bg-slate-700 rounded-3xl min-h-96 " >
+      <div
+        class="desktop:col-span-4 laptop:col-span-4 col-span-8 desktop:row-span-5 laptop:row-span-5 row-span-1 shadow bg-white dark:bg-slate-700 rounded-3xl min-h-96"
+      >
         <canvas id="timeChart" class="carousel-item hidden"></canvas>
         <canvas id="myChart" class="carousel-item"></canvas>
       </div>
@@ -350,21 +486,27 @@
       id="Links-Drawer"
       class="drawer fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 transition-opacity ease-in-out hidden"
     >
-      <div class="bg-white  dark:bg-slate-700 shadow-lg rounded-lg w-auto relative">
+      <div class="bg-white dark:bg-slate-700 shadow-lg rounded-lg w-auto relative">
         <div class="bg-mainPink dark:bg-blue-500 p-4 text-white font-bold relative flex justify-between">
           <h2>Quick Links</h2>
           <i class="fa-solid fa-xmark cursor-pointer" id="close-drawer"></i>
         </div>
-        <div class="flex gap-12 bg-white  dark:bg-slate-700 pb-8 pr-8 pl-8 pt-4">
+        <div class="flex gap-12 bg-white dark:bg-slate-700 pb-8 pr-8 pl-8 pt-4">
           <div class="border-r-2 pr-8 border-slate-100 mr-4">
-            <p class="mb-4 text-xs text-gray-500  dark:text-white uppercase">Website</p>
-            <ul id="WebsiteLinks" class="website-list bg-white  dark:bg-slate-700 dark:text-white flex flex-col items-start gap-4">
+            <p class="mb-4 text-xs text-gray-500 dark:text-white uppercase">Website</p>
+            <ul
+              id="WebsiteLinks"
+              class="website-list bg-white dark:bg-slate-700 dark:text-white flex flex-col items-start gap-4"
+            >
               <!-- LIST CREATED IN QuickLinksScript.JS -->
             </ul>
           </div>
           <div>
             <p class="mb-4 text-xs text-gray-500 dark:text-white uppercase">Knowledge Base</p>
-            <ul id="KnowledgeBaseList" class="kb-list bg-white  dark:bg-slate-700 dark:text-white  flex flex-col items-start gap-4">
+            <ul
+              id="KnowledgeBaseList"
+              class="kb-list bg-white dark:bg-slate-700 dark:text-white flex flex-col items-start gap-4"
+            >
               <!-- LIST CREATED IN QuickLinksScript.JS -->
             </ul>
           </div>
@@ -396,6 +538,8 @@
     </div>
     <script type="module" src="app.js"></script>
     <script src="QuickLinksScript.js"></script>
+
+    <script src="clipboard.js"></script>
     <script src="darkMode.js"></script>
     <script src="slider.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>

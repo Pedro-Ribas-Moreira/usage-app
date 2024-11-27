@@ -11,6 +11,7 @@ import {
 import { eabComparison } from './summaries/eabComparison.js';
 import { averagesSummary } from './summaries/averages.js';
 import { bbTariff } from './summaries/bbTariff.js';
+import { turnUsage } from './summaries/turnUsage.js';
 
 let euro = Intl.NumberFormat('en-DE', {
   style: 'currency',
@@ -22,6 +23,7 @@ const summaryBox = (tariff, array, location, broaband, eab) => {
   document.querySelector('#total-days').innerHTML = array.length - 1;
   const ts = document.querySelector('#total-days-sum');
   const totalSC = document.querySelector('#total-sc');
+  const totalSCPlusUsage = document.querySelector('#total-usageAndSC');
 
   let sum = 0;
   let sc = 0;
@@ -42,6 +44,7 @@ const summaryBox = (tariff, array, location, broaband, eab) => {
   }
   ts.innerHTML = `${euro.format(sum)}`;
   totalSC.innerHTML = `${euro.format(sc)}`;
+  totalSCPlusUsage.innerHTML = `${euro.format(sum - sc)}`;
 
   document.querySelector('#highest-day-spent').innerHTML = highestDay;
   document.querySelector('#highest-day-sum').innerHTML = euro.format(highestSum);
@@ -77,6 +80,7 @@ const summaryBox = (tariff, array, location, broaband, eab) => {
   bbTariff(array, broaband, sum);
   eabComparison(tariff, array, location, eab);
   averagesSummary(array);
+  turnUsage(nightArray);
 };
 
 export { summaryBox };

@@ -1,7 +1,7 @@
 var swiper = new Swiper('.swiper-container', {
   // Optional parameters
   slidesPerView: 1,
-  spaceBetween: 1,
+  spaceBetween: 2,
   // If you want pagination
   pagination: {
     el: '.swiper-pagination',
@@ -17,7 +17,7 @@ var swiper = new Swiper('.swiper-container', {
       spaceBetween: 40,
     },
     1024: {
-      slidesPerView: 5,
+      slidesPerView: 4,
       spaceBetween: 24,
     },
   },
