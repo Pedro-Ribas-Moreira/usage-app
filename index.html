@@ -91,6 +91,10 @@
     <!-- Carrousel -->
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
+    <link rel="stylesheet" href="./Moneta/moneta.css" />
+    <!-- <script defer src="./Moneta/all-dropdowns.js"></script> -->
+    <script defer type="module" src="./Moneta/moneta.js"></script>
   </head>
 
   <body class="bg-rose-50 dark:bg-slate-900 overflow-x-hidden desktop:overflow-hidden">
@@ -113,6 +117,16 @@
       <ul
         class="h-full flex flex-row rounded-full shadow dark:bg-slate-700 px-16 justify-center bg-white c dark:bg-slate-700 gap-8 sidebar-nav"
       >
+        <li
+          id="monetaTrigger"
+          class="relative cursor-pointer border-b-2 border-transparent hover:border-mainPink dark:hover:border-white hover:rounded-b text-mainPink p-2 transition"
+        >
+          <div class="flex flex-col items-center bg-white dark:bg-slate-700 dark:text-white dropdown">
+            <!-- <p class="text-sm">Savings</p>   -->
+            <i class="fa-solid fa-wand-magic-sparkles text-2xl"></i>
+          </div>
+          <div id="monetaContainer" class="absolute hidden"></div>
+        </li>
         <li
           id="toggle-drawer"
           class="cursor-pointer border-b-2 border-transparent hover:border-mainPink dark:hover:border-white hover:rounded-b text-mainPink p-2 transition"
