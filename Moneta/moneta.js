@@ -4,6 +4,7 @@ function createMenu(menuData, parentElement) {
   menuData.forEach((item, index) => {
     const itemButton = document.createElement(item.isCopyNote ? 'button' : 'div');
     itemButton.className = item.isCopyNote ? 'copy-btn' : 'dropdown-btn';
+    itemButton.classList.add('bg-mainPink', 'dark:bg-slate-700', 'hover:bg-[#c9185d]', 'hover:dark:bg-slate-800');
     itemButton.textContent = item.name;
 
     // If it's a copy note, add tooltip and copy functionality
@@ -26,6 +27,7 @@ function createMenu(menuData, parentElement) {
     if (item.children) {
       const childContainer = document.createElement('div');
       childContainer.className = 'dropdown-content';
+      childContainer.classList.add('bg-mainPink', 'dark:bg-slate-700');
       createMenu(item.children, childContainer);
 
       // Append child container and handle hover for showing children

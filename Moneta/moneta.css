@@ -8,7 +8,7 @@
 
 .dropdown-btn,
 .copy-btn {
-  background-color: #e71e70;
+  /* background-color: #e71e70; */
   color: white;
   padding: 10px 20px;
   border: none;
@@ -25,17 +25,17 @@
   left: 50%;
   top: 100%;
   min-width: 200px;
-  background-color: #e71e70;
+  /* background-color: #e71e70; */
   padding: 10px;
   z-index: 1;
   border-radius: 4px;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
-
+/* 
 .copy-btn:hover,
 .dropdown-btn:hover {
   background-color: #c9185d;
-}
+} */
 
 .tooltip {
   visibility: hidden;
