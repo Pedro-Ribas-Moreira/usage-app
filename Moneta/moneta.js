@@ -27,7 +27,14 @@ function createMenu(menuData, parentElement) {
     if (item.children) {
       const childContainer = document.createElement('div');
       childContainer.className = 'dropdown-content';
-      childContainer.classList.add('bg-mainPink', 'dark:bg-slate-700');
+      childContainer.classList.add(
+        'bg-mainPink',
+        'dark:bg-slate-700',
+        'dark:border-solid',
+        'dark:border-2',
+        'dark:border-sky-500',
+        'rounded-xl',
+      );
       createMenu(item.children, childContainer);
 
       // Append child container and handle hover for showing children
