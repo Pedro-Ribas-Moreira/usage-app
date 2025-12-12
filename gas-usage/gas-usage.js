@@ -29,7 +29,7 @@ gasForm.addEventListener("click", function (event) {
 
     // Constants
     const unitRate = 0.1133
-    const carbonTaxRate = 0.00956
+    const carbonTaxRate = 0.01251 
     const standingChargeRate = 0.43
     const prepayServiceChargeRate = 0.1942
     const dailyChargeRate = standingChargeRate + prepayServiceChargeRate

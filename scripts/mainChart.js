@@ -2,6 +2,8 @@ import { prices } from './prices.js';
 
 const chartContainer = document.querySelector('.chart-container');
 const isDarkMode = document.documentElement.classList.contains('dark');
+const nightColor = isDarkMode ? '#48CAE4' : '#023047';
+const labelColor = isDarkMode ? '#fff' : '#000000ff'
 
 let myChart;
 
@@ -22,7 +24,7 @@ const getChartInfo = (d1, d2, d3, days) => {
       {
         label: 'Night',
         data: d1,
-        backgroundColor: '#023047',
+        backgroundColor: nightColor,
       },
       {
         label: 'Day',
@@ -49,7 +51,7 @@ const getChartInfo = (d1, d2, d3, days) => {
         title: {
           display: true,
           text: 'Total Units per Day',
-          color: '#d1d5db', // Neutral gray that works on both light and dark backgrounds
+          color: labelColor, // Neutral gray that works on both light and dark backgrounds
         },
       },
       responsive: true,
@@ -57,13 +59,13 @@ const getChartInfo = (d1, d2, d3, days) => {
         x: {
           stacked: true,
           ticks: {
-            color: '#d1d5db', // Neutral gray that works on both light and dark backgrounds
+            color: labelColor, // Neutral gray that works on both light and dark backgrounds
           },
         },
         y: {
           stacked: true,
           ticks: {
-            color: '#d1d5db', // Neutral gray that works on both light and dark backgrounds
+            color: labelColor, // Neutral gray that works on both light and dark backgrounds
           },
         },
       },
