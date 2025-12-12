@@ -2,8 +2,12 @@ import { prices } from './prices.js';
 
 const chartContainer = document.querySelector('.chart-container');
 const isDarkMode = document.documentElement.classList.contains('dark');
-const nightColor = isDarkMode ? '#48CAE4' : '#023047';
-const labelColor = isDarkMode ? '#fff' : '#000000ff'
+const themes = {
+  nightBar: isDarkMode ? '#48CAE4' : '#023047',
+  text: isDarkMode ? '#ffffff' : '#333333',
+  grid: isDarkMode ? '#ffffff20' : '#00000020',
+   
+}
 
 let myChart;
 
@@ -24,7 +28,7 @@ const getChartInfo = (d1, d2, d3, days) => {
       {
         label: 'Night',
         data: d1,
-        backgroundColor: nightColor,
+        backgroundColor: themes.nightBar,
       },
       {
         label: 'Day',
@@ -39,7 +43,7 @@ const getChartInfo = (d1, d2, d3, days) => {
     ],
   };
 
-  myChart = new Chart(ctx, {
+  window.myChart = new Chart(ctx, {
     type: 'bar',
     data: chartData,
     options: {
@@ -51,127 +55,33 @@ const getChartInfo = (d1, d2, d3, days) => {
         title: {
           display: true,
           text: 'Total Units per Day',
-          color: labelColor, // Neutral gray that works on both light and dark backgrounds
+          color: themes.text, 
         },
+        legend:{
+        labels:{
+          color: themes.text
+        }
+      }
       },
       responsive: true,
       scales: {
         x: {
           stacked: true,
           ticks: {
-            color: labelColor, // Neutral gray that works on both light and dark backgrounds
+            color: themes.text, 
           },
         },
         y: {
           stacked: true,
           ticks: {
-            color: labelColor, // Neutral gray that works on both light and dark backgrounds
+            color: themes.text, 
           },
         },
       },
+      
     },
   });
 };
-let mySecondChart;
-// const getSecondChartInfo = (d1, d2, d3, days) => {
-//   // chartContainer.classList.remove("hidden");
-//   const ctx = document.getElementById("mySecondChart");
-//   const labels = days;
-//   const chartData = {
-//     labels: labels,
-//     datasets: [
-//       {
-//         label: "Night",
-//         data: d1,
-//         backgroundColor: "#023047",
-//       },
-//       {
-//         label: "Day",
-//         data: d2,
-//         backgroundColor: "#FFB703",
-//       },
-//       {
-//         label: "Peak",
-//         data: d3,
-//         backgroundColor: "#FB8500",
-//       },
-//     ],
-//   };
-
-//   mySecondChart = new Chart(ctx, {
-//     type: "bar",
-//     data: chartData,
-//     options: {
-//       layout: {
-//         padding: 20,
-//       },
-//       maintainAspectRatio: false,
-//       plugins: {
-//         title: {
-//           display: true,
-//           text: "Last 7 Days - Units per day",
-//         },
-//       },
-//       responsive: true,
-//       scales: {
-//         x: {
-//           stacked: true,
-//           autoSkip: false,
-//         },
-//         y: {
-//           stacked: true,
-//           autoSkip: false,
-//         },
-//       },
-//     },
-//   });
-// };
-
-// let myThirdChart;
-// const getThirdChartInfo = (d1, d2, d3) => {
-//   // chartContainer.classList.remove("hidden");
-//   const ctx = document.getElementById("myThirdChart");
-//   const labels = ["Day", "Peak", "Night"];
-//   const chartData = {
-//     labels: labels,
-//     datasets: [
-//       {
-//         label: "My First Dataset",
-//         data: [d1, d2, d3],
-//         backgroundColor: ["#FFB703", "#FB8500", "#023047"],
-//         hoverOffset: 4,
-//       },
-//     ],
-//   };
-
-//   myThirdChart = new Chart(ctx, {
-//     type: "doughnut",
-//     data: chartData,
-//     options: {
-//       layout: {
-//         padding: 20,
-//       },
-//       maintainAspectRatio: false,
-//       plugins: {
-//         title: {
-//           display: true,
-//           text: "Total Usage by Period",
-//         },
-//       },
-//       responsive: true,
-//       // scales: {
-//       //   x: {
-//       //     stacked: true,
-//       //     autoSkip: false,
-//       //   },
-//       //   y: {
-//       //     stacked: true,
-//       //     autoSkip: false,
-//       //   },
-//       // },
-//     },
-//   });
-// };
 
 let timeChart;
 const getTimeChartInfo = (time, prices, day) => {

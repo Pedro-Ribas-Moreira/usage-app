@@ -24,7 +24,6 @@ document.querySelector('#theme-toggle').addEventListener('click', () => {
   themeToggleDarkIcon.classList.toggle('hidden');
   themeToggleLightIcon.classList.toggle('hidden');
   lightLogo.classList.remove('hidden');
-
   if (localStorage.getItem('color-theme')) {
     if (localStorage.getItem('color-theme') === 'light') {
       document.documentElement.classList.add('dark');
@@ -53,3 +52,6 @@ document.querySelector('#theme-toggle').addEventListener('click', () => {
     }
   }
 });
+
+
+
