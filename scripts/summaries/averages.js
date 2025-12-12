@@ -1,15 +1,15 @@
-let euro = Intl.NumberFormat("en-DE", {
-  style: "currency",
-  currency: "EUR",
+let euro = Intl.NumberFormat('en-DE', {
+  style: 'currency',
+  currency: 'EUR',
 });
 const averagesSummary = (arr) => {
-  const dayAverage = document.querySelector("#day-average");
-  const weekAverage = document.querySelector("#week-average");
-  const monthAverage = document.querySelector("#month-average");
+  const dayAverage = document.querySelector('#day-average');
+  const weekAverage = document.querySelector('#week-average');
+  const monthAverage = document.querySelector('#month-average');
 
   let totals = 0;
   for (var i = 1; i < arr.length; i++) {
-    let a = Number(arr[i][arr[i].length - 1].replace(/[^\d.-]/g, ""));
+    let a = Number(arr[i][arr[i].length - 1].replace(/[^\d.-]/g, ''));
     totals += a;
   }
   let numDays = arr.length - 1;
@@ -20,11 +20,11 @@ const averagesSummary = (arr) => {
   dayAverage.innerHTML = euro.format(day);
 
   if (numDays < 7) {
-    weekAverage.innerHTML = "Not enough data";
-    monthAverage.innerHTML = "Not enough data";
+    weekAverage.innerHTML = 'N/A';
+    monthAverage.innerHTML = 'N/A';
   } else if (numDays < 30) {
     weekAverage.innerHTML = euro.format(week);
-    monthAverage.innerHTML = "Not enough data";
+    monthAverage.innerHTML = 'N/A';
   } else {
     weekAverage.innerHTML = euro.format(week);
     monthAverage.innerHTML = euro.format(month);
