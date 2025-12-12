@@ -51,14 +51,7 @@ const main = (dataArray) => {
       }
     }
     console.log("DATE: " + dates[i].day);
-    console.log("Day: ");
-    console.log(dates[i].touDayUnits);
-    console.log("Peak: ");
-    console.log(dates[i].touPeakUnits);
-    console.log("Night: ");
-    console.log(dates[i].touNightUnits);
-
-    console.log(dates[i].tariff);
+    console.log("Prices List: ", dates[i].tariff);
   }
 
   createLists(dates);

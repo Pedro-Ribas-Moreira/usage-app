@@ -145,7 +145,7 @@ window.addEventListener("click", (e) => {
   if (row.classList.contains("day-row")) {
     const tc = document.querySelector("#timeChart");
     if (row.classList.contains("active-row")) {
-      console.log("here");
+  
       row.classList.remove("active-row");
       row.nextSibling.classList.add("hidden");
       timeChart.destroy();
