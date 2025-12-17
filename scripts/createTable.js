@@ -31,7 +31,7 @@ const createTable = (array, dailyArray, datesMap, tariff) => {
       'text-white',
       'bg-mainPink',
       'dark:bg-blue-500',
-      'font-light',
+      // 'font-light',
       'p-4',
       'border',
       'border-b-1',
@@ -48,7 +48,7 @@ const createTable = (array, dailyArray, datesMap, tariff) => {
 
   // Create a table body
   let tableBody = document.createElement('tbody');
-  tableBody.classList.add('dark:text-white', 'font-light');
+  tableBody.classList.add('dark:text-white');
 
   // Insert data rows
   for (let i = array.length - 1; i > 0; i--) {
