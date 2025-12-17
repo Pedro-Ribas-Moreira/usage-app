@@ -29,7 +29,7 @@ document.querySelector('#copy-electotal').addEventListener('click', () => {
 });
 
 // Broaband
-document.querySelector('#copy-bb-total').addEventListener('click', () => {
+document.querySelector('#copy-bb-total'l).addEventListener('click', () => {
   let bbDaily = document.querySelector('#broadband-spend-day');
   let bbTotal = document.querySelector('#broadband-spend-total');
 
