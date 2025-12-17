@@ -114,7 +114,13 @@ const getTimeChartInfo = (time, prices, day) => {
         title: {
           display: true,
           text: day,
+          color: themes.text, 
         },
+         legend:{
+        labels:{
+          color: themes.text
+        }
+      }
       },
 
       responsive: true,
@@ -122,10 +128,16 @@ const getTimeChartInfo = (time, prices, day) => {
         x: {
           stacked: true,
           autoSkip: false,
+           ticks: {
+            color: themes.text, 
+          },
         },
         y: {
           type: 'linear',
           min: 0,
+           ticks: {
+            color: themes.text, 
+          },
           max: Math.max(...prices) > 3 ? Math.round(Math.max(...prices)) + 1 : 3,
         },
       },

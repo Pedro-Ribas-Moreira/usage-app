@@ -10,55 +10,57 @@ let euro = Intl.NumberFormat("en-DE", {
   style: "currency",
   currency: "EUR",
 });
-
 const nsUrbanHeader = [
-  "DATE",
-  "NIGHT UNITS",
-  "NIGHT TOTAL",
-  "DAY UNITS",
-  "DAY TOTAL",
-  "TOTAL UNITS",
-  "TOTAL",
-  "TOTAL + SC",
+  "Date",
+  "Night Units",
+  "Night Total",
+  "Day Units",
+  "Day Total",
+  "Total Units",
+  "Total",
+  "Total + Sc",
 ];
+
 const nsRuralHeader = [
-  "DATE",
-  "NIGHT UNITS",
-  "NIGHT TOTAL",
-  "DAY UNITS",
-  "DAY TOTAL",
-  "TOTAL UNITS",
-  "TOTAL",
-  "TOTAL + SC",
+  "Date",
+  "Night Units",
+  "Night Total",
+  "Day Units",
+  "Day Total",
+  "Total Units",
+  "Total",
+  "Total + Sc",
 ];
-const dayHeader = ["DATE", "UNITS", "TOTAL", "TOTAL + SC"];
-const dayRuralHeader = ["DATE", "UNITS", "TOTAL", "TOTAL + SC"];
+
+const dayHeader = ["Date", "Units", "Total", "Total + Sc"];
+
+const dayRuralHeader = ["Date", "Units", "Total", "Total + Sc"];
 
 const touHeader = [
-  "DATE",
-  "NIGHT UNITS",
-  "NIGHT TOTAL",
-  "DAY UNITS",
-  "DAY TOTAL",
-  "PEAK UNITS",
-  "PEAK TOTAL",
-  "TOTAL UNITS",
-  "TOTAL",
-  "TOTAL + SC",
-];
-const touRuralHeader = [
-  "DATE",
-  "NIGHT UNITS",
-  "NIGHT TOTAL",
-  "DAY UNITS",
-  "DAY TOTAL",
-  "PEAK UNITS",
-  "PEAK TOTAL",
-  "TOTAL UNITS",
-  "TOTAL",
-  "TOTAL + SC",
+  "Date",
+  "Night Units",
+  "Night Total",
+  "Day Units",
+  "Day Total",
+  "Peak Units",
+  "Peak Total",
+  "Total Units",
+  "Total",
+  "Total + Sc",
 ];
 
+const touRuralHeader = [
+  "Date",
+  "Night Units",
+  "Night Total",
+  "Day Units",
+  "Day Total",
+  "Peak Units",
+  "Peak Total",
+  "Total Units",
+  "Total",
+  "Total + Sc",
+];
 let nightArray = [nsUrbanHeader];
 let nigthRuralArray = [nsRuralHeader];
 let dayArray = [dayHeader];
