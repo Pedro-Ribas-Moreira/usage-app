@@ -56,8 +56,8 @@ gasForm.addEventListener("click", function (event) {
     const money = (n) => `€${Number(n).toFixed(2)}`;
 
     results.innerHTML = `
+    
     <h3 class="scriptHeader">Figures</h3>
-
     <div class="results-groups">
 
       <div class="results-card">
@@ -101,7 +101,7 @@ gasForm.addEventListener("click", function (event) {
       </div>
 
       <div class="results-card">
-        <h4>National Average</h4>
+        <h4 class="results-section-title">National Average</h4>
 
         <div class="results-highlight">
           <div class="results-row">
@@ -125,7 +125,7 @@ gasForm.addEventListener("click", function (event) {
 
     <br>
    <hr>
-    <h3 class="script">Scripting</h3>
+    <h3 class="scriptHeader">Scripting</h3>
 
     <div class="script-wrap">
     <div class="script-grid">
@@ -227,7 +227,7 @@ gasForm.addEventListener("click", function (event) {
     </div>
     </div>
            <hr>
-    <h3 class="script">Next Steps</h3>
+    <h3 class="scriptHeader">Next Steps</h3>
     <p class="script">
     The links below are useful follow-up steps the customer can take to reduce their gas usage.
     </p>
