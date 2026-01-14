@@ -1,126 +1,313 @@
+/* =========================================================
+   MODAL
+   ========================================================= */
+
 .modal {
-    display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    z-index: 15; /* Sit on top */
-    left: 0;
-    top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
-    background-color: rgb(0,0,0); /* Fallback color */
-    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-  }
-  
-  /* Modal Content/Box */
-  .modal-content {
-    background-color: #fefefe;
-    margin: 10% auto; /* 15% from the top and centered */
-    padding: 20px;
-    border: 1px solid #888;
-    width: 80%; /* Could be more or less, depending on screen size */
-  }
-  
-  /* The Close Button */
-  .close {
-    color: #aaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-  }
-  
-  .close:hover,
-  .close:focus {
-    color: black;
-    text-decoration: none;
-    cursor: pointer;
-  }
-
-  form{
-    display: flex;
-    padding: 2rem;
-    justify-content: space-evenly;
-  }
-
-  #submit-form{
-    font-size: 1rem;
-    font-weight: 600;
-    width: 110px;
-    background-color: #E71E70;
-    color: #fafafa;
-    border: 1px solid #E71E70;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: 0.15s ease-in-out;
-  }
-
-  #submit-form:hover{
-    background-color: #fafafa;
-    color: #E71E70;
-  }
-
-  .form-group{
-    display: flex;
-    flex-direction: column;
-    height: 90%;
-    justify-content: space-evenly;
-  }
-
-  input, label{
-    margin: 2px;
-  }
-
-  .results-groups{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-    padding: 2rem;
-  }
-
-  .results-group{
-    width: 40%;
-  }
-
-.script{
-  padding: 1rem;
+  display: none;
+  position: fixed;
+  z-index: 15;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0,0,0,0.4);
 }
 
-.gas-links{
-  display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
+.modal-content {
+  background-color: #fff;
+  margin: 6% auto;
+  padding: 20px;
+  border-radius: 12px;
+  width: 85%;
+  max-width: 1200px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.15);
 }
 
-.gas-link{
-  font-weight: 600;
-  text-decoration: none;
+/* Close button */
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
   cursor: pointer;
+}
+
+/* =========================================================
+   INPUT FORM
+   ========================================================= */
+
+.input-form{
+  padding: 2rem;
+}
+
+.input-grid{
+  display: grid;
+  grid-template-columns: repeat(4, minmax(180px, 1fr));
+  gap: 20px;
+  align-items: end;
+}
+
+.input-card{
+  display: flex;
+  flex-direction: column;
+}
+
+.input-card label{
+  font-size: 13px;
+  font-weight: 600;
+  margin-bottom: 6px;
+  color: #333;
+}
+
+.input-card input{
+  height: 42px;
+  padding: 8px 10px;
+  font-size: 14px;
+  border-radius: 6px;
+  border: 1px solid #bfc3d9;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.input-card input:focus{
+  outline: none;
+  border-color: #727272;
+  box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.15);
+}
+
+.input-submit{
+  display: flex;
+  align-items: flex-end;
+}
+
+.input-submit button{
+  width: 100%;
+  height: 42px;
+  font-size: 15px;
+  font-weight: 700;
+  background-color: #727272;
   color: #fafafa;
-  background-color: #E71E70;
-  padding: 5px 15px;
-  border-radius: 5px;
-  border: 1px solid #E71E70;
+  border: 1px solid #727272;
+  border-radius: 6px;
+  cursor: pointer;
   transition: 0.15s ease-in-out;
 }
 
-.gas-link:hover{
-  color: #E71E70;
+.input-submit button:hover{
   background-color: #fafafa;
-  border: 1px solid #E71E70;
+  color: #727272;
 }
 
-.gas-card{
-  margin: 1rem;
-  border: 1px solid #E71E70;
+/* =========================================================
+   RESULTS UI
+   ========================================================= */
+
+.results-groups{
+  display: grid;
+  grid-template-columns: repeat(2, minmax(320px, 1fr));
+  gap: 20px;
+  padding: 2rem;
+}
+
+.results-card{
+  background: #fff;
+  border: 1px solid #e6e6e6;
+  border-radius: 12px;
+  padding: 16px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+
+.results-card h4{
+  margin: 0 0 10px;
+  font-size: 16px;
+}
+
+.results-highlight{
+  border: 1px solid #f0f0f0;
+  border-radius: 10px;
+  padding: 12px;
+  background: #fafafa;
+  margin-bottom: 12px;
+}
+
+.results-section{
+  margin-top: 14px;
+  padding-top: 12px;
+  border-top: 1px solid #f0f0f0;
+}
+
+.results-section-title{
+  font-size: 12px;
+  font-weight: 700;
+  color: #666;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+.results-row{
   display: flex;
-  padding: 1rem;
-  flex-direction: column;
-  max-width: 200px;
-  text-align: center;
-  justify-content: space-evenly;
-  border-radius: 5px;
+  justify-content: space-between;
+  padding: 8px 0;
+  border-top: 1px solid #f6f6f6;
 }
 
-.gas-card p{
-  margin: 1rem;
+.results-row:first-child{
+  border-top: none;
+}
+
+.results-label{
+  color: #333;
+}
+
+.results-value{
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.results-pill{
+  font-size: 12px;
+  padding: 4px 8px;
+  border-radius: 999px;
+  border: 1px solid #e9e9e9;
+  background: #fff;
+  margin-left: 6px;
+  color: #666;
+}
+
+/* =========================================================
+   SCRIPTING UI
+   ========================================================= */
+
+.script{
+  padding: 1rem 2rem;
+}
+
+.script-wrap{
+  padding: 0 2rem 2rem;
+}
+
+.script-grid{
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 14px;
+}
+
+.script-card{
+  border: 1px solid #e6e6e6;
+  border-radius: 12px;
+  background: #fff;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+  overflow: hidden;
+}
+
+.script-card summary{
+  cursor: pointer;
+  padding: 14px 16px;
+  display: flex;
+  justify-content: space-between;
+  font-weight: 700;
+  list-style: none;
+}
+
+.script-card summary::-webkit-details-marker{
+  display: none;
+}
+
+.script-meta{
+  font-size: 12px;
+  color: #666;
+}
+
+.script-body{
+  padding: 14px 16px;
+  border-top: 1px solid #f0f0f0;
+  line-height: 1.55;
+}
+
+.script-callout{
+  margin-top: 12px;
+  padding: 10px 12px;
+  border: 1px solid #f0f0f0;
+  border-radius: 10px;
+  background: #fafafa;
+}
+
+/* =========================================================
+   LINKS / NEXT STEPS
+   ========================================================= */
+
+.links-grid{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+  padding: 1.5rem 2rem 2.5rem;
+}
+
+.link-card{
+  border: 1px solid #727272;
+  border-radius: 12px;
+  padding: 16px;
+  background: #fff;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   text-align: center;
+}
+
+.link-title{
+  font-weight: 700;
+  font-size: 15px;
+  margin-bottom: 6px;
+}
+
+.link-text{
+  font-size: 14px;
+  color: #444;
+  margin-bottom: 16px;
+}
+
+.link-action{
+  font-weight: 600;
+  text-decoration: none;
+  color: #fafafa;
+  background-color: #727272;
+  padding: 8px 16px;
+  border-radius: 6px;
+  border: 1px solid #333;
+  transition: 0.15s ease-in-out;
+}
+
+.link-action:hover{
+  background-color: #fafafa;
+  color: #333;
+}
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 900px){
+  .input-grid{
+    grid-template-columns: 1fr;
+  }
+
+  .results-groups{
+    grid-template-columns: 1fr;
+    padding: 1rem;
+  }
+
+  .script-wrap{
+    padding: 0 1rem 1.5rem;
+  }
+
+  .links-grid{
+    padding: 1rem;
+  }
 }

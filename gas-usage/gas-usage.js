@@ -15,7 +15,6 @@ gasForm.addEventListener("click", function (event) {
     const firstDateInput = document.getElementById("first-date");
     const secondDateInput = document.getElementById("second-date");
 
-
     // Split the date strings into year, month, and day components
     const [firstYear, firstMonth, firstDay] = firstDateInput.value.split("-");
     const [secondYear, secondMonth, secondDay] = secondDateInput.value.split("-");
@@ -41,94 +40,239 @@ gasForm.addEventListener("click", function (event) {
     const daysDifference = timeDifferenceMs / (1000 * 60 * 60 * 24);
     const carbonTaxTotal = carbonTaxRate * daysDifference;
     const unitsTotal = mrConsumptionInput * (unitRate + carbonTaxRate)
-    const standingChargeTotal = dailyChargeRate * daysDifference
-    const totalSpend = standingChargeTotal + unitsTotal
 
+    // Standing charge breakdown (fix + clarity)
+    const gniStandingChargeTotal = standingChargeRate * daysDifference
+    const prepayServiceChargeTotal = prepayServiceChargeRate * daysDifference
+    const combinedDailyChargesTotal = dailyChargeRate * daysDifference
+
+    const totalSpend = combinedDailyChargesTotal + unitsTotal
+
+    // Formatting helpers
+    const euro = (n) => `€${Number(n).toFixed(2)}`;
+    const units = (n) => Number(n).toFixed(2);
+
+    const perDay = (n) => `€${Number(n).toFixed(2)} per day`;
+    const money = (n) => `€${Number(n).toFixed(2)}`;
 
     results.innerHTML = `
-    <h3 class="script">Figures</h3>
+    <h3 class="scriptHeader">Figures</h3>
+
     <div class="results-groups">
-    <div class="results-group">
-    <p>Days between Reads: ${daysDifference}</p>
-    <p>Units Used: ${mrConsumptionInput}</p>
-    <p>Cost per Unit: €${unitRate}c</p>
-    <p>Carbon Tax per Unit: €${carbonTaxRate}c</p>
-    <p>Total Carbon Tax: €${carbonTaxTotal}c</p>
-    <p>Total Unit Costs: €${unitsTotal}c</p>
-    <p>Standing Charge: €${standingChargeRate}c</p>
-    <p>Total Standing Charge: €${standingChargeTotal.toFixed(2)}</p>
-    <p> Total Spend: ${totalSpend.toFixed(2)}</p>
-    <p> Average Daily Spend (This Customer): €${(totalSpend / daysDifference).toFixed(2)}</p>
+
+      <div class="results-card">
+        <h4 class="results-section-title">This Customer</h4>
+
+        <div class="results-highlight">
+          <div class="results-row">
+            <span class="results-label">Total spend</span>
+            <span class="results-value">${euro(totalSpend)}</span>
+          </div>
+          <div class="results-row">
+            <span class="results-label">Average daily spend</span>
+            <span class="results-value">${euro(totalSpend / daysDifference)} <span class="results-pill">per day</span></span>
+          </div>
+        </div>
+
+        <div class="results-section">
+          <p class="results-section-title">Usage</p>
+          <div class="results-row"><span class="results-label">Days between reads</span><span class="results-value">${daysDifference}</span></div>
+          <div class="results-row"><span class="results-label">Units used</span><span class="results-value">${mrConsumptionInput}</span></div>
+        </div>
+
+        <div class="results-section">
+          <p class="results-section-title">Unit Costs</p>
+          <div class="results-row"><span class="results-label">Unit rate</span><span class="results-value">${euro(unitRate)} <span class="results-pill">per unit</span></span></div>
+          <div class="results-row"><span class="results-label">Carbon tax</span><span class="results-value">${euro(carbonTaxRate)} <span class="results-pill">per unit</span></span></div>
+          <div class="results-row"><span class="results-label">Total unit costs</span><span class="results-value">${euro(unitsTotal)}</span></div>
+        </div>
+
+        <div class="results-section">
+          <p class="results-section-title">Daily Charges</p>
+          <div class="results-row"><span class="results-label">GNI standing charge</span><span class="results-value">${euro(standingChargeRate)} <span class="results-pill">per day</span></span></div>
+          <div class="results-row"><span class="results-label">Prepay service charge</span><span class="results-value">${euro(prepayServiceChargeRate)} <span class="results-pill">per day</span></span></div>
+          <div class="results-row"><span class="results-label">Combined daily charges</span><span class="results-value">${euro(dailyChargeRate)} <span class="results-pill">per day</span></span></div>
+       </div>
+          <div class ="results-highlight">
+          <div class="results-row"><span class="results-label">Total GNI standing charge</span><span class="results-value">${euro(gniStandingChargeTotal)}</span></div>
+          <div class="results-row"><span class="results-label">Total prepay service charge</span><span class="results-value">${euro(prepayServiceChargeTotal)}</span></div>
+          <div class="results-row"><span class="results-label">Total combined daily charges</span><span class="results-value">${euro(combinedDailyChargesTotal)}</span></div>
+        </div>
+      </div>
+
+      <div class="results-card">
+        <h4>National Average</h4>
+
+        <div class="results-highlight">
+          <div class="results-row">
+            <span class="results-label">Daily spend estimate</span>
+            <span class="results-value">${euro(nationalAverageSpendDaily)} <span class="results-pill">per day</span></span>
+          </div>
+          <div class="results-row">
+            <span class="results-label">Difference</span>
+            <span class="results-value">${euro((totalSpend / daysDifference) - nationalAverageSpendDaily)} <span class="results-pill">per day</span></span>
+          </div>
+        </div>
+
+        <div class="results-section">
+          <p class="results-section-title">Usage</p>
+          <div class="results-row"><span class="results-label">Yearly average units</span><span class="results-value">${units(nationalAverageUnitsYearly)}</span></div>
+          <div class="results-row"><span class="results-label">Daily average units</span><span class="results-value">${units(nationalAverageUnitsDaily)}</span></div>
+        </div>
+      </div>
+
     </div>
-    <div class="results-group">
-    <p>National Yearly Average Units: ${nationalAverageUnitsYearly.toFixed(2)} </p>
-    <p>National Daily Average: ${nationalAverageUnitsDaily.toFixed(2)} Units</p>
-    <p>National Average Gas Unit Cost: €${(nationalAverageUnitsDaily * daysDifference * unitRate).toFixed(2)}</p>
-    <p>National Average Gas Carbon Tax: €${daysDifference * carbonTaxRate}</p>
-    <p>Standing Charges for the period: €${daysDifference * standingChargeRate}</p>
-    <p>National Average Total Cost for this period: €${((nationalAverageUnitsDaily * unitRate) + (daysDifference * standingChargeTotal)).toFixed(2)}</p>
-    <p>Difference between this customer and national average: €${
-        (totalSpend / daysDifference).toFixed(2) -
-        (nationalAverageUnitsDaily * unitRate + daysDifference * standingChargeTotal).toFixed(2)
-      } </p>
-    </div>
-    </div>
+
     <br>
-    <hr>
+   <hr>
     <h3 class="script">Scripting</h3>
-    <p class="script"><strong>Units</strong></p><p class="script">So, we're doing a read for ${daysDifference} days, in that time you used a total of ${mrConsumptionInput} Kilowatt Hours or "units". 
-    With our Gas Unit rate of €${unitRate}c and the carbon tax per unit of €${carbonTaxRate}c this means you spent €${unitsTotal} on your gas in this period. </p>
-    
-    <p class="script"><strong>Standing Charges</strong></p>
+
+    <div class="script-wrap">
+    <div class="script-grid">
+
+        <details class="script-card" open>
+        <summary>
+            <span>Units</span>
+            <span class="script-meta">${mrConsumptionInput} units over ${daysDifference} days</span>
+        </summary>
+        <div class="script-body">
+            <p>
+            So, we're doing a read for ${daysDifference} days, in that time you used a total of
+            ${mrConsumptionInput} Kilowatt Hours, or "units".
+            With our Gas Unit rate of €${unitRate}c and the carbon tax per unit of €${carbonTaxRate}c,
+            this means you spent ${money(unitsTotal)} on your gas in this period.
+            </p>
+            <div class="script-callout">
+            <strong>Quick summary:</strong> ${mrConsumptionInput} units, ${money(unitsTotal)} total unit costs.
+            </div>
+        </div>
+        </details>
+
+        <details class="script-card" open>
+        <summary>
+            <span>Standing Charges</span>
+            <span class="script-meta">${money(combinedDailyChargesTotal)} total for this period</span>
+        </summary>
+        <div class="script-body">
+            <p>
+            In addition to this there is a standing charge applied by GNI to all gas customers in Ireland.
+            This is charged at ${perDay(standingChargeRate)}.
+            There is also a prepay service charge of ${perDay(prepayServiceChargeRate)}.
+            Your combined daily charges are ${perDay(dailyChargeRate)}, which comes to
+            ${money(combinedDailyChargesTotal)} in total for this time period.
+            </p>
+            <div class="script-callout">
+            <strong>Breakdown:</strong>
+            GNI ${money(gniStandingChargeTotal)}, prepay ${money(prepayServiceChargeTotal)}, combined ${money(combinedDailyChargesTotal)}.
+            </div>
+        </div>
+        </details>
+
+        <details class="script-card">
+        <summary>
+            <span>Standing Charge Dispute</span>
+            <span class="script-meta">How charges apply</span>
+        </summary>
+        <div class="script-body">
+            <p>
+            Standing charges are applied to all gas customers in Ireland by GNI and go towards maintaining the network.
+            They are applied by all suppliers, both prepay and billpay. The prepay service charge is applied by all prepay
+            suppliers and goes towards the service we provide. Standing charges are charged daily so even if you are not
+            using your gas you still need to pay the standing charge. If your meter runs out of credit the standing charge
+            will be taken off future top ups at a rate of 55% towards gas and 45% towards paying off any standing charge
+            debt you have accrued. So you will always get a minimum of 55% of your top ups towards your gas.
+            </p>
+        </div>
+        </details>
+
+        <details class="script-card">
+        <summary>
+            <span>National Average</span>
+            <span class="script-meta">${money(nationalAverageSpendDaily)} estimated daily spend</span>
+        </summary>
+        <div class="script-body">
+            <p>
+            Now we can compare this to the average customer's usage. The average household in Ireland will use
+            ${nationalAverageUnitsYearly} units per year according to the CRU.
+            Bear in mind that people usually use significantly more gas in winter and very low usage in summer.
+            Based on our rates, the daily cost would be ${money(nationalAverageSpendDaily)} per day on average.
+            </p>
+        </div>
+        </details>
+
+        <details class="script-card" open>
+        <summary>
+            <span>Comparison</span>
+            <span class="script-meta">Customer vs average</span>
+        </summary>
+        <div class="script-body">
+            <p>
+            So if we take these average figures we can see that in the same time period the average customer would use
+            ${nationalAverageUnitsDaily.toFixed(2)} units per day and pay ${money(dailyChargeRate)} per day in combined daily charges.
+            Comparing yourself to them,
+            ${
+                nationalAverageSpendDaily < totalSpend / daysDifference
+                ? `you're ${money((totalSpend / daysDifference) - nationalAverageSpendDaily)} per day above the average`
+                : `you're ${money(nationalAverageSpendDaily - (totalSpend / daysDifference))} per day below the average`
+            }.
+            </p>
+            <div class="script-callout">
+            <strong>Your average daily spend:</strong> ${money(totalSpend / daysDifference)}
+            <br>
+            <strong>National daily estimate:</strong> ${money(nationalAverageSpendDaily)}
+            </div>
+        </div>
+        </details>
+
+    </div>
+    </div>
+           <hr>
+    <h3 class="script">Next Steps</h3>
     <p class="script">
-    In addition to this there is
-    a standing charge, this is a charge applied by GNI to all gas customers in Ireland and it's charged at a rate of €${standingChargeRate}c per day. There
-    is also a prepay service charge of €${prepayServiceChargeRate} per day so your combined daily charges are €${dailyChargeRate} per day which would be
-    €${standingChargeTotal.toFixed(2)} in total for this time period.</p>
-    <p class="script"><strong>Standing Charge Dispute</strong></p>
-    <p class="script">
-    Standing charges are applied to all gas customers in Ireland by GNI and go towards maintaining the network. They are applied by all suppliers, both prepay and billpay. The prepay service charge is applied
-    by all prepay suppliers and goes towards the service we provide. Standing charges are charged daily so even if you are not using your gas you still need to pay the standing charge. If your meter runs out of 
-    credit the standing charge will be taken off future top ups at a rate of 55% towards gas and 45% towards paying off any standing charge debt you have accrued. So you will always get a minimum of 55% of your top 
-    ups towards your gas.
+    The links below are useful follow-up steps the customer can take to reduce their gas usage.
     </p>
 
-    <p class="script"><strong>National Average</strong></p>
-    <p class="script">Now we can actually compare this to the average customer's uage. The average household in Ireland will use ${nationalAverageUnitsYearly} which on our rates would be €1902.03
-        kwh of Gas per year according to the CRU. Bear in mind that people would usually use significantly more gas in
-        winter and we would usually see very low gas usage in the summer, or even some poeple would turn their gas off
-        for sevearl months. So the daily cost would be €${nationalAverageSpendDaily.toFixed(2)}c per day but to get this average you may use
-        approximately €${(nationalAverageSpendDaily * 2).toFixed(2)}c  per day in the winter and none in the summer.</p>
-    
-    <p class="script"><strong>Comparison</strong></p>
-     <p class="script">So if we take this average figures we can see that in the same time period the average customer would use ${nationalAverageUnitsDaily.toFixed(2)}
-        Units per day which would cost them €${(nationalAverageUnitsDaily * (unitRate + carbonTaxRate)).toFixed(2)}c for their Gas and pay €${dailyChargeRate.toFixed(2)}c in the combined daily charges for a total of €${nationalAverageSpendDaily.toFixed(2)}c. 
-        So comparing yourself to them 
-        ${nationalAverageSpendDaily < totalSpend / daysDifference ? `you're €${((totalSpend/daysDifference)-nationalAverageSpendDaily).toFixed(2)}c per day above the average` : `you're €${(nationalAverageSpendDaily-((totalSpend/daysDifference))).toFixed(2)}c per day below the average`}.</p>
-        
-    <h3 class="script">Links</h3>
-    <p class="script">The below links will be useful follow up steps that the customer can take to reduce their usage on Gas</p>
-        <div class="gas-links">
-        <div class="gas-card">
-        <p>Click here to view Gas Usage Tips on the Knowledge Base</p>
-        <a class="gas-link" target="_blank" href="https://yuno.shelf-eu.com/read/93860c86-9221-4e9a-914d-a5c3599ae60b/?searchEventId=01J6EHJ249W37941BGK1EG7MXB&source=shelf&trigger=title&view=snippet-view#gas-savings-usage-tips">Gas Usage Tips</a>
-        </div><div class="gas-card">
-        <p>Click here to Generate a Gas Statement</p>
-        <a class="gas-link" target="_blank" href="http://crmnext:8181/Finance/CustomerStatement.aspx?id=ContentPlaceHolder1_StatementTypeList_ddlStatementType&value=2">Gas Statement</a>
-        </div>
-        <div class="gas-card">
-        <p>Click here to check if the customer has a BER report</p>
-        <a class="gas-link" target="_blank" href="https://ndber.seai.ie/PASS/BER/Search.aspx">BER Check</a>
-        </div>
-        <div class="gas-card">
-        <p>Click here to get details on Energy Saving Kits from a library</p>
-        <a class="gas-link" target="_blank" href="https://www.google.com/search?q=library+energy+kit&rlz=1C1GCEU_enIE1013IE1013&oq=library+energy+kit&aqs=chrome..69i57j0i22i30j69i60l2.2665j0j7&sourceid=chrome&ie=UTF-8">Energy Saving Kits</a>
-        </div></div>
-        `
+    <div class="links-grid">
+
+    <div class="link-card">
+        <p class="link-title">Gas Usage Tips</p>
+        <p class="link-text">View practical advice on reducing gas usage.</p>
+        <a class="link-action" target="_blank"
+        href="https://yuno.shelf-eu.com/read/93860c86-9221-4e9a-914d-a5c3599ae60b/?searchEventId=01J6EHJ249W37941BGK1EG7MXB&source=shelf&trigger=title&view=snippet-view#gas-savings-usage-tips">
+        View Tips
+        </a>
+    </div>
+
+    <div class="link-card">
+        <p class="link-title">Gas Statement</p>
+        <p class="link-text">Generate a detailed gas statement for the customer.</p>
+        <a class="link-action" target="_blank"
+        href="http://crmnext:8181/Finance/CustomerStatement.aspx?id=ContentPlaceHolder1_StatementTypeList_ddlStatementType&value=2">
+        Generate Statement
+        </a>
+    </div>
+
+    <div class="link-card">
+        <p class="link-title">BER Report</p>
+        <p class="link-text">Check whether the property has a BER rating.</p>
+        <a class="link-action" target="_blank"
+        href="https://ndber.seai.ie/PASS/BER/Search.aspx">
+        BER Check
+        </a>
+    </div>
+
+    <div class="link-card">
+        <p class="link-title">Energy Saving Kits</p>
+        <p class="link-text">Find local libraries offering energy saving kits.</p>
+        <a class="link-action" target="_blank"
+        href="https://www.google.com/search?q=library+energy+kit">
+        Find Kits
+        </a>
+    </div>
+
+    </div>
+    `
 });
-
-
-// Get the button that opens the modal
 
 // Get the <span> element that closes the modal
 var span = document.getElementsByClassName("close")[0];
@@ -149,4 +293,3 @@ window.onclick = function (event) {
         modal.style.display = "none";
     }
 }
-

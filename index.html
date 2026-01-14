@@ -531,25 +531,42 @@
 
     <div id="myModal" class="modal">
       <!-- Modal content -->
-      <div class="modal-content">
-        <span class="close">&times;</span>
-        <form action="">
-          <div class="form-group">
-            <input type="date" id="first-date" name="first-date" />
+    <div class="modal-content">
+      <span class="close">&times;</span>
+
+      <form class="input-form">
+        <div class="input-grid">
+
+          <div class="input-card">
             <label for="first-date">Date of first read</label>
+            <input type="date" id="first-date" name="first-date" />
           </div>
-          <div class="form-group">
-            <input type="date" id="second-date" name="second-date" />
+
+          <div class="input-card">
             <label for="second-date">Date of second read</label>
+            <input type="date" id="second-date" name="second-date" />
           </div>
-          <div class="form-group">
-            <input type="number" id="mr-consumption" name="mr-consumption" />
-            <label for="mr-consumption">mrConsumption figure</label>
+
+          <div class="input-card">
+            <label for="mr-consumption">Consumption (kWh)</label>
+            <input
+              type="number"
+              id="mr-consumption"
+              name="mr-consumption"
+              placeholder="e.g. 34"
+            />
           </div>
-          <input type="submit" id="submit-form" />
-        </form>
-        <div id="results"></div>
-      </div>
+
+          <div class="input-card input-submit">
+            <button type="submit" id="submit-form">Submit</button>
+          </div>
+
+        </div>
+      </form>
+
+      <div id="results"></div>
+    </div>
+
     </div>
     <script type="module" src="app.js"></script>
     <script src="QuickLinksScript.js"></script>
