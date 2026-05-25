@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 170 120" role="img" aria-label="Angled power token coin">
+  <defs>
+    <linearGradient id="coinTop" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0" stop-color="#ffe978"/>
+      <stop offset="0.4" stop-color="#ffd62c"/>
+      <stop offset="0.76" stop-color="#f3a20b"/>
+      <stop offset="1" stop-color="#b86500"/>
+    </linearGradient>
+    <linearGradient id="coinSide" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0" stop-color="#d48408"/>
+      <stop offset="1" stop-color="#8b4500"/>
+    </linearGradient>
+    <radialGradient id="coinGlow" cx="0.3" cy="0.2" r="0.85">
+      <stop offset="0" stop-color="#fffbd6" stop-opacity="0.96"/>
+      <stop offset="0.38" stop-color="#fffbd6" stop-opacity="0.22"/>
+      <stop offset="1" stop-color="#fffbd6" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="coinShadow" x="-25%" y="-25%" width="150%" height="170%">
+      <feDropShadow dx="0" dy="2" stdDeviation="2.2" flood-color="#7c2d12" flood-opacity="0.58"/>
+    </filter>
+  </defs>
+
+  <g filter="url(#coinShadow)">
+    <ellipse cx="85" cy="68" rx="72" ry="32" fill="url(#coinSide)"/>
+    <ellipse cx="85" cy="52" rx="72" ry="32" fill="url(#coinTop)" stroke="#aa530a" stroke-width="4"/>
+    <ellipse cx="85" cy="52" rx="54" ry="23" fill="none" stroke="#ad590a" stroke-opacity="0.72" stroke-width="2.6"/>
+    <ellipse cx="85" cy="52" rx="72" ry="32" fill="url(#coinGlow)"/>
+    <path d="M90 28h22L94 56h18L78 90l8-25H70z" fill="#ffffff" opacity="0.98"/>
+  </g>
+</svg>

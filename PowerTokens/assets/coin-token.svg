@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-label="Power token coin">
+  <defs>
+    <radialGradient id="coinShine" cx="0.3" cy="0.25" r="0.7">
+      <stop offset="0" stop-color="#fffde7" stop-opacity="0.95"/>
+      <stop offset="0.35" stop-color="#fffde7" stop-opacity="0.2"/>
+      <stop offset="1" stop-color="#fffde7" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="coinBody" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0" stop-color="#ffe16a"/>
+      <stop offset="0.38" stop-color="#ffd22e"/>
+      <stop offset="0.72" stop-color="#f7a90b"/>
+      <stop offset="1" stop-color="#c16d00"/>
+    </linearGradient>
+    <linearGradient id="coinRim" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0" stop-color="#ffec8a"/>
+      <stop offset="1" stop-color="#c97d0a"/>
+    </linearGradient>
+    <filter id="coinGlow" x="-25%" y="-25%" width="150%" height="150%">
+      <feDropShadow dx="0" dy="1.5" stdDeviation="1.8" flood-color="#7c2d12" flood-opacity="0.55"/>
+    </filter>
+  </defs>
+
+  <g filter="url(#coinGlow)">
+    <ellipse cx="64" cy="66" rx="51" ry="38" fill="url(#coinBody)" stroke="url(#coinRim)" stroke-width="5"/>
+    <ellipse cx="64" cy="66" rx="38" ry="27" fill="none" stroke="#b35d08" stroke-opacity="0.7" stroke-width="2.8"/>
+    <ellipse cx="64" cy="66" rx="51" ry="38" fill="url(#coinShine)"/>
+    <path d="M66 35h20L70 59h15L56 97l7-28H50z" fill="#ffffff" opacity="0.98"/>
+  </g>
+</svg>

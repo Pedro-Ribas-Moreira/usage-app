@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 640" role="img" aria-label="Cauldron pot">
+  <defs>
+    <radialGradient id="rimGlow" cx="0.5" cy="0.12" r="0.75">
+      <stop offset="0" stop-color="#ffe1b8" stop-opacity="0.65"/>
+      <stop offset="0.55" stop-color="#ffe1b8" stop-opacity="0.08"/>
+      <stop offset="1" stop-color="#ffe1b8" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="metalBody" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0" stop-color="#2b3240"/>
+      <stop offset="0.45" stop-color="#171d2a"/>
+      <stop offset="1" stop-color="#090d15"/>
+    </linearGradient>
+    <radialGradient id="bodyLight" cx="0.22" cy="0.32" r="0.55">
+      <stop offset="0" stop-color="#ffffff" stop-opacity="0.18"/>
+      <stop offset="1" stop-color="#ffffff" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="rimMetal" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0" stop-color="#676f7c"/>
+      <stop offset="0.55" stop-color="#252d3a"/>
+      <stop offset="1" stop-color="#121722"/>
+    </linearGradient>
+  </defs>
+
+  <ellipse cx="450" cy="194" rx="300" ry="70" fill="#080d16"/>
+  <ellipse cx="450" cy="188" rx="280" ry="56" fill="url(#rimGlow)"/>
+  <ellipse cx="450" cy="198" rx="300" ry="64" fill="url(#rimMetal)" stroke="#0b0f17" stroke-width="10"/>
+  <ellipse cx="450" cy="202" rx="255" ry="42" fill="#070b13"/>
+
+  <path d="M175 235c16 168 105 277 275 292 170-15 259-124 275-292 8-87-20-120-275-120S167 148 175 235z"
+        fill="url(#metalBody)" stroke="#080c15" stroke-width="10"/>
+  <ellipse cx="450" cy="345" rx="245" ry="186" fill="url(#bodyLight)"/>
+
+  <ellipse cx="129" cy="285" rx="44" ry="56" fill="none" stroke="#131a27" stroke-width="22"/>
+  <ellipse cx="771" cy="285" rx="44" ry="56" fill="none" stroke="#131a27" stroke-width="22"/>
+
+</svg>
