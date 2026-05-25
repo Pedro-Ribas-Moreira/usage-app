@@ -42,30 +42,30 @@
    INPUT FORM
    ========================================================= */
 
-.input-form{
+.input-form {
   padding: 2rem;
 }
 
-.input-grid{
+.input-grid {
   display: grid;
   grid-template-columns: repeat(4, minmax(180px, 1fr));
   gap: 20px;
   align-items: end;
 }
 
-.input-card{
+.input-card {
   display: flex;
   flex-direction: column;
 }
 
-.input-card label{
+.input-card label {
   font-size: 13px;
   font-weight: 600;
   margin-bottom: 6px;
   color: #333;
 }
 
-.input-card input{
+.input-card input {
   height: 42px;
   padding: 8px 10px;
   font-size: 14px;
@@ -74,18 +74,18 @@
   transition: border-color 0.15s ease, box-shadow 0.15s ease;
 }
 
-.input-card input:focus{
+.input-card input:focus {
   outline: none;
   border-color: #727272;
   box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.15);
 }
 
-.input-submit{
+.input-submit {
   display: flex;
   align-items: flex-end;
 }
 
-.input-submit button{
+.input-submit button {
   width: 100%;
   height: 42px;
   font-size: 15px;
@@ -98,7 +98,7 @@
   transition: 0.15s ease-in-out;
 }
 
-.input-submit button:hover{
+.input-submit button:hover {
   background-color: #fafafa;
   color: #727272;
 }
@@ -107,20 +107,21 @@
    RESULTS UI
    ========================================================= */
 
-.scriptHeader{
+.scriptHeader {
   padding: 1rem;
   font-size: 1.4rem;
   font-weight: 700;
   color: #363636;
 }
-.results-groups{
+
+.results-groups {
   display: grid;
   grid-template-columns: repeat(2, minmax(320px, 1fr));
   gap: 20px;
   padding: 2rem;
 }
 
-.results-card{
+.results-card {
   background: #fff;
   border: 1px solid #e6e6e6;
   border-radius: 12px;
@@ -128,12 +129,12 @@
   box-shadow: 0 2px 10px rgba(0,0,0,0.05);
 }
 
-.results-card h4{
+.results-card h4 {
   margin: 0 0 10px;
   font-size: 16px;
 }
 
-.results-highlight{
+.results-highlight {
   border: 1px solid #f0f0f0;
   border-radius: 10px;
   padding: 12px;
@@ -141,13 +142,13 @@
   margin-bottom: 12px;
 }
 
-.results-section{
+.results-section {
   margin-top: 14px;
   padding-top: 12px;
   border-top: 1px solid #f0f0f0;
 }
 
-.results-section-title{
+.results-section-title {
   font-size: 12px;
   font-weight: 700;
   color: #666;
@@ -156,27 +157,27 @@
   margin-bottom: 8px;
 }
 
-.results-row{
+.results-row {
   display: flex;
   justify-content: space-between;
   padding: 8px 0;
   border-top: 1px solid #f6f6f6;
 }
 
-.results-row:first-child{
+.results-row:first-child {
   border-top: none;
 }
 
-.results-label{
+.results-label {
   color: #333;
 }
 
-.results-value{
+.results-value {
   font-weight: 600;
   white-space: nowrap;
 }
 
-.results-pill{
+.results-pill {
   font-size: 12px;
   padding: 4px 8px;
   border-radius: 999px;
@@ -190,21 +191,21 @@
    SCRIPTING UI
    ========================================================= */
 
-.script{
+.script {
   padding: 1rem 2rem;
 }
 
-.script-wrap{
+.script-wrap {
   padding: 0 2rem 2rem;
 }
 
-.script-grid{
+.script-grid {
   display: grid;
   grid-template-columns: 1fr;
   gap: 14px;
 }
 
-.script-card{
+.script-card {
   border: 1px solid #e6e6e6;
   border-radius: 12px;
   background: #fff;
@@ -212,7 +213,7 @@
   overflow: hidden;
 }
 
-.script-card summary{
+.script-card summary {
   cursor: pointer;
   padding: 14px 16px;
   display: flex;
@@ -221,22 +222,22 @@
   list-style: none;
 }
 
-.script-card summary::-webkit-details-marker{
+.script-card summary::-webkit-details-marker {
   display: none;
 }
 
-.script-meta{
+.script-meta {
   font-size: 12px;
   color: #666;
 }
 
-.script-body{
+.script-body {
   padding: 14px 16px;
   border-top: 1px solid #f0f0f0;
   line-height: 1.55;
 }
 
-.script-callout{
+.script-callout {
   margin-top: 12px;
   padding: 10px 12px;
   border: 1px solid #f0f0f0;
@@ -248,14 +249,14 @@
    LINKS / NEXT STEPS
    ========================================================= */
 
-.links-grid{
+.links-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 20px;
   padding: 1.5rem 2rem 2.5rem;
 }
 
-.link-card{
+.link-card {
   border: 1px solid #727272;
   border-radius: 12px;
   padding: 16px;
@@ -267,19 +268,19 @@
   text-align: center;
 }
 
-.link-title{
+.link-title {
   font-weight: 700;
   font-size: 15px;
   margin-bottom: 6px;
 }
 
-.link-text{
+.link-text {
   font-size: 14px;
   color: #444;
   margin-bottom: 16px;
 }
 
-.link-action{
+.link-action {
   font-weight: 600;
   text-decoration: none;
   color: #fafafa;
@@ -290,7 +291,7 @@
   transition: 0.15s ease-in-out;
 }
 
-.link-action:hover{
+.link-action:hover {
   background-color: #fafafa;
   color: #333;
 }
@@ -299,21 +300,21 @@
    RESPONSIVE
    ========================================================= */
 
-@media (max-width: 900px){
-  .input-grid{
+@media (max-width: 900px) {
+  .input-grid {
     grid-template-columns: 1fr;
   }
 
-  .results-groups{
+  .results-groups {
     grid-template-columns: 1fr;
     padding: 1rem;
   }
 
-  .script-wrap{
+  .script-wrap {
     padding: 0 1rem 1.5rem;
   }
 
-  .links-grid{
+  .links-grid {
     padding: 1rem;
   }
 }

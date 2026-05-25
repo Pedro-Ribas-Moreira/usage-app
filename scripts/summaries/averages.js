@@ -1,14 +1,12 @@
-let euro = Intl.NumberFormat('en-DE', {
-  style: 'currency',
-  currency: 'EUR',
-});
+import { euro } from '../utils/format.js';
+
 const averagesSummary = (arr) => {
   const dayAverage = document.querySelector('#day-average');
   const weekAverage = document.querySelector('#week-average');
   const monthAverage = document.querySelector('#month-average');
 
   let totals = 0;
-  for (var i = 1; i < arr.length; i++) {
+  for (let i = 1; i < arr.length; i++) {
     let a = Number(arr[i][arr[i].length - 1].replace(/[^\d.-]/g, ''));
     totals += a;
   }

@@ -30,7 +30,7 @@
     <link rel="stylesheet" href="style.css" />
     <title>Genio - Usage Tool</title>
     <link rel="icon" href="./assets/logo.png" />
-    <link rel="stylesheet" href="gas-usage/gas-usage_v1.css" />
+    <link rel="stylesheet" href="gas-usage/gas-usage.css" />
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-MDYXLHV6QX"></script>
     <link
@@ -49,14 +49,6 @@
 
       gtag('config', 'G-MDYXLHV6QX');
     </script>
-    <!-- FONT AWESOME -->
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
-      integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    />
     <!-- TAILWIND -->
     <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp"></script>
     <script>
@@ -94,7 +86,7 @@
 
     <link rel="stylesheet" href="./Moneta/moneta.css" />
     <!-- <script defer src="./Moneta/all-dropdowns.js"></script> -->
-    <script defer type="module" src="./Moneta/moneta.js"></script>
+    <!-- <script defer type="module" src="./Moneta/moneta.js"></script> -->
   </head>
 
   <body class="bg-rose-50 dark:bg-slate-900 overflow-x-hidden desktop:overflow-hidden">
@@ -159,7 +151,7 @@
 
       <div class="flex gap-2">
         <button
-          id="resetBtn"
+          id="reset-btn"
           class="bg-mainPink hover:bg-hoverPink text-white font-bold py-2 px-4 rounded reset-btn active:translate-y-.5 active:drop-shadow-lg shadow-sm rounded-full px-8 dark:bg-blue-500 dark:hover:bg-blue-400"
           role="button"
         >
@@ -189,7 +181,7 @@
         </div>
 
         <div
-          id="customerSettingsForm"
+          id="customer-settings-form"
           class="flex flex-col gap-2 bg-white dark:bg-slate-700 dark:text-white w-80 p-6 drop-shadow-lg rounded-lg m-auto mt-20 hidden"
         >
           <h2 class="text-xl font-semibold text-gray-700 dark:text-white text-center mb-4">Customer Usage Settings</h2>
@@ -227,7 +219,7 @@
           <select
             class="border-mainPink focus:outline-none focus:border-hoverPink focus:ring-hoverPink dark:border-white dark:bg-slate-700 dark:border-slate-100 dark:border-2 dark:border-slate-700 dark:focus:border-blue-500 dark:focus:ring-blue-700 rounded w-full"
             name="EAB"
-            id="EAB"
+            id="eab"
           >
             <option value="" selected disabled>Select Property Type</option>
             <option value="eab-one">1-2 Bed Apartment</option>
@@ -297,6 +289,7 @@
             <p class="absolute top-4 right-6 text-xs text-white bg-black/20 px-3 py-1 rounded-full">
               <span id="total-days" class="font-medium">99</span> days
             </p>
+            <p id="date-range" class="text-xs text-white/70 mt-1"></p>
           </div>
 
           <!-- ------------****  BROADBAND TOTAL ------------****  -->
@@ -420,20 +413,21 @@
 
             <h4 class="text-white text-lg font-semibold mb-2 grow">Tariff Comparison</h4>
 
-            <div class="grid grid-cols-3 grid-rows-2 gap-2">
+            <div id="tc-grid" class="grid grid-cols-2 grid-rows-2 gap-2">
               <div class="text-md flex items-end">24H</div>
               <div class="text-md flex items-end">D/N</div>
-              <div class="text-md flex items-end">TOU</div>
+              <div class="text-md flex items-end tou-column hidden">TOU</div>
               <div class="text-lg border-t border-white/30 py-2 font-medium grid place-content-start">
                 <span id="total-spent-24">€99.99 </span>
               </div>
               <div class="text-lg border-t border-white/30 py-2 font-medium grid place-content-start">
                 <span id="total-spent-dn">€99.99</span>
               </div>
-              <div class="text-lg border-t border-white/30 py-2 font-medium grid place-content-start">
+              <div class="text-lg border-t border-white/30 py-2 font-medium place-content-start tou-column hidden">
                 <span id="total-spent-tou">€99.99</span>
               </div>
             </div>
+            <p id="tariff-recommendation" class="text-xs mt-3 text-white/90 border-t border-white/20 pt-2"></p>
           </div>
 
           <div
@@ -479,10 +473,17 @@
 
       <!-- chart -->
       <div
-        class="desktop:col-span-4 laptop:col-span-4 col-span-8 desktop:row-span-5 laptop:row-span-5 row-span-1 shadow bg-white dark:bg-slate-700 rounded-3xl min-h-96"
+        class="desktop:col-span-4 laptop:col-span-4 col-span-8 desktop:row-span-5 laptop:row-span-5 row-span-1 shadow bg-white dark:bg-slate-700 rounded-3xl min-h-96 relative"
       >
-        <canvas id="timeChart" class="carousel-item hidden"></canvas>
-        <canvas id="myChart" class="carousel-item"></canvas>
+        <div class="absolute top-3 right-4 z-10 flex gap-2">
+          <button id="chart-view-daily" class="text-xs px-3 py-1 rounded-full bg-mainPink text-white dark:bg-blue-500">Daily</button>
+          <button id="chart-view-profile" class="text-xs px-3 py-1 rounded-full bg-gray-100 text-gray-500 dark:bg-slate-600 dark:text-slate-300">Typical Day</button>
+          <button id="chart-view-dow" class="text-xs px-3 py-1 rounded-full bg-gray-100 text-gray-500 dark:bg-slate-600 dark:text-slate-300">Typical Week</button>
+        </div>
+        <canvas id="time-chart" class="carousel-item hidden"></canvas>
+        <canvas id="main-chart" class="carousel-item"></canvas>
+        <canvas id="profile-chart" class="carousel-item hidden"></canvas>
+        <canvas id="dow-chart" class="carousel-item hidden"></canvas>
       </div>
     </div>
 
@@ -498,7 +499,7 @@
     </div>
 
     <div
-      id="Links-Drawer"
+      id="links-drawer"
       class="drawer fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 transition-opacity ease-in-out hidden"
     >
       <div class="bg-white dark:bg-slate-700 shadow-lg rounded-lg w-auto relative">
@@ -510,7 +511,7 @@
           <div class="border-r-2 pr-8 border-slate-100 mr-4">
             <p class="mb-4 text-xs text-gray-500 dark:text-white uppercase">Website</p>
             <ul
-              id="WebsiteLinks"
+              id="website-links"
               class="website-list bg-white dark:bg-slate-700 dark:text-white flex flex-col items-start gap-4"
             >
               <!-- LIST CREATED IN QuickLinksScript.JS -->
@@ -519,7 +520,7 @@
           <div>
             <p class="mb-4 text-xs text-gray-500 dark:text-white uppercase">Knowledge Base</p>
             <ul
-              id="KnowledgeBaseList"
+              id="knowledge-base-list"
               class="kb-list bg-white dark:bg-slate-700 dark:text-white flex flex-col items-start gap-4"
             >
               <!-- LIST CREATED IN QuickLinksScript.JS -->
@@ -569,13 +570,12 @@
 
     </div>
     <script type="module" src="app.js"></script>
-    <script src="QuickLinksScript.js"></script>
-
-    <script src="clipboard.js"></script>
-    <script src="darkMode.js"></script>
-    <script src="slider.js"></script>
+    <script src="scripts/utils/quickLinks.js"></script>
+    <script src="scripts/utils/clipboard.js"></script>
+    <script src="scripts/utils/darkMode.js"></script>
+    <script src="scripts/utils/slider.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script defer type="module" src="./gas-usage/gas-usage_v1.js"></script>
+    <script defer type="module" src="./gas-usage/gas-usage.js"></script>
   </body>
 </html>

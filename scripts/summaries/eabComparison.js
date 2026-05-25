@@ -1,8 +1,5 @@
-import { prices } from '../prices.js';
-let euro = Intl.NumberFormat('en-DE', {
-  style: 'currency',
-  currency: 'EUR',
-});
+import { prices } from '../core/prices.js';
+import { euro } from '../utils/format.js';
 
 const eabComparison = (tariff, arr, location, eab) => {
   const esbAverageDaily = document.querySelector('#average-eab-daily');
@@ -15,10 +12,8 @@ const eabComparison = (tariff, arr, location, eab) => {
   while (recentTariff === undefined || recentTariff === '') {
     pricesLength--;
     recentTariff = prices[pricesLength];
-    console.log({ recentTariff });
   }
   let lastPrice = recentTariff.prices;
-  console.log({ lastPrice });
 
   let eabValue;
   switch (eab) {
@@ -41,11 +36,7 @@ const eabComparison = (tariff, arr, location, eab) => {
       alert('something went wrong while calculating the national averages');
       return;
   }
-  console.log('National Average - Units per Year: ', eabValue);
-
   let estimateUnitsDay = eabValue / 365;
-
-  console.log('National Average - Units per Day: ', estimateUnitsDay);
 
   let estimateTotal = 0;
   if (tariff == '24h') {
@@ -85,16 +76,6 @@ const eabComparison = (tariff, arr, location, eab) => {
   esbAverageDaily.innerHTML = euro.format(estimateTotal);
   esbAverageWeekly.innerHTML = euro.format(estimateTotal * 7);
   esbAverageMonthly.innerHTML = euro.format(estimateTotal * 30);
-
-  // estimateTotal = estimateTotal * days;
-  // esbAverage.innerHTML = `${days} days: ${euro.format(estimateTotal)}`;
-
-  // let total = 0;
-  // for (let i = 0; i < arr.length; i++) {
-  //   let a = Number(arr[i][arr[i].length - 1].replace(/[^\d.-]/g, ""));
-  //   total += a;
-  // }
-  // customerUsage.innerHTML = euro.format(total);
 };
 
 export { eabComparison };

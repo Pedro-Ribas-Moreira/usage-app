@@ -1,73 +1,30 @@
-import { BBprices } from '../prices.js';
-let euro = Intl.NumberFormat('en-DE', {
-  style: 'currency',
-  currency: 'EUR',
-});
+import { broadbandPrices } from '../core/prices.js';
+import { euro } from '../utils/format.js';
 
-const bbTariff = (arr, broaband, sum) => {
-  const bbBox = document.querySelector('#bb-box');
+const BB_PRICE_KEYS = {
+  'FTTC': 'FTTC',
+  'FTTH-150': 'FTTH150',
+  'FTTH-500': 'FTTH500',
+  'FTTH-1000': 'FTTH1000',
+};
+
+const bbTariff = (arr, broadband, sum) => {
   const bbTotalDisplay = document.querySelectorAll('.broadband-display');
   const bbSumTotal = document.querySelector('#total-sum-broadband');
   const bbSpendDay = document.querySelector('#broadband-spend-day');
   const bbSpendTotal = document.querySelector('#broadband-spend-total');
 
-  if (broaband == 'no') {
-    bbTotalDisplay.forEach((e) => {
-      e.classList.add('hidden');
-    });
-  } else {
-    bbTotalDisplay.forEach((e) => {
-      e.classList.remove('hidden');
-    });
-  }
+  bbTotalDisplay.forEach((el) => el.classList.toggle('hidden', broadband === 'no'));
 
-  let dailyCharge;
-  let totalCharged;
-  let total;
-  switch (broaband) {
-    case 'FTTC':
-      dailyCharge = BBprices.prices.FTTC;
-      bbSpendDay.innerHTML = euro.format(dailyCharge);
-      totalCharged = dailyCharge * (arr.length - 1);
-      bbSpendTotal.innerHTML = euro.format(totalCharged);
-      total = totalCharged + sum;
-      bbSumTotal.innerHTML = `${euro.format(total)}`;
+  const priceKey = BB_PRICE_KEYS[broadband];
+  if (!priceKey) return;
 
-      break;
-    case 'FTTH-150':
-      dailyCharge = BBprices.prices.FTTH150;
-      bbSpendDay.innerHTML = euro.format(dailyCharge);
-      totalCharged = dailyCharge * (arr.length - 1);
-      bbSpendTotal.innerHTML = euro.format(totalCharged);
-      total = totalCharged + sum;
-      bbSumTotal.innerHTML = `${euro.format(total)}`;
-      // code block
-      break;
-    case 'FTTH-500':
-      dailyCharge = BBprices.prices.FTTH500;
-      bbSpendDay.innerHTML = euro.format(dailyCharge);
-      totalCharged = dailyCharge * (arr.length - 1);
-      bbSpendTotal.innerHTML = euro.format(totalCharged);
-      total = totalCharged + sum;
-      bbSumTotal.innerHTML = `${euro.format(total)}`;
-      break;
-    case 'FTTH-1000':
-      dailyCharge = BBprices.prices.FTTH1000;
-      bbSpendDay.innerHTML = euro.format(dailyCharge);
-      totalCharged = dailyCharge * (arr.length - 1);
-      bbSpendTotal.innerHTML = euro.format(totalCharged);
-      total = totalCharged + sum;
-      bbSumTotal.innerHTML = `${euro.format(total)}`;
-      break;
-    default:
-      return;
-  }
+  const dailyCharge = broadbandPrices.prices[priceKey];
+  const totalCharged = dailyCharge * (arr.length - 1);
 
-  //   console.log({
-  //     dailyCharge,
-  //     totalCharged,
-  //     total,
-  //   });
+  bbSpendDay.innerHTML = euro.format(dailyCharge);
+  bbSpendTotal.innerHTML = euro.format(totalCharged);
+  bbSumTotal.innerHTML = euro.format(totalCharged + sum);
 };
 
 export { bbTariff };
