@@ -5,7 +5,7 @@ import { euro } from '../utils/format.js';
 const listContainer = document.querySelector('#list-container');
 
 const createTable = (array, dailyArray, datesMap, tariff) => {
-  ['#table-header-wrapper', '#table-body-wrapper'].forEach((sel) => {
+  ['#table-search-wrapper', '#table-header-wrapper', '#table-body-wrapper'].forEach((sel) => {
     const el = document.querySelector(sel);
     if (el) el.remove();
   });
@@ -21,6 +21,32 @@ const createTable = (array, dailyArray, datesMap, tariff) => {
     return cg;
   };
 
+  let sortCol = null;
+  let sortDir = 'asc';
+  const sortIcons = [];
+
+  function sortTable(colIndex, dir) {
+    const pairs = Array.from(tableBody.querySelectorAll('.day-row')).map((row) => [row, row.nextElementSibling]);
+    pairs.sort(([a], [b]) => {
+      const aText = a.children[colIndex]?.textContent.trim() || '';
+      const bText = b.children[colIndex]?.textContent.trim() || '';
+      let cmp;
+      if (colIndex === 0) {
+        const toNum = (s) => { const [d, m, y] = s.split('/').map(Number); return y * 10000 + m * 100 + d; };
+        cmp = toNum(aText) - toNum(bText);
+      } else {
+        const aNum = parseFloat(aText.replace(/[^0-9.-]/g, ''));
+        const bNum = parseFloat(bText.replace(/[^0-9.-]/g, ''));
+        cmp = !isNaN(aNum) && !isNaN(bNum) ? aNum - bNum : aText.localeCompare(bText);
+      }
+      return dir === 'asc' ? cmp : -cmp;
+    });
+    pairs.forEach(([dataRow, timeRow]) => {
+      tableBody.appendChild(dataRow);
+      if (timeRow) tableBody.appendChild(timeRow);
+    });
+  }
+
   // --- Non-scrolling header ---
   const headerWrapper = document.createElement('div');
   headerWrapper.setAttribute('id', 'table-header-wrapper');
@@ -31,22 +57,107 @@ const createTable = (array, dailyArray, datesMap, tariff) => {
 
   const tableHeader = document.createElement('thead');
   const headerRow = document.createElement('tr');
-  for (let i = 0; i < array[0].length; i++) {
+
+  for (let i = 0; i < numCols; i++) {
     const headerCell = document.createElement('th');
-    headerCell.innerText = array[0][i];
     headerCell.classList.add(
-      'px-4', 'py-3',
       'text-xs', 'font-semibold', 'uppercase', 'tracking-wide',
-      'text-white',
-      'bg-mainPink', 'dark:bg-blue-600',
+      'text-white', 'bg-mainPink', 'dark:bg-blue-600',
+      'cursor-pointer', 'select-none',
+      'px-4', 'py-3',
       i === 0 ? 'text-left' : 'text-right',
     );
+
+    const sortIcon = document.createElement('i');
+    sortIcon.className = i === 0
+      ? 'fa-solid fa-sort text-xs opacity-30 mr-1.5'
+      : 'fa-solid fa-sort text-xs opacity-30 ml-1.5';
+    sortIcons.push(sortIcon);
+
+    if (i === 0) {
+      headerCell.appendChild(sortIcon);
+      headerCell.appendChild(document.createTextNode(array[0][i]));
+      const searchToggleBtn = document.createElement('button');
+      searchToggleBtn.classList.add('ml-2', 'opacity-50', 'hover:opacity-100', 'transition-opacity', 'align-middle');
+      searchToggleBtn.innerHTML = '<i class="fa-solid fa-magnifying-glass text-xs"></i>';
+      searchToggleBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const isNowHidden = searchWrapper.classList.toggle('hidden');
+        if (!isNowHidden) {
+          searchInput.focus();
+        } else {
+          searchInput.value = '';
+          searchInput.dispatchEvent(new Event('input'));
+        }
+      });
+      headerCell.appendChild(searchToggleBtn);
+    } else {
+      headerCell.appendChild(document.createTextNode(array[0][i]));
+      headerCell.appendChild(sortIcon);
+    }
+
+    headerCell.addEventListener('click', () => {
+      if (sortCol === i) {
+        sortDir = sortDir === 'asc' ? 'desc' : 'asc';
+      } else {
+        sortCol = i;
+        sortDir = 'asc';
+      }
+      sortIcons.forEach((icon, idx) => {
+        const isActive = idx === sortCol;
+        const base = idx === 0 ? 'fa-solid text-xs mr-1.5' : 'fa-solid text-xs ml-1.5';
+        const dir = sortDir === 'asc' ? 'fa-sort-up' : 'fa-sort-down';
+        icon.className = `${base} ${isActive ? `${dir} opacity-100` : 'fa-sort opacity-30'}`;
+      });
+      sortTable(i, sortDir);
+    });
+
     headerRow.appendChild(headerCell);
   }
+
   tableHeader.appendChild(headerRow);
   headerTable.appendChild(makeColgroup());
   headerTable.appendChild(tableHeader);
   headerWrapper.appendChild(headerTable);
+
+  // --- Search bar (hidden until toggle) ---
+  const searchWrapper = document.createElement('div');
+  searchWrapper.setAttribute('id', 'table-search-wrapper');
+  searchWrapper.classList.add('hidden', 'px-3', 'py-2', 'flex-shrink-0', 'border-b', 'border-gray-100', 'dark:border-slate-600');
+
+  const searchInner = document.createElement('div');
+  searchInner.classList.add('relative');
+
+  const searchIcon = document.createElement('i');
+  searchIcon.className = 'fa-solid fa-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 dark:text-slate-400 text-xs pointer-events-none';
+
+  const searchInput = document.createElement('input');
+  searchInput.setAttribute('type', 'text');
+  searchInput.setAttribute('placeholder', 'Search date…');
+  searchInput.classList.add(
+    'w-full', 'text-sm', 'pl-8', 'pr-3', 'py-1.5',
+    'rounded-lg', 'border', 'border-gray-200', 'dark:border-slate-500',
+    'bg-gray-50', 'dark:bg-slate-600',
+    'text-gray-700', 'dark:text-white',
+    'placeholder-gray-400', 'dark:placeholder-slate-400',
+    'focus:outline-none', 'focus:ring-1', 'focus:ring-mainPink', 'dark:focus:ring-blue-400',
+  );
+
+  searchInput.addEventListener('input', () => {
+    const query = searchInput.value.trim().toLowerCase();
+    document.querySelectorAll('.day-row').forEach((row) => {
+      row.classList.remove('active-row');
+      const timeRow = row.nextElementSibling;
+      if (timeRow) timeRow.classList.add('hidden');
+      const matches = !query || (row.dataset.date || '').toLowerCase().includes(query);
+      row.style.display = matches ? '' : 'none';
+      if (timeRow) timeRow.style.display = matches ? '' : 'none';
+    });
+  });
+
+  searchInner.appendChild(searchIcon);
+  searchInner.appendChild(searchInput);
+  searchWrapper.appendChild(searchInner);
 
   // --- Scrollable body ---
   const bodyWrapper = document.createElement('div');
@@ -148,6 +259,7 @@ const createTable = (array, dailyArray, datesMap, tariff) => {
   bodyWrapper.appendChild(bodyTable);
 
   listContainer.appendChild(headerWrapper);
+  listContainer.appendChild(searchWrapper);
   listContainer.appendChild(bodyWrapper);
   listContainer.classList.remove('hidden');
 };
