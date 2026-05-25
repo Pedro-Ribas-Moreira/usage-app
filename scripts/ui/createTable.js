@@ -3,6 +3,9 @@ import { timeChart, getTimeChartInfo } from './mainChart.js';
 import { euro } from '../utils/format.js';
 
 const listContainer = document.querySelector('#list-container');
+const track = (event, params = {}) => {
+  if (typeof gtag === 'function') gtag('event', event, params);
+};
 
 const createTable = (array, dailyArray, datesMap, tariff) => {
   ['#table-search-wrapper', '#table-header-wrapper', '#table-body-wrapper'].forEach((sel) => {
@@ -84,6 +87,7 @@ const createTable = (array, dailyArray, datesMap, tariff) => {
         e.stopPropagation();
         const isNowHidden = searchWrapper.classList.toggle('hidden');
         if (!isNowHidden) {
+          track('table_search_opened');
           searchInput.focus();
         } else {
           searchInput.value = '';
@@ -103,6 +107,7 @@ const createTable = (array, dailyArray, datesMap, tariff) => {
         sortCol = i;
         sortDir = 'asc';
       }
+      track('table_sorted', { column: array[0][i], direction: sortDir });
       sortIcons.forEach((icon, idx) => {
         const isActive = idx === sortCol;
         const base = idx === 0 ? 'fa-solid text-xs mr-1.5' : 'fa-solid text-xs ml-1.5';
@@ -286,6 +291,7 @@ window.addEventListener('click', (e) => {
       document.querySelector('#main-chart').style.display = 'none';
 
       const d = row.dataset.date;
+      track('day_expanded', { date: d });
       if (timeChart) {
         timeChart.destroy();
       }

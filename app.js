@@ -38,6 +38,10 @@
 
 import { main } from './scripts/core/main.js';
 import { displayTable } from './scripts/core/displayTable.js';
+
+const track = (event, params = {}) => {
+  if (typeof gtag === 'function') gtag('event', event, params);
+};
 import {
   dayArray,
   dayRuralArray,
@@ -157,9 +161,14 @@ newBtnForm.addEventListener('click', () => {
     getProfileChartInfo(dailyData);
     displayTable(tariff, location, broadband, eab);
 
-    // chartContainer.classList.remove("hidden");
-    // listIcon.classList.add("active");
     dataIsLoaded = true;
+    track('file_loaded', {
+      tariff,
+      location,
+      broadband,
+      eab,
+      days_count: result.length - 1,
+    });
     data = result;
   };
   reader.readAsText(file);
@@ -172,6 +181,7 @@ newBtnForm.addEventListener('click', () => {
 });
 
 resetBtn.addEventListener('click', () => {
+  track('session_reset');
   dropArea.classList.remove('hidden');
   customerSettingsForm.classList.add('hidden');
   displayContainer.classList.add('hidden');
@@ -214,26 +224,30 @@ resetBtn.addEventListener('click', () => {
   dataIsLoaded = false;
 });
 
-selectTariff.addEventListener('change', (e) => {
+selectTariff.addEventListener('change', () => {
   if (dataIsLoaded) {
+    track('tariff_changed', { tariff: selectTariff.value });
     displayTable(selectTariff.value, selectLocation.value, selectBroadband.value, selectEab.value);
   }
 });
 
-selectLocation.addEventListener('change', (e) => {
+selectLocation.addEventListener('change', () => {
   if (dataIsLoaded) {
+    track('location_changed', { location: selectLocation.value });
     displayTable(selectTariff.value, selectLocation.value, selectBroadband.value, selectEab.value);
   }
 });
 
-selectBroadband.addEventListener('change', (e) => {
+selectBroadband.addEventListener('change', () => {
   if (dataIsLoaded) {
+    track('broadband_changed', { broadband: selectBroadband.value });
     displayTable(selectTariff.value, selectLocation.value, selectBroadband.value, selectEab.value);
   }
 });
 
-selectEab.addEventListener('change', (e) => {
+selectEab.addEventListener('change', () => {
   if (dataIsLoaded) {
+    track('eab_changed', { eab: selectEab.value });
     displayTable(selectTariff.value, selectLocation.value, selectBroadband.value, selectEab.value);
   }
 });
@@ -276,6 +290,7 @@ const savingsModalContent = document.getElementById('savings-modal-content');
 
 savingsBtn.addEventListener('click', () => {
   contentDiv.classList.toggle('hidden');
+  track('savings_modal_opened');
   // Get the current date
   const currentDate = new Date();
 
@@ -330,6 +345,7 @@ function setActiveChartBtn(activeBtn) {
 }
 
 chartViewDaily.addEventListener('click', () => {
+  track('chart_view_changed', { chart_view: 'daily' });
   document.querySelector('#main-chart').classList.remove('hidden');
   document.querySelector('#main-chart').style.display = 'block';
   document.querySelector('#profile-chart').classList.add('hidden');
@@ -344,6 +360,7 @@ chartViewDaily.addEventListener('click', () => {
 });
 
 chartViewProfile.addEventListener('click', () => {
+  track('chart_view_changed', { chart_view: 'typical_day' });
   document.querySelector('#profile-chart').classList.remove('hidden');
   document.querySelector('#profile-chart').style.display = 'block';
   document.querySelector('#main-chart').classList.add('hidden');
@@ -360,8 +377,7 @@ chartViewProfile.addEventListener('click', () => {
 
 const chartViewDow = document.querySelector('#chart-view-dow');
 chartViewDow.addEventListener('click', () => {
-  console.log('[dow-toggle] clicked');
-  console.log('[dow-toggle] window.dowChart exists:', !!window.dowChart);
+  track('chart_view_changed', { chart_view: 'typical_week' });
 
   const dowCanvas = document.querySelector('#dow-chart');
   const profileCanvas = document.querySelector('#profile-chart');
@@ -374,22 +390,11 @@ chartViewDow.addEventListener('click', () => {
   profileCanvas.classList.add('hidden');
   profileCanvas.style.display = 'none';
 
-  console.log('[dow-toggle] after classList changes:');
-  console.log('  #dow-chart   hidden?', dowCanvas.classList.contains('hidden'), '| display:', getComputedStyle(dowCanvas).display, '| w:', dowCanvas.offsetWidth, 'h:', dowCanvas.offsetHeight);
-  console.log('  #profile-chart hidden?', profileCanvas.classList.contains('hidden'), '| display:', getComputedStyle(profileCanvas).display);
-  console.log('  #main-chart  hidden?', mainCanvas.classList.contains('hidden'), '| display:', getComputedStyle(mainCanvas).display);
-
   if (timeChart) {
     timeChart.destroy();
     document.querySelector('#time-chart').classList.add('hidden');
   }
-  if (window.dowChart) {
-    console.log('[dow-toggle] calling resize() on dowChart');
-    window.dowChart.resize();
-    console.log('[dow-toggle] after resize — canvas w:', dowCanvas.offsetWidth, 'h:', dowCanvas.offsetHeight);
-  } else {
-    console.warn('[dow-toggle] window.dowChart is not defined — chart was never created');
-  }
+  if (window.dowChart) window.dowChart.resize();
   setActiveChartBtn(chartViewDow);
 });
 
@@ -475,7 +480,7 @@ const observer = new MutationObserver((mutations) => {
   mutations.forEach((mutation) => {
     if (mutation.attributeName === 'class') {
       const isDark = document.documentElement.classList.contains('dark') || document.body.classList.contains('dark');
-
+      track('dark_mode_toggled', { mode: isDark ? 'dark' : 'light' });
       updateChartsTheme(isDark);
     }
   });
