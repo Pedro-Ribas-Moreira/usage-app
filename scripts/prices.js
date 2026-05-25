@@ -165,7 +165,7 @@ let BBprices = {
   dateStart: '01/01/2022',
   dateEnd: '',
   prices: {
-    // BB Connections speed
+    // BB Connections speed 
     FTTC: 1.74,
     FTTH150: 1.92,
     FTTH500: 2.04,

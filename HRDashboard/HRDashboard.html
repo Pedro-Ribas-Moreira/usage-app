@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HR Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="topbar">
+        <div class="brand">
+            <img src="../assets/logo.png" alt="PrepayPower logo">
+            <div>
+                <h1>HR Dashboard</h1>
+                <p id="source-label">Connecting to HR data service</p>
+            </div>
+        </div>
+        <div class="status" id="api-status">Checking API</div>
+    </header>
+
+    <main>
+        <section class="metrics" aria-label="HR dashboard metrics">
+            <article>
+                <span>Employees</span>
+                <strong id="employees-count">--</strong>
+            </article>
+            <article>
+                <span>Active Processes</span>
+                <strong id="process-count">--</strong>
+            </article>
+            <article>
+                <span>Open Cases</span>
+                <strong id="open-cases-count">--</strong>
+            </article>
+            <article>
+                <span>Overdue</span>
+                <strong id="overdue-count">--</strong>
+            </article>
+        </section>
+
+        <section class="workspace">
+            <div class="panel process-panel">
+                <div class="panel-heading">
+                    <h2>Process Overview</h2>
+                    <span id="last-updated">Last updated: --</span>
+                </div>
+                <div class="table-wrap">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Process</th>
+                                <th>Owner</th>
+                                <th>Status</th>
+                                <th>Open</th>
+                                <th>Overdue</th>
+                            </tr>
+                        </thead>
+                        <tbody id="process-table-body">
+                            <tr>
+                                <td colspan="5">Loading HR processes...</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <aside class="panel setup-panel">
+                <h2>Data Setup</h2>
+                <dl>
+                    <div>
+                        <dt>Employee key</dt>
+                        <dd>EmployeeId</dd>
+                    </div>
+                    <div>
+                        <dt>Current source</dt>
+                        <dd id="source-detail">Waiting for API response</dd>
+                    </div>
+                    <div>
+                        <dt>Next step</dt>
+                        <dd>Create SQL tables, then map SharePoint data into them.</dd>
+                    </div>
+                </dl>
+            </aside>
+        </section>
+    </main>
+
+    <script src="app.js" defer></script>
+</body>
+</html>
