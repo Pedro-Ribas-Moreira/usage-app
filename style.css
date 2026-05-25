@@ -43,3 +43,34 @@ body {
 .active-row {
   border: 1px solid gray;
 }
+
+/* Custom scrollbar for the table container */
+#table-body-wrapper::-webkit-scrollbar {
+  width: 6px;
+}
+
+#table-body-wrapper::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 0 0 1.5rem 0;
+}
+
+#table-body-wrapper::-webkit-scrollbar-thumb {
+  background: #E71E70;
+  border-radius: 999px;
+}
+
+#table-body-wrapper::-webkit-scrollbar-thumb:hover {
+  background: #c01860;
+}
+
+.dark #table-body-wrapper::-webkit-scrollbar-track {
+  background: #334155;
+}
+
+.dark #table-body-wrapper::-webkit-scrollbar-thumb {
+  background: #3b82f6;
+}
+
+.dark #table-body-wrapper::-webkit-scrollbar-thumb:hover {
+  background: #2563eb;
+}

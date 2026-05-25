@@ -1,13 +1,16 @@
-const isDarkMode = document.documentElement.classList.contains('dark');
-const themes = {
-  nightBar: isDarkMode ? '#48CAE4' : '#023047',
-  text: isDarkMode ? '#ffffff' : '#333333',
-  grid: isDarkMode ? '#ffffff20' : '#00000020',
+const getThemes = () => {
+  const isDarkMode = document.documentElement.classList.contains('dark');
+  return {
+    nightBar: isDarkMode ? '#48CAE4' : '#023047',
+    text: isDarkMode ? '#ffffff' : '#333333',
+    grid: isDarkMode ? '#ffffff20' : '#00000020',
+  };
 };
 
 let mainChart;
 
 const getChartInfo = (nightData, dayData, peakData, days) => {
+  const themes = getThemes();
   const dates = days.map((dateStr) => {
     const [day, month] = dateStr.split('/').map(Number);
     return day + '/' + month;
@@ -69,6 +72,7 @@ const getChartInfo = (nightData, dayData, peakData, days) => {
 let timeChart;
 
 const getTimeChartInfo = (time, units, day) => {
+  const themes = getThemes();
   const ctx = document.getElementById('time-chart');
   const chartData = {
     labels: time,

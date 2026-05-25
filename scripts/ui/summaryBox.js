@@ -69,9 +69,9 @@ const summaryBox = (tariff, array, location, broadband, eab) => {
   const savings = comparableTotals[tariff] - comparableTotals[bestTariff];
   const recommendationEl = document.querySelector('#tariff-recommendation');
   if (bestTariff === tariff) {
-    recommendationEl.innerHTML = `<i class="fa-solid fa-circle-check mr-1"></i> Customer is on the best tariff`;
+    recommendationEl.innerHTML = `<i class="fa-solid fa-circle-check mr-1 text-green-500"></i> Customer is on the best tariff`;
   } else {
-    recommendationEl.innerHTML = `<i class="fa-solid fa-lightbulb mr-1"></i> Switch to ${tariffLabels[bestTariff]} &mdash; save ${euro.format(savings)}`;
+    recommendationEl.innerHTML = `<i class="fa-solid fa-lightbulb mr-1 text-mainPink dark:text-blue-400"></i> Switch to <strong>${tariffLabels[bestTariff]}</strong> &mdash; save <strong>${euro.format(savings)}</strong>`;
   }
 
   bbTariff(array, broadband, totalSpend);
