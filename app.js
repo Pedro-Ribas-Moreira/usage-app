@@ -283,6 +283,33 @@ closeDrawerButton.addEventListener('click', () => {
   drawer.classList.toggle('hidden');
 });
 
+// Price table modal
+document.getElementById('price-table-button').addEventListener('click', async () => {
+  const modal = document.getElementById('price-table-modal');
+  const table = document.getElementById('price-table-content');
+  modal.classList.remove('hidden');
+  track('price_table_opened');
+
+  if (table.innerHTML) return;
+
+  const resp = await fetch('assets/prices.csv');
+  const text = await resp.text();
+  const rows = text.trim().split('\n').map(r => r.split(','));
+
+  const headers = rows[0];
+  const thead = `<thead class="sticky top-0 bg-mainPink dark:bg-blue-500 text-white"><tr>${headers.map(h => `<th class="px-2 py-1 whitespace-nowrap border border-pink-300 dark:border-blue-400">${h}</th>`).join('')}</tr></thead>`;
+  const tbody = `<tbody>${rows.slice(1).map((r, i) => `<tr class="${i % 2 === 0 ? 'bg-gray-50 dark:bg-slate-600' : 'bg-white dark:bg-slate-700'}">${r.map(c => `<td class="px-2 py-1 whitespace-nowrap border border-gray-200 dark:border-slate-500 text-center">${c}</td>`).join('')}</tr>`).join('')}</tbody>`;
+  table.innerHTML = thead + tbody;
+});
+
+document.getElementById('close-price-table-modal').addEventListener('click', () => {
+  document.getElementById('price-table-modal').classList.add('hidden');
+});
+
+document.getElementById('price-table-modal').addEventListener('click', (e) => {
+  if (e.target === e.currentTarget) e.currentTarget.classList.add('hidden');
+});
+
 const savingsBtn = document.getElementById('savings-button');
 const contentDiv = document.getElementById('savings-modal');
 const closeSavingsModal = document.getElementById('savings-modal-close');

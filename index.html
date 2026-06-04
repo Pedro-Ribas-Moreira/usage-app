@@ -147,6 +147,14 @@
             <!-- <p class="text-sm">Savings</p>   -->
           </div>
         </li>
+        <li
+          class="cursor-pointer border-b-2 border-transparent hover:border-mainPink dark:hover:border-white hover:rounded-b text-mainPink p-2 transition"
+          id="price-table-button"
+        >
+          <div class="flex flex-col items-center bg-white dark:bg-slate-700 dark:text-white">
+            <i class="fa-solid fa-table text-2xl"></i>
+          </div>
+        </li>
       </ul>
 
       <div class="flex gap-2">
@@ -512,6 +520,21 @@
       >
       <p id="savings-modal-content" class="savings-modal-content">Some text in the Modal..</p>
       <i class="fa-solid fa-gifts text-3xl"></i>
+    </div>
+
+    <div
+      id="price-table-modal"
+      class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 hidden"
+    >
+      <div class="bg-white dark:bg-slate-700 dark:text-white rounded-lg shadow-xl w-auto max-w-5xl max-h-[85vh] flex flex-col">
+        <div class="bg-mainPink dark:bg-blue-500 p-4 text-white font-bold relative flex justify-between rounded-t-lg">
+          <h2>Price Tables</h2>
+          <i class="fa-solid fa-xmark cursor-pointer" id="close-price-table-modal"></i>
+        </div>
+        <div class="overflow-auto p-4">
+          <table id="price-table-content" class="text-xs border-collapse w-full"></table>
+        </div>
+      </div>
     </div>
 
     <div
